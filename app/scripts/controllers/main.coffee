@@ -9,9 +9,8 @@
 ###
 
 angular.module('iter001App').controller 'MainCtrl', ($scope) ->
-  $scope.awesomeThings = [
-    'HTML5 Boilerplate'
-    'AngularJS'
-    'Karma'
+  $scope.houses = [
+    {name: '喜乐屋', likes: '12', price: '1050', image: 'images/xile.jpg'}
+    {name: '向日葵', likes: '10', price: '850', image: 'images/xrk.jpg'}
   ]
   return

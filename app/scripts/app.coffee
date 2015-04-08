@@ -26,5 +26,8 @@ angular.module('iter001App', [
   .when('/about',
     templateUrl: 'views/about.html'
     controller: 'AboutCtrl')
+  .when '/order',
+    templateUrl: 'views/order.html'
+    controller: 'OrderCtrl'
   .otherwise redirectTo: '/'
   return

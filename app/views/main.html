@@ -1,10 +1,12 @@
-<div class="card">
+<div class="card" ng-repeat="house in houses">
   <!--card main image-->
   <div class="card-image waves-effect waves-block waves-light">
-    <img class="activator" src="images/xile.jpg">
+    <img class="activator" src="{{house.image}}">
     <span class="card-title">
-      <h4 class="header white-text left-align">喜乐屋</h4>
-      <a class="waves-effect waves-light transparent white-text"><i class="mdi-action-favorite-outline left-align"></i></a>
+      <h4 class="header white-text left-align">{{house.name}}</h4>
+      <p>
+        <a class="waves-effect waves-light transparent white-text"><i class="mdi-action-favorite-outline left-align"></i></a>
+      </p>
     </span>
   </div>
   <!--card content in front -->
@@ -15,7 +17,7 @@
         <span class="title">Qulity is not an act, it is an habit.</span>
 
         <p>Owner: Luke Xie . <i class="mdi-file-cloud-queue"/> <br/>
-          <i class="tiny mdi-action-favorite"/> 12
+          <i class="tiny mdi-action-favorite"/> {{house.likes}}
         </p>
         <p class="right" style="border-top: 20px">
           <i class="mdi-action-grade"></i>
@@ -33,15 +35,15 @@
   <div class="card-reveal">
     <!--title-->
        <span class="card-title grey-text text-darken-4 center">
-        <i class="mdi-hardware-keyboard-backspace left"/> 喜乐屋
-         <a class="btn-floating waves-effect waves-light red right"><i class="mdi-content-add"/></a>
+        <i class="mdi-hardware-keyboard-backspace left"/> {{house.name}}
+        <a class="btn-floating waves-effect waves-light red right" ng-click=""><i class="mdi-content-add"/></a>
        </span>
 
     <!--small content image-->
     <div class="card small">
       <div class="card-image">
-        <img class="circle" src="images/xile.jpg">
-        <span class="card-title small">RMB 1,050/night </span>
+        <img class="circle" src="{{house.image}}">
+        <span class="card-title small">RMB {{house.price}}/night </span>
       </div>
 
       <!--own introduce-->
@@ -84,24 +86,27 @@
 </div>
 
 <!--2nd card-->
+<!--
 
 <div class="card">
-  <!--card main image-->
+  &lt;!&ndash;card main image&ndash;&gt;
   <div class="card-image waves-effect waves-block waves-light">
     <img class="activator" src="images/xrk.jpg">
     <span class="card-title">
       <h4 class="header white-text left">向日葵</h4>
+      <p>
       <a class="waves-effect waves-light transparent white-text"><i class="mdi-action-favorite-outline left-align"></i></a>
+      </p>
     </span>
   </div>
-  <!--card content in front -->
+  &lt;!&ndash;card content in front &ndash;&gt;
   <div class="card-content" style="padding: 0;">
     <ul class="collection" style="margin: 0;border:0;">
       <li class="collection-item avatar" style="padding-bottom: 0;">
-        <img src="images/yuna.jpg" alt="" class="circle">
-        <span class="title">Qulity is not an act, it is an habit.</span>
+        <img src="images/avator.jpg" alt="" class="circle">
+        <span class="title">勇敢去追求自己想要的幸福</span>
 
-        <p>Owner: Luke Xie . <i class="mdi-file-cloud-queue"/> <br/>
+        <p>Owner: Jerry Jiang <i class="mdi-file-cloud-queue"/> <br/>
           <i class="tiny mdi-action-favorite"/> 12
         </p>
         <p class="right" style="border-top: 20px">
@@ -114,27 +119,27 @@
     </ul>
   </div>
 
-  <!-- card detail in the back-->
+  &lt;!&ndash; card detail in the back&ndash;&gt;
   <div class="card-reveal">
-    <!--title-->
+    &lt;!&ndash;title&ndash;&gt;
        <span class="card-title grey-text text-darken-4 center">
         <i class="mdi-hardware-keyboard-backspace left"/> 向日葵
          <a class="btn-floating waves-effect waves-light red right"><i class="mdi-content-add"/></a>
        </span>
 
-    <!--small content image-->
+    &lt;!&ndash;small content image&ndash;&gt;
     <div class="card small">
       <div class="card-image">
         <img class="circle" src="images/xrk.jpg">
-        <span class="card-title small">RMB 1,050/night </span>
+        <span class="card-title small">RMB 860/night </span>
       </div>
 
-      <!--own introduce-->
+      &lt;!&ndash;own introduce&ndash;&gt;
       <div class="card-panel" style="margin: 0;padding: 0">
         <ul class="collection">
           <li class="collection-item avatar">
-            <img src="images/yuna.jpg" alt="" class="circle">
-            <span class="tiny">Art cannot be modern. Art is primordially eternal.</span>
+            <img src="images/avator.jpg" alt="" class="circle">
+            <span class="tiny">您也可以直接通过我们的邮箱进行反馈.</span>
 
             <p>
               <i class="tiny mdi-action-alarm"/> 3
@@ -146,7 +151,7 @@
         </ul>
       </div>
 
-      <!--user comment-->
+      &lt;!&ndash;user comment&ndash;&gt;
       <div class="card-panel" style="margin: 0;padding: 0">
         <ul class="collection">
           <li class="collection-item">
@@ -169,3 +174,4 @@
 </div>
 
 
+-->
