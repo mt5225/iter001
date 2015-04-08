@@ -19,9 +19,12 @@ angular.module('iter001App', [
   'ngSanitize'
   'ngTouch'
 ]).config ($routeProvider) ->
-  $routeProvider.when('/',
+  $routeProvider
+  .when('/',
     templateUrl: 'views/main.html'
-    controller: 'MainCtrl').when('/about',
+    controller: 'MainCtrl')
+  .when('/about',
     templateUrl: 'views/about.html'
-    controller: 'AboutCtrl').otherwise redirectTo: '/'
+    controller: 'AboutCtrl')
+  .otherwise redirectTo: '/'
   return
