@@ -14,6 +14,9 @@ module.exports = (grunt) ->
       bower:
         files: [ 'bower.json' ]
         tasks: [ 'wiredep' ]
+      coffee:
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee' ]
+        tasks: ['newer:coffee']
       js:
         files: [ '<%= yeoman.app %>/scripts/{,*/}*.js' ]
         tasks: [ 'newer:jshint:all' ]
@@ -30,7 +33,7 @@ module.exports = (grunt) ->
           'newer:copy:styles'
           'autoprefixer'
         ]
-      gruntfile: files: [ 'Gruntfile.js' ]
+      gruntfile: files: [ 'Gruntfile.coffee' ]
       livereload:
         options: livereload: '<%= connect.options.livereload %>'
         files: [
@@ -38,6 +41,15 @@ module.exports = (grunt) ->
           '.tmp/styles/{,*/}*.css'
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+    coffee:
+      glob_to_multiple:
+        expand: true
+        flatten: false
+        cwd: '<%= yeoman.app %>/scripts/'
+        src: ['**/*.coffee']
+        dest: '<%= yeoman.app %>/scripts/'
+        ext: '.js'
+
     connect:
       options:
         port: 9000
@@ -67,7 +79,6 @@ module.exports = (grunt) ->
         jshintrc: '.jshintrc'
         reporter: require('jshint-stylish')
       all: src: [
-        'Gruntfile.js'
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
       test:

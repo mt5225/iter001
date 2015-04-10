@@ -8,9 +8,14 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'OrderCtrl', ($scope) ->
+  .controller 'OrderCtrl', ($scope, $location) ->
+    console.log "in order controller #{$location.path()}"
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
       'Karma'
     ]
+
+    console.log
+
+    return

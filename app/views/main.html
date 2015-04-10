@@ -5,11 +5,12 @@
     <span class="card-title">
       <h4 class="header white-text left-align">{{house.name}}</h4>
       <p>
-        <a class="waves-effect waves-light transparent white-text"><i class="mdi-action-favorite-outline left-align"></i></a>
+        <a class="waves-effect waves-light transparent white-text"><i
+          class="mdi-action-favorite-outline left-align"></i></a>
       </p>
     </span>
   </div>
-  <!--card content in front -->
+  <!--card content in front ------------------------------------------------------------------------------>
   <div class="card-content" style="padding: 0;">
     <ul class="collection" style="margin: 0;border:0;">
       <li class="collection-item avatar" style="padding-bottom: 0;">
@@ -19,6 +20,7 @@
         <p>Owner: Luke Xie . <i class="mdi-file-cloud-queue"/> <br/>
           <i class="tiny mdi-action-favorite"/> {{house.likes}}
         </p>
+
         <p class="right" style="border-top: 20px">
           <i class="mdi-action-grade"></i>
           <i class="mdi-action-grade"></i>
@@ -31,12 +33,25 @@
     </ul>
   </div>
 
-  <!-- card detail in the back-->
+  <!-- card detail in the back------------------------------------------------------------------------------->
   <div class="card-reveal">
+    <!--the book and share button chain-->
+    <div class="fixed-action-btn" style="top: 12px; right: 12px;">
+      <a class="btn-floating btn-large red">
+        <i class="large mdi-content-add"/>
+      </a>
+      <ul style="top: 78px;">
+        <li><a class="btn-floating yellow darken-1"><i class="large  mdi-maps-local-phone"/></a></li>
+        <li><a class="btn-floating green" href="/#/order"><i class="large mdi-action-shopping-cart"/></a></li>
+        <li><a class="btn-floating blue"><i class="large mdi-device-gps-fixed"/></a></li>
+        <li><a class="btn-floating  purple lighten-1" href="/#/about"><i class="large mdi-social-share"/></a></li>
+
+      </ul>
+    </div>
     <!--title-->
        <span class="card-title grey-text text-darken-4 center">
-        <i class="mdi-hardware-keyboard-backspace left"/> {{house.name}}
-        <a class="btn-floating waves-effect waves-light red right" ng-click=""><i class="mdi-content-add"/></a>
+         <!--floating button -->
+        <i class="mdi-hardware-keyboard-backspace left"></i> {{house.name}}
        </span>
 
     <!--small content image-->
@@ -56,8 +71,7 @@
             <p>
               <i class="tiny mdi-action-alarm"/> 3
               <i class="tiny mdi-action-lock-outline"/> 5
-              <i class="tiny mdi-communication-phone"/> 2
-              <a href="#"><i class="small mdi-hardware-keyboard-control right"/></a>
+              <i class="tiny mdi-communication-phone"/> 5
             </p>
           </li>
         </ul>
@@ -77,101 +91,10 @@
               </div>
             </form>
           </li>
-
         </ul>
       </div>
     </div>
-
   </div>
 </div>
 
-<!--2nd card-->
-<!--
-
-<div class="card">
-  &lt;!&ndash;card main image&ndash;&gt;
-  <div class="card-image waves-effect waves-block waves-light">
-    <img class="activator" src="images/xrk.jpg">
-    <span class="card-title">
-      <h4 class="header white-text left">向日葵</h4>
-      <p>
-      <a class="waves-effect waves-light transparent white-text"><i class="mdi-action-favorite-outline left-align"></i></a>
-      </p>
-    </span>
-  </div>
-  &lt;!&ndash;card content in front &ndash;&gt;
-  <div class="card-content" style="padding: 0;">
-    <ul class="collection" style="margin: 0;border:0;">
-      <li class="collection-item avatar" style="padding-bottom: 0;">
-        <img src="images/avator.jpg" alt="" class="circle">
-        <span class="title">勇敢去追求自己想要的幸福</span>
-
-        <p>Owner: Jerry Jiang <i class="mdi-file-cloud-queue"/> <br/>
-          <i class="tiny mdi-action-favorite"/> 12
-        </p>
-        <p class="right" style="border-top: 20px">
-          <i class="mdi-action-grade"></i>
-          <i class="mdi-action-grade"></i>
-          <i class="mdi-action-grade"></i>
-          <br/> <br/>
-        </p>
-      </li>
-    </ul>
-  </div>
-
-  &lt;!&ndash; card detail in the back&ndash;&gt;
-  <div class="card-reveal">
-    &lt;!&ndash;title&ndash;&gt;
-       <span class="card-title grey-text text-darken-4 center">
-        <i class="mdi-hardware-keyboard-backspace left"/> 向日葵
-         <a class="btn-floating waves-effect waves-light red right"><i class="mdi-content-add"/></a>
-       </span>
-
-    &lt;!&ndash;small content image&ndash;&gt;
-    <div class="card small">
-      <div class="card-image">
-        <img class="circle" src="images/xrk.jpg">
-        <span class="card-title small">RMB 860/night </span>
-      </div>
-
-      &lt;!&ndash;own introduce&ndash;&gt;
-      <div class="card-panel" style="margin: 0;padding: 0">
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <img src="images/avator.jpg" alt="" class="circle">
-            <span class="tiny">您也可以直接通过我们的邮箱进行反馈.</span>
-
-            <p>
-              <i class="tiny mdi-action-alarm"/> 3
-              <i class="tiny mdi-action-lock-outline"/> 5
-              <i class="tiny mdi-communication-phone"/> 2
-              <a href="#"><i class="small mdi-hardware-keyboard-control right"/></a>
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      &lt;!&ndash;user comment&ndash;&gt;
-      <div class="card-panel" style="margin: 0;padding: 0">
-        <ul class="collection">
-          <li class="collection-item">
-            <form style="margin-top: 20px;">
-              <div class="row">
-                <div class="input-field col s6">
-                  <i class="mdi-editor-mode-edit prefix"></i>
-                  <input id="icon_prefix" type="text">
-                  <label for="icon_prefix">留言</label>
-                </div>
-              </div>
-            </form>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
--->
+<div ng-include src="'views/footer.html'"></div>

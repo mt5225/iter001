@@ -1,1 +1,76 @@
-<p>This is the Order view.</p>
+<div ng-controller="OrderCtrl">
+  <div class="row">
+    <div class="col s4">
+      <img class="z-depth-1" style="width: 135px; height: auto;" src="images/xile.jpg"/>
+    </div>
+    <div class="col s7 offset-s1 center">
+      <h4 class="header" style="color: #EE6E73;font-weight: 300;">喜乐屋</h4>
+      <p> 1 bedroom - 1 bathroom - 2beds</p>
+      <br/>
+    </div>
+
+    <div style="padding-left: 20px">
+      <br/> <br/>
+      <h5 class="col s12 header left-align" style="color: #EE6E73;font-weight: 300;">Personal</h5>
+      <form action="#" style="padding: 5px;margin-bottom: 10px;">
+        <p class="col s3">
+          <input type="checkbox" class="filled-in pink" id="req001"/>
+          <label for="req001">Pro1</label>
+        </p>
+
+        <p class="col s3">
+          <input type="checkbox" class="filled-in pink" id="req002"/>
+          <label for="req002">Pro2</label>
+        </p>
+
+        <p class="col s3">
+          <input type="checkbox" class="filled-in pink" id="req003"/>
+          <label for="req003">空调</label>
+        </p>
+
+        <p class="col s3">
+          <input type="checkbox" class="filled-in pink" id="req004"/>
+          <label for="req004">Pro3</label>
+        </p>
+
+        <div class="switch col s4 offset-s8">
+          <label>
+            <input type="checkbox">
+            <span class="lever"></span>
+            更多 ..
+          </label>
+          <br/>
+        </div>
+
+      </form>
+
+      <h5 class="header orderheader left-align col s12">Dates</h5>
+      <script>
+        $('.datepicker').pickadate({
+          selectMonths: true,
+          selectYears: 15
+        });
+      </script>
+      <div class="col s6">
+        <label class="" for="start">Check-in</label>
+        <input type="date" id="start" class="datepicker datepicker" style="background-color: #f2f2f2;">
+      </div>
+      <div class="col s6">
+        <label class="" for="end">Check-out</label>
+        <input type="date" id="end" class="datepicker orderdate" style="background-color: #f2f2f2;">
+      </div>
+
+
+      <h5 class="header orderheader col s12">Guests 0</h5>
+
+      <form action="#" class="col s12">
+        <p class="range-field col s6 offset-6">
+          <input type="range" id="test5" min="1" max="5"/>
+        </p>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div ng-include src="'views/footer.html'"></div>
