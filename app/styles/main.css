@@ -98,10 +98,11 @@ html, body, .ng-view, .ng-scope, .container-fluid {
 }
 
 .orderdate {
-  background-color: #6d6d6d;
+  background-color: #f2f2f2;
   font-weight: 300;
+  font-size: large;
   color: #EE6E73;
-  text-align: center
+  text-align: center;
 }
 
 .orderheader {
@@ -109,4 +110,10 @@ html, body, .ng-view, .ng-scope, .container-fluid {
   color: #EE6E73;
   font-weight: 300;
   padding-top: 10px;
+}
+
+.closelayout {
+  padding: 0;
+  border: 0;
+  margin: 0;
 }

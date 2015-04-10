@@ -2,8 +2,8 @@
   <!--card main image-->
   <div class="card-image waves-effect waves-block waves-light">
     <img class="activator" src="{{house.image}}">
-    <span class="card-title">
-      <h4 class="header white-text left-align">{{house.name}}</h4>
+    <span class="card-title left-align">
+        {{house.name}}
       <p>
         <a class="waves-effect waves-light transparent white-text"><i
           class="mdi-action-favorite-outline left-align"></i></a>
@@ -14,7 +14,7 @@
   <div class="card-content" style="padding: 0;">
     <ul class="collection" style="margin: 0;border:0;">
       <li class="collection-item avatar" style="padding-bottom: 0;">
-        <img src="images/yuna.jpg" alt="" class="circle">
+        <img src="{{house.avator}}" alt="" class="circle">
         <span class="title">Qulity is not an act, it is an habit.</span>
 
         <p>Owner: Luke Xie . <i class="mdi-file-cloud-queue"/> <br/>
@@ -48,10 +48,10 @@
 
       </ul>
     </div>
-    <!--title-->
-       <span class="card-title grey-text text-darken-4 center">
+    <!--title------>
+       <span class="card-title left-align" style="color: #EE6E73;">
          <!--floating button -->
-        <i class="mdi-hardware-keyboard-backspace left"></i> {{house.name}}
+        <i class="mdi-hardware-keyboard-backspace"></i> &nbsp;  &nbsp; {{house.name}}
        </span>
 
     <!--small content image-->

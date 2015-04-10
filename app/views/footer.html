@@ -1,10 +1,7 @@
-<div navbar class="footer" id="footer">
-  <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
-  <nav>
-    <div  class="nav-wrapper">
-      <!--<a href="#!" class="brand-logo">Logo</a>-->
-      <!--<ul class="right hide-on-med-and-down">-->
-      <ul class="right" id="navbar_content">
+<div navbar>
+  <nav id="navbar">
+    <div class="nav-wrapper">
+      <ul class="right">
         <li>
           <form>
             <div class="input-field">
@@ -18,7 +15,23 @@
         <li><a href="#"><i class="mdi-navigation-refresh"></i></a></li>
         <li><a href="#"><i class="mdi-navigation-more-vert"></i></a></li>
       </ul>
-      <a id="place_order" href="#!" class="brand-logo">Place Order</a>
     </div>
   </nav>
 </div>
+
+<!--message-->
+<div alertmessage>
+  <div class="text-success"> </div>
+</div>
+
+<!--fix position-->
+<script>
+  //todo: fix the nav bar issue
+/*  $(document).ready(function () {
+    $('#navbar').pushpin(
+      {
+        buttom: $('#main-contain').offset().top
+      }
+    );
+  });*/
+</script>

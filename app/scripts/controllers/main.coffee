@@ -8,14 +8,10 @@
 # Controller of the iter001App
 ###
 
-angular.module('iter001App').controller 'MainCtrl', ($scope, $location) ->
+angular.module('iter001App').controller 'MainCtrl', ($scope, $location, flash) ->
   $scope.houses = [
-    {name: '喜乐屋', likes: '16', price: '1050', image: 'images/xile.jpg'}
-    {name: '向日葵', likes: '22', price: '850', image: 'images/xrk.jpg'}
+    {id: 'H001', name: '喜乐屋', likes: '16', price: '1050', image: 'images/xile.jpg' , avator: 'images/yuna.jpg'}
+    {id: 'H002', name: '向日葵', likes: '22', price: '850', image: 'images/xrk.jpg', avator: 'images/avator.jpg'}
   ]
-
-  $scope.isActive = (viewLocation)->
-    console.log "in isActive"
-    $location.path() in viewLocation
 
   return

@@ -8,27 +8,24 @@
    * # MainCtrl
    * Controller of the iter001App
    */
-  var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
-
-  angular.module('iter001App').controller('MainCtrl', function($scope, $location) {
+  angular.module('iter001App').controller('MainCtrl', function($scope, $location, flash) {
     $scope.houses = [
       {
+        id: 'H001',
         name: '喜乐屋',
         likes: '16',
         price: '1050',
-        image: 'images/xile.jpg'
+        image: 'images/xile.jpg',
+        avator: 'images/yuna.jpg'
       }, {
+        id: 'H002',
         name: '向日葵',
         likes: '22',
         price: '850',
-        image: 'images/xrk.jpg'
+        image: 'images/xrk.jpg',
+        avator: 'images/avator.jpg'
       }
     ];
-    $scope.isActive = function(viewLocation) {
-      var ref;
-      console.log("in isActive");
-      return ref = $location.path(), indexOf.call(viewLocation, ref) >= 0;
-    };
   });
 
 }).call(this);

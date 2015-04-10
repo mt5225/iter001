@@ -1,76 +1,131 @@
-<div ng-controller="OrderCtrl">
-  <div class="row">
-    <div class="col s4">
-      <img class="z-depth-1" style="width: 135px; height: auto;" src="images/xile.jpg"/>
-    </div>
-    <div class="col s7 offset-s1 center">
-      <h4 class="header" style="color: #EE6E73;font-weight: 300;">喜乐屋</h4>
-      <p> 1 bedroom - 1 bathroom - 2beds</p>
-      <br/>
-    </div>
+<div class="form-group row" ng-controller="OrderCtrl">
+  <div class="col s4">
+    <img class="z-depth-1" style="width: 135px; height: auto;" src="images/xile.jpg"/>
+  </div>
+  <div class="col s7 offset-s1 center">
+    <h4 class="header" style="color: #EE6E73;font-weight: 300;">喜乐屋</h4>
 
-    <div style="padding-left: 20px">
-      <br/> <br/>
-      <h5 class="col s12 header left-align" style="color: #EE6E73;font-weight: 300;">Personal</h5>
-      <form action="#" style="padding: 5px;margin-bottom: 10px;">
-        <p class="col s3">
-          <input type="checkbox" class="filled-in pink" id="req001"/>
-          <label for="req001">Pro1</label>
-        </p>
+    <p> 1 bedroom - 1 bathroom - 2beds</p>
+    <br/>
+  </div>
 
-        <p class="col s3">
-          <input type="checkbox" class="filled-in pink" id="req002"/>
-          <label for="req002">Pro2</label>
-        </p>
+  <div style="padding-left: 20px">
+    <h5 class="col s12 header left-align" style="color: #EE6E73;font-weight: 300;">Preference</h5>
+    <form action="#">
+      <p class="col s3" class="closelayout">
+        <input type="checkbox" ng-model="newOrder.req001" class="filled-in pink" id="req001"/>
+        <label for="req001">Pro1</label>
+      </p>
 
-        <p class="col s3">
-          <input type="checkbox" class="filled-in pink" id="req003"/>
-          <label for="req003">空调</label>
-        </p>
+      <p class="col s3" class="closelayout">
+        <input type="checkbox" ng-model="newOrder.req002" class="filled-in pink" id="req002"/>
+        <label for="req002">Pro2</label>
+      </p>
 
-        <p class="col s3">
-          <input type="checkbox" class="filled-in pink" id="req004"/>
-          <label for="req004">Pro3</label>
-        </p>
+      <p class="col s3" class="closelayout">
+        <input type="checkbox" ng-model="newOrder.req003" class="filled-in pink" id="req003"/>
+        <label for="req003">Pro3</label>
+      </p>
 
-        <div class="switch col s4 offset-s8">
-          <label>
-            <input type="checkbox">
-            <span class="lever"></span>
-            更多 ..
-          </label>
-          <br/>
-        </div>
-
-      </form>
-
-      <h5 class="header orderheader left-align col s12">Dates</h5>
-      <script>
-        $('.datepicker').pickadate({
-          selectMonths: true,
-          selectYears: 15
-        });
-      </script>
-      <div class="col s6">
-        <label class="" for="start">Check-in</label>
-        <input type="date" id="start" class="datepicker datepicker" style="background-color: #f2f2f2;">
-      </div>
-      <div class="col s6">
-        <label class="" for="end">Check-out</label>
-        <input type="date" id="end" class="datepicker orderdate" style="background-color: #f2f2f2;">
+      <div class="switch col s3">
+        <label>
+          <input type="checkbox">
+          <span class="lever"></span>
+        </label>
+        <br/>
       </div>
 
+    </form>
 
-      <h5 class="header orderheader col s12">Guests 0</h5>
+    <p>&nbsp;</p>
 
-      <form action="#" class="col s12">
-        <p class="range-field col s6 offset-6">
-          <input type="range" id="test5" min="1" max="5"/>
-        </p>
-      </form>
+    <!--select date-------------------------------------------------------------------------->
+    <h5 class="header orderheader left-align col s12">Dates</h5>
+    <script>
+      $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 15
+      });
+    </script>
 
+
+    <div class="col s6">
+      <label class="" for="start">Check-in</label>
+      <input ng-model="newOrder.startdate" type="text" id="start" class="datepicker orderdate page-header">
+    </div>
+
+
+    <div class="col s6">
+      <label class="" for="end">Check-out</label>
+      <input ng-model="newOrder.enddate" type="text" id="end" class="datepicker orderdate">
+    </div>
+
+    <p>&nbsp;</p>
+
+    <!--set number of guests---------------------------------------------------------------------------->
+
+    <h5 class="header orderheader col s3">Guests
+      <input placeholder="1" id="numberOfGuest" type="text" ng-model="newOrder.numOfGuests" class="validate center text-darken-1">
+    </h5>
+
+    <div class="col s9 left" style="padding-top: 8px;">
+      <a class="btn-floating"><i class="mdi-image-exposure-plus-1"></i></a>
+    </div>
+
+    <!--price total--------------------------------------------------------------------------------------->
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <h5 class="header orderheader col s3">Total </h5> &nbsp;
+    <button id="price" class="btn-large disabled col s4 " style="background-color: #f4f4f4;color: #EE6E73;">
+      0
+    </button>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+
+    <!--submit--------------------------------------------------------------------------------------------->
+
+    <!-- Confirm Modal Trigger -->
+    <button data-target="modal1" class="btn modal-trigger waves-effect waves-light col s12 closelayout"
+            style="background-color: #EE6E73;">
+      <i class="mdi-content-send right"></i> Submit
+    </button>
+    <!-- Confirm Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+        <ul class="collection">
+          <li class="collection-item avatar">
+            <img src="images/yuna.jpg" alt="" class="circle">
+            <span class="title">Ready to place your order ?</span>
+
+            <div class="right-align">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-floating red">
+                <i class="large mdi-content-clear center"/>
+              </a>
+              &nbsp;&nbsp;
+              <!--place order-->
+              <button ng-click="orderConfirm(newOrder)" class="modal-action modal-close waves-effect waves-green btn-floating green">
+                <i class="large mdi-action-done center"/>
+              </button>
+            </div>
+
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
 <div ng-include src="'views/footer.html'"></div>
+
+
+<!--scripts-->
+<script>
+  $(document).ready(function(){
+    $('.modal-trigger').leanModal();
+  });
+
+  $('#numberOfGuest').on('input propertychange paste', function(){
+    $('#price').html('2048');
+  });
+</script>

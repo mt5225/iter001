@@ -22,23 +22,46 @@
     }).otherwise({
       redirectTo: '/'
     });
+  }).factory('flash', function($rootScope) {
+    var currentMessage, queue;
+    queue = [];
+    currentMessage = '';
+    $rootScope.$on('$routeChangeSuccess', function() {
+      currentMessage = queue.shift() || '';
+      return console.log("route change with message '" + currentMessage + "'");
+    });
+    return {
+      setMessage: function(message) {
+        queue.push(message);
+      },
+      getMessage: function() {
+        console.log("in getMessage with '" + currentMessage + "'");
+        return currentMessage;
+      }
+    };
   }).directive("navbar", [
     '$location', function(location) {
       return function(scope, element) {
-        var navbar_content, order, url;
+        var navbar_content, url;
         url = location.path();
-        console.log("in navbar url =  '" + url + "'");
-        navbar_content = element.find('#navbar_content')[0];
-        console.log(navbar_content);
-        order = element.find('#place_order')[0];
-        console.log(order);
+        console.log("url =  '" + url + "'");
+        navbar_content = element.find('#navbar')[0];
         if (url === '/order') {
-          order.style.display = 'block';
           return navbar_content.style.display = 'none';
         } else {
-          navbar_content.style.display = 'block';
-          return order.style.display = 'none';
+          return navbar_content.style.display = 'block';
         }
+      };
+    }
+  ]).directive("alertmessage", [
+    'flash', function(flash) {
+      return function(scope, element) {
+        var div;
+        console.log("[directive] alert message = '" + (flash.getMessage()) + "'");
+        div = angular.element("<div>");
+        div.attr('class', 'Alert');
+        element.append(div);
+        return div.append(angular.element("<p>").text(flash.getMessage()));
       };
     }
   ]);
