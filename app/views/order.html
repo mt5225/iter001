@@ -1,11 +1,10 @@
 <div class="form-group row" ng-controller="OrderCtrl">
   <div class="col s4">
-    <img class="z-depth-1" style="width: 135px; height: auto;" src="images/xile.jpg"/>
+    <img class="z-depth-1" style="width: 135px; height: auto;" src="{{house.image}}"/>
   </div>
   <div class="col s7 offset-s1 center">
-    <h4 class="header" style="color: #EE6E73;font-weight: 300;">喜乐屋</h4>
-
-    <p> 1 bedroom - 1 bathroom - 2beds</p>
+    <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
+    <p>{{house.price}} /night </p>
     <br/>
   </div>
 
@@ -64,16 +63,12 @@
 
     <!--set number of guests---------------------------------------------------------------------------->
 
-    <h5 class="header orderheader col s3">Guests
-      <input placeholder="1" id="numberOfGuest" type="text" ng-model="newOrder.numOfGuests" class="validate center text-darken-1">
-    </h5>
+    <h5 class="header orderheader col s3">Guests</h5>
+    <input placeholder="1" id="numberOfGuest" type="text" ng-model="newOrder.numOfGuests" class="validate center text-darken-1  col s4">
 
-    <div class="col s9 left" style="padding-top: 8px;">
-      <a class="btn-floating"><i class="mdi-image-exposure-plus-1"></i></a>
-    </div>
+    <a class="btn-floating"><i class="mdi-image-exposure-plus-1"></i></a>
 
     <!--price total--------------------------------------------------------------------------------------->
-    <p>&nbsp;</p>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <h5 class="header orderheader col s3">Total </h5> &nbsp;
@@ -95,7 +90,7 @@
       <div class="modal-content">
         <ul class="collection">
           <li class="collection-item avatar">
-            <img src="images/yuna.jpg" alt="" class="circle">
+            <img src="{{house.avator}}" alt="" class="circle">
             <span class="title">Ready to place your order ?</span>
 
             <div class="right-align">
@@ -104,7 +99,7 @@
               </a>
               &nbsp;&nbsp;
               <!--place order-->
-              <button ng-click="orderConfirm(newOrder)" class="modal-action modal-close waves-effect waves-green btn-floating green">
+              <button ng-click="orderConfirm(newOrder, house.id)" class="modal-action modal-close waves-effect waves-green btn-floating green">
                 <i class="large mdi-action-done center"/>
               </button>
             </div>

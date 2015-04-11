@@ -19,6 +19,9 @@
     }).when('/order', {
       templateUrl: 'views/order.html',
       controller: 'OrderCtrl'
+    }).when('/myorder', {
+      templateUrl: 'views/myorder.html',
+      controller: 'MyorderCtrl'
     }).otherwise({
       redirectTo: '/'
     });
@@ -39,6 +42,73 @@
         return currentMessage;
       }
     };
+  }).factory('myorderService', function() {
+    var orders;
+    orders = [];
+    return {
+      saveOrder: function(order) {
+        console.log(order);
+        orders.push(order);
+      },
+      getOrder: function() {
+        return orders;
+      }
+    };
+  }).factory('houseService', function() {
+    var houses;
+    houses = [
+      {
+        id: 'H001',
+        name: '喜乐屋',
+        likes: '16',
+        price: '1050',
+        image: 'images/xile.jpg',
+        avator: 'images/yuna.jpg'
+      }, {
+        id: 'H002',
+        name: '向日葵',
+        likes: '22',
+        price: '850',
+        image: 'images/xrk.jpg',
+        avator: 'images/avator.jpg'
+      }
+    ];
+    return {
+      getHouseList: function() {
+        return houses;
+      },
+      getHouseById: function(id) {
+        var h, i, len;
+        for (i = 0, len = houses.length; i < len; i++) {
+          h = houses[i];
+          if (h.id === id) {
+            return h;
+          }
+        }
+      }
+    };
+  }).factory('uuidService', function() {
+    return {
+      generateUUID: function() {
+        var S4, delim;
+        delim = "-";
+        S4 = function() {
+          return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+        };
+        return S4() + delim + S4();
+      }
+    };
+  }).factory('paramService', function() {
+    var saveData;
+    saveData = {};
+    return {
+      set: function(data) {
+        return saveData = data;
+      },
+      get: function() {
+        return saveData;
+      }
+    };
   }).directive("navbar", [
     '$location', function(location) {
       return function(scope, element) {
@@ -56,12 +126,14 @@
   ]).directive("alertmessage", [
     'flash', function(flash) {
       return function(scope, element) {
-        var div;
+        var div, msg;
         console.log("[directive] alert message = '" + (flash.getMessage()) + "'");
-        div = angular.element("<div>");
-        div.attr('class', 'Alert');
-        element.append(div);
-        return div.append(angular.element("<p>").text(flash.getMessage()));
+        msg = flash.getMessage();
+        if (msg) {
+          div = angular.element("<div>");
+          div.html("<script> Materialize.toast('" + msg + "', 3000); </script>");
+          return element.append(div);
+        }
       };
     }
   ]);

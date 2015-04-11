@@ -29,6 +29,9 @@ angular.module('iter001App', [
     .when '/order',
       templateUrl: 'views/order.html'
       controller: 'OrderCtrl'
+    .when '/myorder',
+      templateUrl: 'views/myorder.html'
+      controller: 'MyorderCtrl'
     .otherwise redirectTo: '/'
 
 
@@ -53,6 +56,53 @@ angular.module('iter001App', [
        currentMessage
   }
 
+#my order service
+.factory 'myorderService', () ->
+  orders = []
+  return {
+    saveOrder: (order) ->
+      console.log order
+      orders.push order
+      return
+    getOrder: ->
+      orders
+  }
+
+#house service
+.factory 'houseService', ->
+  houses = [
+    {id: 'H001', name: '喜乐屋', likes: '16', price: '1050', image: 'images/xile.jpg' , avator: 'images/yuna.jpg'}
+    {id: 'H002', name: '向日葵', likes: '22', price: '850', image: 'images/xrk.jpg', avator: 'images/avator.jpg'}
+  ]
+  return {
+    getHouseList: ->
+      houses
+    getHouseById: (id) ->
+      for h in houses
+        return h if h.id == id
+  }
+
+#UUID service
+.factory 'uuidService', ->
+  return {
+    generateUUID: ->
+      delim = "-"
+      S4 = ->
+        (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+      (S4() + delim + S4())
+  }
+
+#Passing data between pages
+.factory 'paramService', ->
+  saveData = {}
+  return {
+    set: (data) ->
+      saveData = data
+    get: ->
+      saveData
+  }
+
+
 ################################################################################
 #### Directives
 ################################################################################
@@ -71,14 +121,15 @@ angular.module('iter001App', [
 
 ]
 
-#TODO show message
+#show messages
 .directive "alertmessage", ['flash', (flash) ->
   (scope, element) ->
     console.log "[directive] alert message = '#{flash.getMessage()}'"
-    div = angular.element "<div>"
-    div.attr 'class', 'Alert'
-    element.append div
-    div.append angular.element("<p>").text(flash.getMessage())
+    msg = flash.getMessage()
+    if msg
+      div = angular.element "<div>"
+      div.html "<script> Materialize.toast('"+ msg + "', 3000); </script>"
+      element.append div
 ]
 
 return

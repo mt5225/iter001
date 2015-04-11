@@ -1,0 +1,27 @@
+<div>
+<table class="bordered striped">
+  <thead>
+  <tr>
+    <th data-field="id">OrderID</th>
+    <th data-field="id">HouseID</th>
+    <th data-field="name">入住时间</th>
+    <th data-field="price">退房时间</th>
+    <th data-field="price">客人数</th>
+  </tr>
+  </thead>
+
+  <tbody ng-repeat="order in orders">
+  <tr>
+    <td>{{order.id}}</td>
+    <td>{{order.houseId}}</td>
+    <td>{{order.startdate}}</td>
+    <td>{{order.enddate}}</td>
+    <td>{{order.numOfGuests}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<div ng-include src="'views/footer.html'"></div>
+
+<!--Object { req002: true, req003: true, startdate: "7 April, 2015", enddate: "30 April, 2015", numOfGuests: "5" }-->
