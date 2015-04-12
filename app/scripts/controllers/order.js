@@ -14,6 +14,7 @@
     $scope.house = paramService.get();
     $scope.newOrder = {};
     $scope.orderConfirm = function(newOrder, houseId) {
+      console.log(newOrder);
       newOrder.id = uuidService.generateUUID();
       newOrder.houseId = houseId;
       myorderService.saveOrder(newOrder);

@@ -13,12 +13,12 @@ angular.module('iter001App')
     $scope.flash = flash
 
 
-    #TODO: get house info from last user selection
+    #get hotel selection
     $scope.house = paramService.get()
     $scope.newOrder = {}
 
     $scope.orderConfirm = (newOrder, houseId) ->
-#      console.log newOrder
+      console.log newOrder
       newOrder.id = uuidService.generateUUID()
       newOrder.houseId = houseId
       myorderService.saveOrder newOrder

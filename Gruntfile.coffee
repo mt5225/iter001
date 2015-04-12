@@ -106,10 +106,10 @@ module.exports = (grunt) ->
       src: [ '<%= yeoman.app %>/index.html' ]
       ignorePath: /\.\.\//
     filerev: dist: src: [
-      '<%= yeoman.dist %>/scripts/{,*/}*.js'
-      '<%= yeoman.dist %>/styles/{,*/}*.css'
-      '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-      '<%= yeoman.dist %>/styles/fonts/*'
+#      '<%= yeoman.dist %>/scripts/{,*/}*.js'
+#      '<%= yeoman.dist %>/styles/{,*/}*.css'
+#      '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+#      '<%= yeoman.dist %>/styles/fonts/*'
     ]
     useminPrepare:
       html: '<%= yeoman.app %>/index.html'
@@ -196,6 +196,18 @@ module.exports = (grunt) ->
           src: 'fonts/*'
           dest: '<%= yeoman.dist %>'
         }
+        {
+          expand: true
+          cwd: 'bower_components/materialize/dist'
+          src: 'font/roboto/*'
+          dest: '<%= yeoman.dist %>'
+        }
+        {
+          expand: true
+          cwd: 'bower_components/materialize/dist'
+          src: 'font/material-design-icons/*'
+          dest: '<%= yeoman.dist %>'
+        }
       ]
       styles:
         expand: true
@@ -248,7 +260,7 @@ module.exports = (grunt) ->
     'concat'
     'ngAnnotate'
     'copy:dist'
-    'cdnify'
+    #'cdnify'
     'cssmin'
     'uglify'
     'filerev'

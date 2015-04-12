@@ -63,14 +63,20 @@
         likes: '16',
         price: '1050',
         image: 'images/xile.jpg',
-        avator: 'images/yuna.jpg'
+        avator: 'images/yuna.jpg',
+        description: 'Qulity is not an act, it is an habit.',
+        owner: "Luke Xie",
+        stars: 5
       }, {
         id: 'H002',
         name: '向日葵',
         likes: '22',
         price: '850',
         image: 'images/xrk.jpg',
-        avator: 'images/avator.jpg'
+        avator: 'images/avator.jpg',
+        description: 'One apple a day keep doctor away',
+        owner: "Jerry Jiang",
+        stars: 4
       }
     ];
     return {

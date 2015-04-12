@@ -4,7 +4,7 @@
   </div>
   <div class="col s7 offset-s1 center">
     <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
-    <p>{{house.price}} /night </p>
+    <p id="price_per_night">{{house.price}} per night</p>
     <br/>
   </div>
 
@@ -38,25 +38,17 @@
 
     <p>&nbsp;</p>
 
-    <!--select date-------------------------------------------------------------------------->
+    <!--select check in and check out date------------------------------------------------------------------->
     <h5 class="header orderheader left-align col s12">Dates</h5>
-    <script>
-      $('.datepicker').pickadate({
-        selectMonths: true,
-        selectYears: 15
-      });
-    </script>
-
-
     <div class="col s6">
-      <label class="" for="start">Check-in</label>
-      <input ng-model="newOrder.startdate" type="text" id="start" class="datepicker orderdate page-header">
+      <label class="input-field" for="start_date">Check-in</label>
+      <input ng-model="newOrder.startdate" type="text" id="start_date" class="datepicker orderdate">
     </div>
 
 
     <div class="col s6">
-      <label class="" for="end">Check-out</label>
-      <input ng-model="newOrder.enddate" type="text" id="end" class="datepicker orderdate">
+      <label class="input-field" for="end_date">Check-out</label>
+      <input ng-model="newOrder.enddate" type="text" id="end_date" class="datepicker orderdate">
     </div>
 
     <p>&nbsp;</p>
@@ -64,15 +56,14 @@
     <!--set number of guests---------------------------------------------------------------------------->
 
     <h5 class="header orderheader col s3">Guests</h5>
-    <input placeholder="1" id="numberOfGuest" type="text" ng-model="newOrder.numOfGuests" class="validate center text-darken-1  col s4">
-
-    <a class="btn-floating"><i class="mdi-image-exposure-plus-1"></i></a>
+    <input placeholder="1" id="numberOfGuest" type="text" value="1"  ng-model="newOrder.numberOfGuest" class="validate col s4 orderdate flow-text">
+    <a class="btn-floating" id="increase_guest"><i class="mdi-image-exposure-plus-1"/></a>
 
     <!--price total--------------------------------------------------------------------------------------->
     <p>&nbsp;</p>
     <p>&nbsp;</p>
     <h5 class="header orderheader col s3">Total </h5> &nbsp;
-    <button id="price" class="btn-large disabled col s4 " style="background-color: #f4f4f4;color: #EE6E73;">
+    <button id="total_price" class="btn-large flow-text disabled col s4 " style="background-color: #f4f4f4;color: #EE6E73;">
       0
     </button>
     <p>&nbsp;</p>
@@ -94,7 +85,7 @@
             <span class="title">Ready to place your order ?</span>
 
             <div class="right-align">
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-floating red">
+              <a href class="modal-action modal-close waves-effect waves-green btn-floating red">
                 <i class="large mdi-content-clear center"/>
               </a>
               &nbsp;&nbsp;
@@ -116,11 +107,34 @@
 
 <!--scripts-->
 <script>
+  //confirm dialog
   $(document).ready(function(){
     $('.modal-trigger').leanModal();
   });
 
-  $('#numberOfGuest').on('input propertychange paste', function(){
-    $('#price').html('2048');
+  //calculate the duration
+  $('#end_date').on('propertychange change keyup paste input', function(){
+    var house = $('[ng-controller="OrderCtrl"]').scope().house;
+    var start_date = new Date($('#start_date').val());
+    var end_date = new Date($('#end_date').val());
+    var difference = (end_date - start_date) / (24*60*60*1000);
+    var total_price = Math.round(house.price) * difference;
+    $('#total_price').html(total_price);
+    console.log("[order.html]total price: " + total_price);
+  });
+
+  //increase number of guests
+  $('#increase_guest').click(function(){
+      var numberOfGuest = Math.round($('#numberOfGuest').val()) || 1;
+      numberOfGuest++;
+      $('#numberOfGuest').val(numberOfGuest).trigger('input');
+    }
+  );
+
+  //init data picker
+  $('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears: 15
   });
 </script>
+
