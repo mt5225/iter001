@@ -53,6 +53,7 @@ module.exports = (grunt) ->
     connect:
       options:
         port: 9000
+        hostname: '0.0.0.0'
         livereload: 35729
       livereload: options:
         open: true
@@ -167,7 +168,7 @@ module.exports = (grunt) ->
       ]
       dest: '.tmp/concat/scripts'
     } ]
-    cdnify: dist: html: [ '<%= yeoman.dist %>/*.html' ]
+    cdnify: dist: html: [ ]
     copy:
       dist: files: [
         {
@@ -260,12 +261,12 @@ module.exports = (grunt) ->
     'concat'
     'ngAnnotate'
     'copy:dist'
-    #'cdnify'
+    'cdnify'
     'cssmin'
     'uglify'
     'filerev'
     'usemin'
-    'htmlmin'
+    #'htmlmin'  --> it will break the app, why?
   ]
   grunt.registerTask 'default', [
     'newer:jshint'
