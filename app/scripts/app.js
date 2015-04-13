@@ -77,6 +77,26 @@
         description: 'One apple a day keep doctor away',
         owner: "Jerry Jiang",
         stars: 4
+      }, {
+        id: 'H003',
+        name: '喜乐屋',
+        likes: '16',
+        price: '1050',
+        image: 'images/xile.jpg',
+        avator: 'images/yuna.jpg',
+        description: 'Qulity is not an act, it is an habit.',
+        owner: "Luke Xie",
+        stars: 5
+      }, {
+        id: 'H004',
+        name: '向日葵',
+        likes: '22',
+        price: '850',
+        image: 'images/xrk.jpg',
+        avator: 'images/avator.jpg',
+        description: 'One apple a day keep doctor away',
+        owner: "Jerry Jiang",
+        stars: 4
       }
     ];
     return {
@@ -117,17 +137,7 @@
     };
   }).directive("navbar", [
     '$location', function(location) {
-      return function(scope, element) {
-        var navbar_content, url;
-        url = location.path();
-        console.log("url =  '" + url + "'");
-        navbar_content = element.find('#navbar')[0];
-        if (url === '/order') {
-          return navbar_content.style.display = 'none';
-        } else {
-          return navbar_content.style.display = 'block';
-        }
-      };
+      return function(scope, element) {};
     }
   ]).directive("alertmessage", [
     'flash', function(flash) {

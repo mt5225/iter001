@@ -97,6 +97,11 @@ html, body, .ng-view, .ng-scope, .container-fluid {
   width: 100%;
 }
 
+/*leave some place for navbar*/
+.card {
+  padding-top: 10px;
+}
+
 .orderdate {
   background-color: #f2f2f2;
   font-weight: 300;

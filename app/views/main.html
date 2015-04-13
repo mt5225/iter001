@@ -1,3 +1,6 @@
+<!--header-->
+<div ng-include src="'views/header.html'"/>
+
 <div class="card" ng-repeat="house in houses">
   <!--card main image-->
   <div class="card-image waves-effect waves-block waves-light">
@@ -36,7 +39,7 @@
   <!-- card detail in the back------------------------------------------------------------------------------->
   <div class="card-reveal">
     <!--the book and share button chain-->
-    <div class="fixed-action-btn" style="top: 12px; right: 12px;">
+    <div class="fixed-action-btn" style="top: 48px; right: 8px;">
       <a class="btn-floating btn-large red">
         <i class="large mdi-content-add"/>
       </a>
@@ -79,7 +82,7 @@
       </div>
 
       <!--user comment-->
-      <div class="card-panel" style="margin: 0;padding: 0">
+      <div class="card-panel" style="margin: 0;padding: 0;">
         <ul class="collection">
           <li class="collection-item">
             <form style="margin-top: 20px;">

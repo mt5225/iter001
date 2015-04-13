@@ -75,6 +75,10 @@ angular.module('iter001App', [
     description: 'Qulity is not an act, it is an habit.', owner: "Luke Xie", stars: 5}
     {id: 'H002', name: '向日葵', likes: '22', price: '850', image: 'images/xrk.jpg', avator: 'images/avator.jpg',
     description: 'One apple a day keep doctor away', owner: "Jerry Jiang", stars: 4}
+    {id: 'H003', name: '喜乐屋', likes: '16', price: '1050', image: 'images/xile.jpg' , avator: 'images/yuna.jpg',
+    description: 'Qulity is not an act, it is an habit.', owner: "Luke Xie", stars: 5}
+    {id: 'H004', name: '向日葵', likes: '22', price: '850', image: 'images/xrk.jpg', avator: 'images/avator.jpg',
+    description: 'One apple a day keep doctor away', owner: "Jerry Jiang", stars: 4}
   ]
   return {
     getHouseList: ->
@@ -112,14 +116,14 @@ angular.module('iter001App', [
 #change nav bar content according to url, show order in /order
 .directive "navbar", ['$location', (location) ->
   (scope, element) ->
-    url = location.path()
-    console.log "url =  '#{url}'"
-    navbar_content = element.find('#navbar')[0]
-    #hind nav bar in order card
-    if url in ['/order']
-      navbar_content.style.display = 'none'
-    else
-      navbar_content.style.display = 'block'
+#    url = location.path()
+#    console.log "url =  '#{url}'"
+#    navbar_content = element.find('#navbar')[0]
+#    #hind nav bar in order card
+#    if url in ['/order']
+#      navbar_content.style.display = 'none'
+#    else
+#      navbar_content.style.display = 'block'
 
 ]
 

@@ -19,7 +19,8 @@ module.exports = (grunt) ->
         tasks: ['newer:coffee']
       js:
         files: [ '<%= yeoman.app %>/scripts/{,*/}*.js' ]
-        tasks: [ 'newer:jshint:all' ]
+        #tasks: [ 'newer:jshint:all' ] ingore jshint check
+        tasks: []
         options: livereload: '<%= connect.options.livereload %>'
       jsTest:
         files: [ 'test/spec/{,*/}*.js' ]
