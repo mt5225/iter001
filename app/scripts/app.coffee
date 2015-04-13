@@ -114,20 +114,13 @@ angular.module('iter001App', [
 ################################################################################
 
 #change nav bar content according to url, show order in /order
+#inject location service
 .directive "navbar", ['$location', (location) ->
   (scope, element) ->
-#    url = location.path()
-#    console.log "url =  '#{url}'"
-#    navbar_content = element.find('#navbar')[0]
-#    #hind nav bar in order card
-#    if url in ['/order']
-#      navbar_content.style.display = 'none'
-#    else
-#      navbar_content.style.display = 'block'
-
 ]
 
-#show messages
+#show alert messages
+#inject flash service
 .directive "alertmessage", ['flash', (flash) ->
   (scope, element) ->
     console.log "[directive] alert message = '#{flash.getMessage()}'"
