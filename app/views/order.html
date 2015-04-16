@@ -4,50 +4,43 @@
   </div>
   <div class="col s7 offset-s1 center">
     <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
+
     <p id="price_per_night">{{house.price}} per night</p>
     <br/>
   </div>
 
   <div style="padding-left: 20px">
-    <h5 class="col s12 header left-align" style="color: #EE6E73;font-weight: 300;">Preference</h5>
-    <form action="#">
-      <p class="col s3" class="closelayout">
-        <input type="checkbox" ng-model="newOrder.req001" class="filled-in pink" id="req001"/>
-        <label for="req001">Pro1</label>
-      </p>
+    <h5 class="col s12 header left-align" style="color: #EE6E73;font-weight: 300;">服务选项</h5>
 
-      <p class="col s3" class="closelayout">
-        <input type="checkbox" ng-model="newOrder.req002" class="filled-in pink" id="req002"/>
-        <label for="req002">Pro2</label>
-      </p>
+    <p class="col s3" class="closelayout" style="padding: 0">
+      <input type="checkbox" ng-model="newOrder.req001" class="filled-in pink" id="req001"/>
+      <label for="req001">选项1</label>
+    </p>
 
-      <p class="col s3" class="closelayout">
-        <input type="checkbox" ng-model="newOrder.req003" class="filled-in pink" id="req003"/>
-        <label for="req003">Pro3</label>
-      </p>
+    <p class="col s3" class="closelayout" style="padding: 0">
+      <input type="checkbox" ng-model="newOrder.req002" class="filled-in pink" id="req002"/>
+      <label for="req002">选项2</label>
+    </p>
 
-      <div class="switch col s3">
-        <label>
-          <input type="checkbox">
-          <span class="lever"></span>
-        </label>
-        <br/>
-      </div>
+    <p class="col s3" class="closelayout" style="padding: 0">
+      <input type="checkbox" ng-model="newOrder.req003" class="filled-in pink" id="req003"/>
+      <label for="req003">选项3</label>
+    </p>
 
-    </form>
-
+    <p>&nbsp;</p>
     <p>&nbsp;</p>
 
     <!--select check in and check out date------------------------------------------------------------------->
-    <h5 class="header orderheader left-align col s12">Dates</h5>
+    <h5 class="header left-align col s12" style="color: #EE6E73;">日期</h5>
+
     <div class="col s6">
-      <label class="input-field" for="start_date">Check-in</label>
+      <label class="input-field" for="start_date">入住</label>
       <input ng-model="newOrder.startdate" type="text" id="start_date" class="datepicker orderdate">
     </div>
 
 
     <div class="col s6">
-      <label class="input-field" for="end_date">Check-out</label>
+      <label class="input-field" for="end_date">退房</label>
       <input ng-model="newOrder.enddate" type="text" id="end_date" class="datepicker orderdate">
     </div>
 
@@ -55,18 +48,22 @@
 
     <!--set number of guests---------------------------------------------------------------------------->
 
-    <h5 class="header orderheader col s3">Guests</h5>
-    <input placeholder="1" id="numberOfGuest" type="text" value="1"  ng-model="newOrder.numberOfGuest" class="validate col s4 orderdate flow-text">
+    <h5 class="header orderheader col s4">客人数</h5>
+    <input placeholder="1" id="numberOfGuest" type="text" value="1" ng-model="newOrder.numberOfGuest"
+           class="validate col s4 orderdate flow-text">
     <a class="btn-floating" id="increase_guest"><i class="mdi-image-exposure-plus-1"/></a>
 
     <!--price total--------------------------------------------------------------------------------------->
     <p>&nbsp;</p>
+
     <p>&nbsp;</p>
-    <h5 class="header orderheader col s3">Total </h5> &nbsp;
-    <button id="total_price" class="btn-large flow-text disabled col s4 " style="background-color: #f4f4f4;color: #EE6E73;">
+    <h5 class="header orderheader col s3">估计费用</h5> &nbsp;
+    <button id="total_price" class="btn-large flow-text disabled col s4 "
+            style="background-color: #f4f4f4;color: #EE6E73;">
       0
     </button>
     <p>&nbsp;</p>
+
     <p>&nbsp;</p>
 
     <!--submit--------------------------------------------------------------------------------------------->
@@ -74,7 +71,7 @@
     <!-- Confirm Modal Trigger -->
     <button data-target="modal1" class="btn modal-trigger waves-effect waves-light col s12 closelayout"
             style="background-color: #EE6E73;">
-      <i class="mdi-content-send right"></i> Submit
+      <i class="mdi-content-send right"> 提交 </i>
     </button>
     <!-- Confirm Modal Structure -->
     <div id="modal1" class="modal bottom-sheet">
@@ -82,7 +79,7 @@
         <ul class="collection">
           <li class="collection-item avatar">
             <img src="{{house.avator}}" alt="" class="circle">
-            <span class="title">Ready to place your order ?</span>
+            <span class="title"> 确定下单吗</span>
 
             <div class="right-align">
               <a href class="modal-action modal-close waves-effect waves-green btn-floating red">
@@ -90,7 +87,8 @@
               </a>
               &nbsp;&nbsp;
               <!--place order-->
-              <button ng-click="orderConfirm(newOrder, house.id)" class="modal-action modal-close waves-effect waves-green btn-floating green">
+              <button ng-click="orderConfirm(newOrder, house.id)"
+                      class="modal-action modal-close waves-effect waves-green btn-floating green">
                 <i class="large mdi-action-done center"/>
               </button>
             </div>
@@ -108,23 +106,23 @@
 <!--scripts-->
 <script>
   //confirm dialog
-  $(document).ready(function(){
+  $(document).ready(function () {
     $('.modal-trigger').leanModal();
   });
 
   //calculate the duration
-  $('#end_date').on('propertychange change keyup paste input', function(){
+  $('#end_date').on('propertychange change keyup paste input', function () {
     var house = $('[ng-controller="OrderCtrl"]').scope().house;
     var start_date = new Date($('#start_date').val());
     var end_date = new Date($('#end_date').val());
-    var difference = (end_date - start_date) / (24*60*60*1000);
+    var difference = (end_date - start_date) / (24 * 60 * 60 * 1000);
     var total_price = Math.round(house.price) * difference;
     $('#total_price').html(total_price);
     console.log("[order.html]total price: " + total_price);
   });
 
   //increase number of guests
-  $('#increase_guest').click(function(){
+  $('#increase_guest').click(function () {
       var numberOfGuest = Math.round($('#numberOfGuest').val()) || 1;
       numberOfGuest++;
       $('#numberOfGuest').val(numberOfGuest).trigger('input');

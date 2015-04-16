@@ -227,6 +227,28 @@ module.exports = (grunt) ->
     karma: unit:
       configFile: 'test/karma.conf.js'
       singleRun: true
+
+    scp:
+      options:
+        host: '119.29.114.143'
+        username: 'ubuntu'
+        password: '$Sh7evxc'
+      upload:
+        files: [
+          cwd: './dist'
+          src: '**/*'
+          filter: 'isFile'
+          dest: '/home/ubuntu/var/www'
+        ]
+
+    sshconfig:
+        'myhost': grunt.file.readJSON 'tc.host'
+
+    sshexec:
+      reload:
+        command: 'uptime'
+        options: config: 'myhost'
+
   grunt.registerTask 'serve', 'Compile then start a connect web server', (target) ->
     if target == 'dist'
       return grunt.task.run([
@@ -274,5 +296,12 @@ module.exports = (grunt) ->
     'test'
     'build'
   ]
+
+  grunt.registerTask 'upload-dist', [
+    'build'
+    'scp:upload'
+    'sshexec:reload'
+  ]
+
   return
 

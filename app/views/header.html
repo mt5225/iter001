@@ -3,18 +3,19 @@
     <div class="nav-wrapper">
       <div class="row">
         <ul>
-          <li class="col s6">
-            <form>
-              <div class="input-field">
-                <input id="search" type="search" required>
-                <label for="search"><i class="mdi-action-search"/></label>
-              </div>
-            </form>
+          <li class="col s4 left-align">
+            &nbsp; &nbsp; <a href="#/" id="back" class="btn-floating materialize-red lighten-2"><i class="mdi-navigation-arrow-back"/></a>
           </li>
-          <li class="col offset-s2 s2 right-align"><a href="#/myorder" class="btn-floating materialize-red lighten-2"><i class="mdi-notification-event-note"/></a></li>
-          <li class="col s2 left-align"><a href="#/" class="btn-floating materialize-red lighten-2"><i class="mdi-action-home"/></a></li>
+          <li class="col offset-s4 s2 right-align"><a href="#/myorder" class="btn-floating materialize-red lighten-2"><i class="mdi-notification-event-note"/></a></li>
+          <li class="col s2 left-align"><a href="#/houses" class="btn-floating materialize-red lighten-2"><i class="mdi-action-home"/></a></li>
         </ul>
       </div>
     </div>
   </nav>
 </div>
+
+<script>
+  $("#back").click(function(){
+    history.back();
+  });
+</script>

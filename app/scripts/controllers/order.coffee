@@ -23,7 +23,5 @@ angular.module('iter001App')
       newOrder.houseId = houseId
       myorderService.saveOrder newOrder
       flash.setMessage "订单提交成功！"
-      $location.path '/'
-
-
+      $location.path '/houses'
     return

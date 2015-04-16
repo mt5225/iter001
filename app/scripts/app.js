@@ -11,8 +11,8 @@
    */
   angular.module('iter001App', ['ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch']).config(function($routeProvider) {
     return $routeProvider.when('/', {
-      templateUrl: 'views/main.html',
-      controller: 'MainCtrl'
+      templateUrl: 'views/frontpage.html',
+      controller: 'FrontpageCtrl'
     }).when('/about', {
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl'
@@ -22,6 +22,12 @@
     }).when('/myorder', {
       templateUrl: 'views/myorder.html',
       controller: 'MyorderCtrl'
+    }).when('/houses', {
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    }).when('/survey', {
+      templateUrl: 'views/survey.html',
+      controller: 'SurveyCtrl'
     }).otherwise({
       redirectTo: '/'
     });
@@ -59,12 +65,12 @@
     houses = [
       {
         id: 'H001',
-        name: '喜乐屋',
+        name: '喜乐窝',
         likes: '16',
         price: '1050',
         image: 'images/xile.jpg',
-        avator: 'images/yuna.jpg',
-        description: 'Qulity is not an act, it is an habit.',
+        avator: 'images/xielong.jpg',
+        description: '红色的主色调、通透的空间、温馨的阁楼...',
         owner: "Luke Xie",
         stars: 5
       }, {
@@ -73,30 +79,20 @@
         likes: '22',
         price: '850',
         image: 'images/xrk.jpg',
-        avator: 'images/avator.jpg',
-        description: 'One apple a day keep doctor away',
+        avator: 'images/xrk_owner_opt.jpg',
+        description: '向日葵营地，正如它的花语---勇敢去追求自己想要的幸福。如果...',
         owner: "Jerry Jiang",
         stars: 4
       }, {
         id: 'H003',
-        name: '喜乐屋',
-        likes: '16',
-        price: '1050',
-        image: 'images/xile.jpg',
-        avator: 'images/yuna.jpg',
-        description: 'Qulity is not an act, it is an habit.',
-        owner: "Luke Xie",
-        stars: 5
-      }, {
-        id: 'H004',
-        name: '向日葵',
-        likes: '22',
-        price: '850',
-        image: 'images/xrk.jpg',
+        name: '绿茶',
+        likes: '32',
+        price: '1250',
+        image: 'images/greentea.jpg',
         avator: 'images/avator.jpg',
-        description: 'One apple a day keep doctor away',
-        owner: "Jerry Jiang",
-        stars: 4
+        description: '远离城市浮华，步入大自然的怀抱，在上水之间寻找内心的自我...',
+        owner: "阳光男孩",
+        stars: 5
       }
     ];
     return {
