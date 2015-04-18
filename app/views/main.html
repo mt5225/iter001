@@ -1,10 +1,10 @@
 <!--header-->
 <div ng-include src="'views/header.html'"/>
 
-<div class="card" ng-repeat="house in houses">
+<div class="card" ng-repeat="house in houses" >
   <!--card main image-->
   <div class="card-image  waves-block waves-light "  style="position:relative;">
-    <div class="parallax-container">
+    <div class="parallax-container" style="height: 285px; padding-top: 0;">
       <img class="activator slide-animation slide" style="position:absolute; top:0; left:0;"  ng-hide="!isCurrentSlideIndex(house, $index)"
            ng-repeat="slide in slides[house.id].images" ng-swipe-right="prevSlide(house)"
            ng-swipe-left="nextSlide(house)" ng-src="{{slide.image}}">
@@ -25,18 +25,11 @@
         <img src="{{house.avator}}" alt="" class="circle">
         <span class="title">{{house.description}}</span>
 
-        <p>屋主: {{house.owner}}. <i class="mdi-file-cloud-queue"/> <br/>
+        <p>屋主: {{house.owner}} &nbsp;
           <i class="tiny mdi-action-favorite"/> {{house.likes}}
         </p>
-
-        <p class="right" style="border-top: 20px">
-          <i class="mdi-action-grade"/>
-          <i class="mdi-action-grade"/>
-          <i class="mdi-action-grade"/>
-          <i class="mdi-action-grade"/>
-          <i class="mdi-action-grade"/>
-          <br/> <br/>
-        </p>
+        <p> &nbsp; </p>
+        <p> &nbsp; </p>
       </li>
     </ul>
   </div>
