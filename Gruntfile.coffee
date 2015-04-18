@@ -245,8 +245,8 @@ module.exports = (grunt) ->
         'myhost': grunt.file.readJSON 'tc.host'
 
     sshexec:
-      reload:
-        command: 'uptime'
+      clean:
+        command: 'cd /home/ubuntu/var/www; rm -rf *'
         options: config: 'myhost'
 
   grunt.registerTask 'serve', 'Compile then start a connect web server', (target) ->
@@ -299,8 +299,8 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'upload-dist', [
     'build'
+    'sshexec:clean'
     'scp:upload'
-    'sshexec:reload'
   ]
 
   return

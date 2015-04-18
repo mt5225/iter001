@@ -123,6 +123,4 @@ html, body, .ng-view, .ng-scope, .container-fluid {
   margin: 0;
 }
 
-a {text-decoration:none}
-a:link {text-decoration:none}
-a:visited {text-decoration:none}
+a, a:link, a:visited {text-decoration:none}

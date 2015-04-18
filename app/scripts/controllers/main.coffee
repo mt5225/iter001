@@ -8,11 +8,96 @@
 # Controller of the iter001App
 ###
 
-angular.module('iter001App').controller 'MainCtrl', ($scope, $location, flash, houseService, paramService) ->
+angular.module('iter001App')
+.controller 'MainCtrl', ($scope, $location, flash, houseService, paramService) ->
 
   $scope.houses = houseService.getHouseList()
   $scope.toOrderPage = (house) ->
     paramService.set house
     $location.path '/order'
 
-  return
+  $scope.slides =
+    'H001':
+      currentIndex: 0
+      images:
+        [
+          {image: 'images/xile.jpg', description: 'Image 00'}
+          {image: 'images/xile02.jpg', description: 'Image 01'}
+          {image: 'images/xile03.jpg', description: 'Image 02'}
+          {image: 'images/xile04.jpg', description: 'Image 03'}
+        ]
+    'H002':
+      currentIndex: 0
+      images:
+        [
+          {image: 'images/xrk.jpg', description: 'Image 00'}
+          {image: 'images/xrk02.jpg', description: 'Image 01'}
+          {image: 'images/xrk03.jpg', description: 'Image 02'}
+          {image: 'images/xrk04.jpg', description: 'Image 03'}
+        ]
+    'H003':
+      currentIndex: 0
+      images:
+        [
+          {image: 'images/greentea.jpg', description: 'Image 00'}
+          {image: 'images/greentea02.jpg', description: 'Image 01'}
+          {image: 'images/greentea03.jpg', description: 'Image 02'}
+          {image: 'images/greentea04.jpg', description: 'Image 03'}
+        ]
+
+  $scope.direction = 'left'
+
+  $scope.prevSlide = (house)->
+    console.log "previous slide with house id #{house.id}"
+    $scope.direction = 'right';
+    if $scope.slides[house.id].currentIndex > 0
+      --$scope.slides[house.id].currentIndex
+    else
+      $scope.slides[house.id].currentIndex = 3
+    console.log $scope.slides[house.id].currentIndex
+
+
+  $scope.nextSlide = (house)->
+    console.log "next slide with house id #{house.id}"
+    $scope.direction = 'left';
+    if $scope.slides[house.id].currentIndex < 3
+       ++$scope.slides[house.id].currentIndex
+    else
+       $scope.slides[house.id].currentIndex = 0
+    console.log $scope.slides[house.id].currentIndex
+
+
+  $scope.isCurrentSlideIndex = (house,index) ->
+    $scope.slides[house.id].currentIndex == index
+
+.animation '.slide-animation', ->
+  {
+  addClass: (element, className, done) ->
+    scope = element.scope()
+    if className == 'ng-hide'
+      finishPoint = element.parent().width()
+      finishPoint = -finishPoint if scope.direction != 'right'
+      TweenMax.to element, 0.5,
+        left: finishPoint
+        onComplete: done
+    else
+      done()
+    return
+
+  removeClass: (element, className, done) ->
+    scope = element.scope()
+    if className == 'ng-hide'
+      element.removeClass 'ng-hide'
+      startPoint = element.parent().width()
+      startPoint = -startPoint if scope.direction == 'right'
+      TweenMax.set element, {left: startPoint}
+      TweenMax.to element, 0.5,
+        left: 0
+        onComplete: done
+    else
+      done()
+    return
+
+  }
+
+

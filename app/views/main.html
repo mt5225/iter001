@@ -3,15 +3,20 @@
 
 <div class="card" ng-repeat="house in houses">
   <!--card main image-->
-  <div class="card-image waves-effect waves-block waves-light">
-    <img class="activator" src="{{house.image}}">
-    <span class="card-title left-align">
+  <div class="card-image  waves-block waves-light "  style="position:relative;">
+    <div class="parallax-container">
+      <img class="activator slide-animation slide" style="position:absolute; top:0; left:0;"  ng-hide="!isCurrentSlideIndex(house, $index)"
+           ng-repeat="slide in slides[house.id].images" ng-swipe-right="prevSlide(house)"
+           ng-swipe-left="nextSlide(house)" ng-src="{{slide.image}}">
+      <span class="card-title left-align">
         {{house.name}}
       <p>
-        <a class="waves-effect waves-light transparent white-text"><i
-          class="mdi-action-favorite-outline left-align"/></a>
+        <a class="waves-effect waves-light transparent white-text">
+          <i class="mdi-action-favorite-outline left-align"/></a>
       </p>
-    </span>
+            </span>
+    </div>
+
   </div>
   <!--card content in front ------------------------------------------------------------------------------>
   <div class="card-content" style="padding: 0;">
