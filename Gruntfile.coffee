@@ -264,10 +264,7 @@ module.exports = (grunt) ->
       'watch'
     ]
     return
-  grunt.registerTask 'server', 'DEPRECATED TASK. Use the "serve" task instead', (target) ->
-    grunt.log.warn 'The `server` task has been deprecated. Use `grunt serve` to start a server.'
-    grunt.task.run [ 'serve:' + target ]
-    return
+
   grunt.registerTask 'test', [
     'clean:server'
     'concurrent:test'
@@ -301,6 +298,14 @@ module.exports = (grunt) ->
     'build'
     'sshexec:clean'
     'scp:upload'
+  ]
+
+  grunt.registerTask 'compile_coffee', [
+    'coffee'
+  ]
+
+  grunt.registerTask 'run-local', [
+    'serve'
   ]
 
   return

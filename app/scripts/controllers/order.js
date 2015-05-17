@@ -8,13 +8,12 @@
     * # OrderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderCtrl', function($scope, $location, flash, myorderService, houseService, uuidService, paramService) {
-    console.log("in order controller " + ($location.path()));
+  angular.module('iter001App').controller('OrderCtrl', function($scope, $location, flash, $log, myorderService, houseService, uuidService, paramService) {
     $scope.flash = flash;
     $scope.house = paramService.get();
     $scope.newOrder = {};
     $scope.orderConfirm = function(newOrder, houseId) {
-      console.log(newOrder);
+      $log.debug(newOrder);
       newOrder.id = uuidService.generateUUID();
       newOrder.houseId = houseId;
       myorderService.saveOrder(newOrder);

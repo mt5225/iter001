@@ -8,7 +8,10 @@
     * # SurveyCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('SurveyCtrl', function($scope, $location) {
+  angular.module('iter001App').controller('SurveyCtrl', function($scope, $location, $log, wechat) {
+    var userinfo;
+    userinfo = wechat.getUserInfo();
+    $scope.nickname = userinfo.nickname;
     return $scope.FinishSurvey = function() {
       return $location.path('/houses');
     };

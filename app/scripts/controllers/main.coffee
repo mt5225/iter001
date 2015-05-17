@@ -9,7 +9,7 @@
 ###
 
 angular.module('iter001App')
-.controller 'MainCtrl', ($scope, $location, flash, houseService, paramService) ->
+.controller 'MainCtrl', ($scope, $location, $log, flash, houseService, paramService) ->
 
   $scope.houses = houseService.getHouseList()
   $scope.toOrderPage = (house) ->
@@ -48,23 +48,23 @@ angular.module('iter001App')
   $scope.direction = 'left'
 
   $scope.prevSlide = (house)->
-    console.log "previous slide with house id #{house.id}"
+    $log.debug "previous slide with house id #{house.id}"
     $scope.direction = 'right';
     if $scope.slides[house.id].currentIndex > 0
       --$scope.slides[house.id].currentIndex
     else
       $scope.slides[house.id].currentIndex = 3
-    console.log $scope.slides[house.id].currentIndex
+    $log.debug $scope.slides[house.id].currentIndex
 
 
   $scope.nextSlide = (house)->
-    console.log "next slide with house id #{house.id}"
+    $log.debug "next slide with house id #{house.id}"
     $scope.direction = 'left';
     if $scope.slides[house.id].currentIndex < 3
        ++$scope.slides[house.id].currentIndex
     else
        $scope.slides[house.id].currentIndex = 0
-    console.log $scope.slides[house.id].currentIndex
+    $log.debug $scope.slides[house.id].currentIndex
 
 
   $scope.isCurrentSlideIndex = (house,index) ->

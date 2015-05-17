@@ -8,7 +8,7 @@
    * # MainCtrl
    * Controller of the iter001App
    */
-  angular.module('iter001App').controller('MainCtrl', function($scope, $location, flash, houseService, paramService) {
+  angular.module('iter001App').controller('MainCtrl', function($scope, $location, $log, flash, houseService, paramService) {
     $scope.houses = houseService.getHouseList();
     $scope.toOrderPage = function(house) {
       paramService.set(house);
@@ -72,24 +72,24 @@
     };
     $scope.direction = 'left';
     $scope.prevSlide = function(house) {
-      console.log("previous slide with house id " + house.id);
+      $log.debug("previous slide with house id " + house.id);
       $scope.direction = 'right';
       if ($scope.slides[house.id].currentIndex > 0) {
         --$scope.slides[house.id].currentIndex;
       } else {
         $scope.slides[house.id].currentIndex = 3;
       }
-      return console.log($scope.slides[house.id].currentIndex);
+      return $log.debug($scope.slides[house.id].currentIndex);
     };
     $scope.nextSlide = function(house) {
-      console.log("next slide with house id " + house.id);
+      $log.debug("next slide with house id " + house.id);
       $scope.direction = 'left';
       if ($scope.slides[house.id].currentIndex < 3) {
         ++$scope.slides[house.id].currentIndex;
       } else {
         $scope.slides[house.id].currentIndex = 0;
       }
-      return console.log($scope.slides[house.id].currentIndex);
+      return $log.debug($scope.slides[house.id].currentIndex);
     };
     return $scope.isCurrentSlideIndex = function(house, index) {
       return $scope.slides[house.id].currentIndex === index;

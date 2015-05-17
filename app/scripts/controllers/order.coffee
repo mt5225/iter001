@@ -8,17 +8,16 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'OrderCtrl', ($scope, $location, flash, myorderService, houseService, uuidService, paramService) ->
-    console.log "in order controller #{$location.path()}"
-    $scope.flash = flash
+  .controller 'OrderCtrl', ($scope, $location, flash, $log, myorderService, houseService, uuidService, paramService) ->
 
+    $scope.flash = flash
 
     #get hotel selection
     $scope.house = paramService.get()
     $scope.newOrder = {}
 
     $scope.orderConfirm = (newOrder, houseId) ->
-      console.log newOrder
+      $log.debug newOrder
       newOrder.id = uuidService.generateUUID()
       newOrder.houseId = houseId
       myorderService.saveOrder newOrder
