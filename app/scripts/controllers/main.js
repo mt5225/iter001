@@ -14,6 +14,11 @@
       paramService.set(house);
       return $location.path('/order');
     };
+
+    /*
+    for the slide show
+    #todo store in bankend database, also need more org on folders and filenames
+     */
     $scope.slides = {
       'H001': {
         currentIndex: 0,

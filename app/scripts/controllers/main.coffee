@@ -12,9 +12,16 @@ angular.module('iter001App')
 .controller 'MainCtrl', ($scope, $location, $log, flash, houseService, paramService) ->
 
   $scope.houses = houseService.getHouseList()
+
+  #user click the order button
   $scope.toOrderPage = (house) ->
     paramService.set house
     $location.path '/order'
+
+  ###
+  for the slide show
+  #todo store in bankend database, also need more org on folders and filenames
+  ###
 
   $scope.slides =
     'H001':

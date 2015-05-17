@@ -131,21 +131,29 @@
         return saveData;
       }
     };
-  }).directive("navbar", [
-    '$location', function(location) {
-      return function(scope, element) {};
-    }
-  ]).directive("alertmessage", [
+  }).directive("alertmessage", [
     'flash', function(flash) {
       return function(scope, element) {
         var div, msg;
-        console.log("[directive] alert message = '" + (flash.getMessage()) + "'");
+        console.log("[directive alertmessage] alert message = '" + (flash.getMessage()) + "'");
         msg = flash.getMessage();
         if (msg) {
           div = angular.element("<div>");
           div.html("<script> Materialize.toast('" + msg + "', 3000); </script>");
           return element.append(div);
         }
+      };
+    }
+  ]).directive("wechatsign", [
+    'wechat', function(wechat) {
+      return function(scope, element) {
+        var div, signString;
+        console.log("[directive wechatsign]");
+        signString = wechat.getSignString();
+        div = angular.element("<div>");
+        div.html("<script>\n  wx.config({\n    debug: true,\n    appId: '" + signString.appid + "',\n    timestamp: " + signString.timestamp + ",\n    nonceStr: '" + signString.nonceStr + "',\n    signature: '" + signString.signature + "',\n    jsApiList: ['playVoice']\n  });\n  wx.ready(function(){\n    console.log(\"wx auth success !!!\");\n  });\n\n  wx.error(function(res){\n  console.log(res);\n  });\n</script>");
+        console.log(div);
+        return element.append(div);
       };
     }
   ]);

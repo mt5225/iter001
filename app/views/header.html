@@ -18,22 +18,4 @@
   $("#back").click(function(){
     history.back();
   });
-
-  //wechat integraion
-  wx.config({
-    debug: true,
-    appId: 'wxe2bdce057501817d',
-    timestamp: 1430293205,
-    nonceStr: 'p1h4gtkz73w61or',
-    signature: '68c4ec4bc1ff0f81712390ea70545ba5deb7cbbd',
-    jsApiList: ['playVoice']
-  });
-
-  wx.ready(function(){
-    console.log("wx auth success");
-  });
-
-  wx.error(function(res){
-    console.log(res);
-  });
 </script>

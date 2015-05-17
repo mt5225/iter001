@@ -72,6 +72,7 @@ angular.module('iter001App', [
 
 #house service
 .factory 'houseService', ->
+  #todo put it into backend database
   houses = [
     {id: 'H001', name: '喜乐窝', likes: '16', price: '1050', image: 'images/xile.jpg' , avator: 'images/xielong.jpg',
     description: '红色的主色调、通透的空间、温馨的阁楼...', owner: "Luke Xie", stars: 5}
@@ -113,17 +114,11 @@ angular.module('iter001App', [
 #### Directives
 ################################################################################
 
-#change nav bar content according to url, show order in /order
-#inject location service
-.directive "navbar", ['$location', (location) ->
-  (scope, element) ->
-]
-
 #show alert messages
 #inject flash service
 .directive "alertmessage", ['flash', (flash) ->
   (scope, element) ->
-    console.log "[directive] alert message = '#{flash.getMessage()}'"
+    console.log "[directive alertmessage] alert message = '#{flash.getMessage()}'"
     msg = flash.getMessage()
     if msg
       div = angular.element "<div>"
@@ -131,6 +126,36 @@ angular.module('iter001App', [
       element.append div
 ]
 
+
+#wechat sign
+.directive "wechatsign", ['wechat', (wechat) ->
+  (scope, element) ->
+    console.log "[directive wechatsign]"
+    signString = wechat.getSignString()
+    div = angular.element "<div>"
+    div.html """
+    <script>
+      wx.config({
+        debug: true,
+        appId: '#{signString.appid}',
+        timestamp: #{signString.timestamp},
+        nonceStr: '#{signString.nonceStr}',
+        signature: '#{signString.signature}',
+        jsApiList: ['playVoice']
+      });
+      wx.ready(function(){
+        console.log("wx auth success !!!");
+      });
+
+      wx.error(function(res){
+      console.log(res);
+      });
+    </script>
+    """
+    console.log div
+    element.append div
+
+]
 return
 
 
