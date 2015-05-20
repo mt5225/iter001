@@ -10,9 +10,13 @@
    */
   angular.module('iter001App').controller('MainCtrl', function($scope, $location, $log, flash, houseService, paramService) {
     $scope.houses = houseService.getHouseList();
-    $scope.toOrderPage = function(house) {
+    $scope.order = function(house) {
       paramService.set(house);
       return $location.path('/order');
+    };
+    $scope.share = function(house) {
+      paramService.set(house);
+      return $location.path('/share');
     };
 
     /*

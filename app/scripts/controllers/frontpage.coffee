@@ -18,7 +18,6 @@ angular.module('iter001App')
     ]
 
     #get user info from url and store it in wechat service
-    #TODO should get it from wechat js callback instead of URL
     userOpenId = $location.search().user_openid
     wechat.loadUserInfo userOpenId
 

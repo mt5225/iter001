@@ -28,6 +28,9 @@
     }).when('/survey', {
       templateUrl: 'views/survey.html',
       controller: 'SurveyCtrl'
+    }).when('/share', {
+      templateUrl: 'views/share.html',
+      controller: 'ShareCtrl'
     }).otherwise({
       redirectTo: '/'
     });

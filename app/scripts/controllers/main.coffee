@@ -13,10 +13,16 @@ angular.module('iter001App')
 
   $scope.houses = houseService.getHouseList()
 
-  #user click the order button
-  $scope.toOrderPage = (house) ->
+  #user click the order button, navigate the order page
+  #with house parameter
+  $scope.order = (house) ->
     paramService.set house
     $location.path '/order'
+
+  #to share page
+  $scope.share = (house) ->
+    paramService.set house
+    $location.path '/share'
 
   ###
   for the slide show

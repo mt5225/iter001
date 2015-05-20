@@ -13,6 +13,8 @@ angular.module('iter001App')
     link: (scope, element, attrs) ->
       console.log '[wechatsign directive]'
       #element.text 'this is the wechatsign directive'
+      #get house image
+
       div = angular.element "<div>"
       div.html """
       <script>
@@ -26,14 +28,15 @@ angular.module('iter001App')
           console.log("<----sign api return-------->");
           console.log(data);
           wx.config({
-            debug: true,
+            debug: false,
             appId: data.appid,
             timestamp: parseInt(data.timestamp),
             nonceStr: data.nonceStr,
             signature: data.signature,
-            jsApiList: ['hideOptionMenu']
+            jsApiList: ['hideOptionMenu', 'showOptionMenu', 'onMenuShareAppMessage', 'onMenuShareTimeline']
           });
 
+          //hide the share button
           wx.ready(function(){
             console.log("wx auth success !!!");
             wx.hideOptionMenu();
