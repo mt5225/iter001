@@ -144,18 +144,6 @@
         }
       };
     }
-  ]).directive("wechatsign", [
-    'wechat', function(wechat) {
-      return function(scope, element) {
-        var div, signString;
-        console.log("[directive wechatsign]");
-        signString = wechat.getSignString();
-        div = angular.element("<div>");
-        div.html("<script>\n  wx.config({\n    debug: true,\n    appId: '" + signString.appid + "',\n    timestamp: " + signString.timestamp + ",\n    nonceStr: '" + signString.nonceStr + "',\n    signature: '" + signString.signature + "',\n    jsApiList: ['playVoice']\n  });\n  wx.ready(function(){\n    console.log(\"wx auth success !!!\");\n  });\n\n  wx.error(function(res){\n  console.log(res);\n  });\n</script>");
-        console.log(div);
-        return element.append(div);
-      };
-    }
   ]);
 
   return;

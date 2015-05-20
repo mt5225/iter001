@@ -126,36 +126,6 @@ angular.module('iter001App', [
       element.append div
 ]
 
-
-#wechat sign
-.directive "wechatsign", ['wechat', (wechat) ->
-  (scope, element) ->
-    console.log "[directive wechatsign]"
-    signString = wechat.getSignString()
-    div = angular.element "<div>"
-    div.html """
-    <script>
-      wx.config({
-        debug: true,
-        appId: '#{signString.appid}',
-        timestamp: #{signString.timestamp},
-        nonceStr: '#{signString.nonceStr}',
-        signature: '#{signString.signature}',
-        jsApiList: ['playVoice']
-      });
-      wx.ready(function(){
-        console.log("wx auth success !!!");
-      });
-
-      wx.error(function(res){
-      console.log(res);
-      });
-    </script>
-    """
-    console.log div
-    element.append div
-
-]
 return
 
 

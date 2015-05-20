@@ -228,18 +228,18 @@ module.exports = (grunt) ->
       configFile: 'test/karma.conf.js'
       singleRun: true
 
-    scp:
-      options:
-        host: '119.29.114.143'
-        username: 'ubuntu'
-        password: '$Sh7evxc'
-      upload:
-        files: [
-          cwd: './dist'
-          src: '**/*'
-          filter: 'isFile'
-          dest: '/home/ubuntu/var/www'
-        ]
+#    scp:
+#      options:
+#        host: '119.29.114.143'
+#        username: 'ubuntu'
+#        password: '$Sh7evxc'
+#      upload:
+#        files: [
+#          cwd: './dist'
+#          src: '**/*'
+#          filter: 'isFile'
+#          dest: '/home/ubuntu/var/www'
+#        ]
 
     sshconfig:
         'myhost': grunt.file.readJSON 'tc.host'
@@ -248,6 +248,22 @@ module.exports = (grunt) ->
       clean:
         command: 'cd /home/ubuntu/var/www; rm -rf *'
         options: config: 'myhost'
+
+    sftp:
+      dev:
+        files:  './': ['dist/**']
+        options:
+          config: 'myhost'
+          path: '/home/ubuntu/var/www'
+          srcBasePath: 'dist/'
+          createDirectories: true
+      signTest:
+        files:  './': ['test/signTest/**']
+        options:
+          config: 'myhost'
+          path: '/home/ubuntu/var/www'
+          srcBasePath: 'test/signTest/'
+          createDirectories: true
 
   grunt.registerTask 'serve', 'Compile then start a connect web server', (target) ->
     if target == 'dist'
@@ -297,7 +313,8 @@ module.exports = (grunt) ->
   grunt.registerTask 'upload-dist', [
     'build'
     'sshexec:clean'
-    'scp:upload'
+    'sftp:dev'
+    'sftp:signTest'
   ]
 
   grunt.registerTask 'compile_coffee', [
