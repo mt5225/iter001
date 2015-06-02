@@ -43,6 +43,7 @@ angular.module('iter001App', [
       controller: 'ShareCtrl'
     .otherwise redirectTo: '/'
 
+.constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
 
 #message service
 .factory 'flash', ($rootScope) ->
@@ -59,18 +60,6 @@ angular.module('iter001App', [
      getMessage: ->
        console.log "in getMessage with '#{currentMessage}'"
        currentMessage
-  }
-
-#my order service
-.factory 'myorderService', () ->
-  orders = []
-  return {
-    saveOrder: (order) ->
-      console.log order
-      orders.push order
-      return
-    getOrder: ->
-      orders
   }
 
 #house service
@@ -129,7 +118,6 @@ angular.module('iter001App', [
       element.append div
 ]
 
-return
 
 
 

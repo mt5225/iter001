@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'OrderCtrl', ($scope, $location, flash, $log, myorderService, houseService, uuidService, paramService, wechat) ->
+  .controller 'OrderCtrl', ($scope, $location, flash, $log, houseService, orderService,uuidService, paramService, wechat) ->
 
     $scope.flash = flash
 
@@ -20,8 +20,7 @@ angular.module('iter001App')
       $log.debug newOrder
       newOrder.orderId = uuidService.generateUUID()
       newOrder.houseId = houseId
-      myorderService.saveOrder newOrder
-      wechat.saveOrder newOrder
+      orderService.saveOrder newOrder
       flash.setMessage "订单提交成功！"
       $location.path '/houses'
     return

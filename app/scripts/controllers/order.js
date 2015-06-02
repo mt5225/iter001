@@ -8,7 +8,7 @@
     * # OrderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderCtrl', function($scope, $location, flash, $log, myorderService, houseService, uuidService, paramService, wechat) {
+  angular.module('iter001App').controller('OrderCtrl', function($scope, $location, flash, $log, houseService, orderService, uuidService, paramService, wechat) {
     $scope.flash = flash;
     $scope.house = paramService.get();
     $scope.newOrder = {};
@@ -16,8 +16,7 @@
       $log.debug(newOrder);
       newOrder.orderId = uuidService.generateUUID();
       newOrder.houseId = houseId;
-      myorderService.saveOrder(newOrder);
-      wechat.saveOrder(newOrder);
+      orderService.saveOrder(newOrder);
       flash.setMessage("订单提交成功！");
       return $location.path('/houses');
     };

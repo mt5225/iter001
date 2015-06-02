@@ -8,9 +8,9 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'MyorderCtrl', ($scope, $log, wechat) ->
+  .controller 'MyorderCtrl', ($scope, $log, wechat, orderService) ->
     userInfo = wechat.getUserInfo()
     $log.debug "[MyorderCtrl] query order record with user #{userInfo.nickname} openid = #{userInfo.openid}"
-    wechat.queryOrder userInfo.openid, (data) ->
+    orderService.queryOrder userInfo.openid, (data) ->
       $log.debug data
       $scope.orders = data

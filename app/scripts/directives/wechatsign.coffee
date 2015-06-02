@@ -7,14 +7,15 @@
  # # wechatsign
 ###
 angular.module('iter001App')
-  .directive('wechatsign', ->
+  .directive('wechatsign', (API_ENDPOINT)->
+
     template: '<div></div>'
     restrict: 'EA'
     link: (scope, element, attrs) ->
       console.log '[wechatsign directive]'
       #element.text 'this is the wechatsign directive'
       #get house image
-
+      console.log API_ENDPOINT
       div = angular.element "<div>"
       div.html """
       <script>
@@ -23,7 +24,7 @@ angular.module('iter001App')
 
         //get sign details
         $.ajax({
-          url: "http://www.mt5225.cc:3000/api/sign?url=" + url_encoded
+          url: "#{API_ENDPOINT}/api/sign?url=" + url_encoded
         }).then(function(data) {
           console.log("<----sign api return-------->");
           console.log(data);

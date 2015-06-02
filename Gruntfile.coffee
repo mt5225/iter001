@@ -182,6 +182,7 @@ module.exports = (grunt) ->
             '.htaccess'
             '*.html'
             'views/{,*/}*.html'
+            'static/{,*/}*.html'
             'images/{,*/}*.{webp}'
             'fonts/{,*/}*.*'
           ]
@@ -228,25 +229,12 @@ module.exports = (grunt) ->
       configFile: 'test/karma.conf.js'
       singleRun: true
 
-#    scp:
-#      options:
-#        host: '119.29.114.143'
-#        username: 'ubuntu'
-#        password: '$Sh7evxc'
-#      upload:
-#        files: [
-#          cwd: './dist'
-#          src: '**/*'
-#          filter: 'isFile'
-#          dest: '/home/ubuntu/var/www'
-#        ]
-
     sshconfig:
         'myhost': grunt.file.readJSON 'tc.host'
 
     sshexec:
       clean:
-        command: 'cd /home/ubuntu/var/www; rm -rf *'
+        command: 'cd /usr/share/nginx/h5; rm -rf *'
         options: config: 'myhost'
 
     sftp:
@@ -254,14 +242,14 @@ module.exports = (grunt) ->
         files:  './': ['dist/**']
         options:
           config: 'myhost'
-          path: '/home/ubuntu/var/www'
+          path: '/usr/share/nginx/h5'
           srcBasePath: 'dist/'
           createDirectories: true
       signTest:
         files:  './': ['test/signTest/**']
         options:
           config: 'myhost'
-          path: '/home/ubuntu/var/www'
+          path: '/usr/share/nginx/h5'
           srcBasePath: 'test/signTest/'
           createDirectories: true
 

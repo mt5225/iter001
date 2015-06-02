@@ -34,7 +34,7 @@
     }).otherwise({
       redirectTo: '/'
     });
-  }).factory('flash', function($rootScope) {
+  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').factory('flash', function($rootScope) {
     var currentMessage, queue;
     queue = [];
     currentMessage = '';
@@ -49,18 +49,6 @@
       getMessage: function() {
         console.log("in getMessage with '" + currentMessage + "'");
         return currentMessage;
-      }
-    };
-  }).factory('myorderService', function() {
-    var orders;
-    orders = [];
-    return {
-      saveOrder: function(order) {
-        console.log(order);
-        orders.push(order);
-      },
-      getOrder: function() {
-        return orders;
       }
     };
   }).factory('houseService', function() {
@@ -148,7 +136,5 @@
       };
     }
   ]);
-
-  return;
 
 }).call(this);

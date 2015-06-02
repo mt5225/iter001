@@ -94,3 +94,19 @@ app secret | 5ebb59c8e11586344e695dc91c03d159
 #Notes about wechat JS-JDK singature
 ## domain:  www.mt5225.cc:9000
 ## sign with location.href.split('#')[0] , which ,is fixed in my scenario:  
+
+
+## create new order
+`
+http://qa.aghchina.com.cn:3000/api/orders 
+POST
+{
+  checkInDay: "17 June, 2015"
+  checkOutDay: "27 June, 2015",
+  houseId: "H001"numOfGuest: "3",
+  orderId: "4b8a-4e50",
+  req002: true,
+  wechatNickName: "蒋庆",
+  wechatOpenID: "o82BBs8XqUSk84CNOA3hfQ0kNS90"
+}
+`
