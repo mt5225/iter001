@@ -54,7 +54,7 @@ module.exports = (grunt) ->
     connect:
       options:
         port: 9000
-        hostname: '0.0.0.0'
+        hostname: 'localhost'
         livereload: 35729
       livereload: options:
         open: true
@@ -236,6 +236,9 @@ module.exports = (grunt) ->
       clean:
         command: 'cd /usr/share/nginx/h5; rm -rf *'
         options: config: 'myhost'
+      reload:
+        command: 'service nginx reload'
+        options: config: 'myhost'
 
     sftp:
       dev:
@@ -278,6 +281,7 @@ module.exports = (grunt) ->
   ]
   grunt.registerTask 'build', [
     'clean:dist'
+    'coffee'
     'wiredep'
     'useminPrepare'
     'concurrent:dist'
@@ -298,11 +302,12 @@ module.exports = (grunt) ->
     'build'
   ]
 
-  grunt.registerTask 'upload-dist', [
+  grunt.registerTask 'run-remote', [
     'build'
     'sshexec:clean'
     'sftp:dev'
     'sftp:signTest'
+    'sshexec:reload'
   ]
 
   grunt.registerTask 'compile_coffee', [

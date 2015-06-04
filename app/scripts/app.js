@@ -6,7 +6,7 @@
    * @name iter001App
    * @description
    * # iter001App
-  #
+   *
    * Main module of the application.
    */
   angular.module('iter001App', ['ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch']).config(function($routeProvider) {

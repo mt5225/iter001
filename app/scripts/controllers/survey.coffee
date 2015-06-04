@@ -10,6 +10,7 @@
 angular.module('iter001App')
   .controller 'SurveyCtrl', ($scope, $location, $log, wechat) ->
     userinfo = wechat.getUserInfo()
+    $log.debug userinfo
     $scope.nickname = userinfo.nickname
 
     $scope.FinishSurvey = ->

@@ -19,7 +19,6 @@
           $log.debug("[wechat service] cached user info");
           return userInfo;
         }
-        $log.debug("[wechat service] User OpenId = " + uoid);
         return $http({
           method: 'GET',
           url: API_ENDPOINT + "/api/userinfo?user_openid=" + uoid
@@ -32,7 +31,6 @@
         });
       },
       getUserInfo: function() {
-        $log.debug(userInfo);
         return userInfo;
       },
       getSignString: function() {

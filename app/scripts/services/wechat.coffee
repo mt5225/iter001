@@ -17,7 +17,6 @@ angular.module('iter001App')
       if userInfo.openid
         $log.debug "[wechat service] cached user info"
         return userInfo
-      $log.debug "[wechat service] User OpenId = #{uoid}"
       #get user info from openid
       $http(
         method: 'GET'
@@ -31,7 +30,6 @@ angular.module('iter001App')
         return
 
     getUserInfo: ->
-      $log.debug userInfo
       userInfo
 
     getSignString: ->

@@ -9,28 +9,34 @@
  # @note APP_ID =
 ###
 angular.module('iter001App')
-  .controller 'FrontpageCtrl', ($scope, $location, $window, wechat) ->
+  .controller 'FrontpageCtrl', ($scope, $location, $window, wechat, $log) ->
     $scope.tribes = [
-      {image: 'images/lz_opt.jpg'}
-      {image: 'images/lztw_opt.jpg'}
-      {image: 'images/ss_opt.jpg'}
-      {image: 'images/ssxz_opt.jpg'}
+      {image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/lz_opt.jpg'}
+      {image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/lztw_opt.jpg'}
+      {image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/ss_opt.jpg'}
+      {image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/ssxz_opt.jpg'}
     ]
 
-    #get user info from url and store it in wechat service
-    userOpenId = $location.search().user_openid
-    wechat.loadUserInfo userOpenId
-
     $scope.ToSurvey = ->
-      $location.path "/survey"
-#      #redirect user to wechat oauth page
-#      #APP_ID = 'wxe2bdce057501817d'
-#      APP_ID = 'wx520c15f417810387'
-#      #REDITECT_URL = 'http%3A%2F%2Flocalhost%3A9000%2F%23%2Fsurvey'
-#      REDITECT_URL = 'http%3A%2F%2Fapple.com'
-#      console.log "redirect to user auth page"
-#      #HREF = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{APP_ID}&redirect_uri=#{REDITECT_URL}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
-#      HREF = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{APP_ID}&redirect_uri=http%3A%2F%2Fchong.qq.com%2Fphp%2Findex.php%3Fd%3D%26c%3DwxAdapter%26m%3DmobileDeal%26showwxpaytitle%3D1%26vb2ctag%3D4_2030_5_1194_60&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
-#      #HREF = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{APP_ID}&redirect_uri=#{REDITECT_URL}&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
-#      console.log HREF
-#      $window.location.href = HREF
+      #get user info from url and store it in wechat service
+
+      if wechat.getUserInfo().openid
+        $log.debug "user info #{wechat.getUserInfo().openid} cached"
+        $location.path "/survey"
+        return
+
+      userOpenId = $location.search().user_openid
+      if userOpenId
+        $log.debug "userOpenId = #{userOpenId}"
+        wechat.loadUserInfo userOpenId
+        $scope.$watch ( ->
+          wechat.getUserInfo().openid
+        ), (newVal, oldVal) ->
+          if typeof newVal != 'undefined' 
+            $location.path "/survey"
+      else
+        $log.debug "redirect user to wechat oauth2"
+        REDIRECT_URI = $window.encodeURIComponent('http://qa.aghchina.com.cn:3000/api/useroauth')
+        url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2bdce057501817d&redirect_uri=#{REDIRECT_URI}&response_type=code&scope=snsapi_userinfo&state=aghchina#wechat_redirect"
+        $window.location.href = url
+

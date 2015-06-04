@@ -1,0 +1,12 @@
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="./jquery.min.js"></script>
+<script>
+  //var REDIRECT_URI = encodeURIComponent(location.href.split('#')[0]);
+  var REDIRECT_URI = encodeURIComponent('http://qa.aghchina.com.cn:3000/api/useroauth')
+  var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2bdce057501817d&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_userinfo&state=aghchina#wechat_redirect";
+  $(location).attr('href',url);
+</script>
+
+
+<!-- qa.aghchina.com.cn:9000/?code=031fa9f133ceba547e266fab65ead8dv&state=123#/ -->
