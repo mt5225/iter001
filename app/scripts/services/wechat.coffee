@@ -20,7 +20,7 @@ angular.module('iter001App')
       #get user info from openid
       $http(
         method: 'GET'
-        url: "#{API_ENDPOINT}/api/userinfo?user_openid=#{uoid}"
+        url: "#{API_ENDPOINT}/api/users/#{uoid}"
       ).success((data) ->
         $log.debug data
         userInfo = data
@@ -36,15 +36,16 @@ angular.module('iter001App')
       if signData.signature
         $log.debug "[wechat service] cached sign data"
         return signData
-      $http(
-        method: 'GET'
-        url: "#{API_ENDPOINT}/api/sign"
-      ).success((data) ->
-        $log.debug "get sign data success"
-        signData = data
-        return data
-      ).error (data) ->
-        $log.debug "[wechat service] failed to get sign message"
-        $log.debug data
-        return
+      else  
+        $http(
+          method: 'GET'
+          url: "#{API_ENDPOINT}/api/sign"
+        ).success((data) ->
+          $log.debug "get sign data success"
+          signData = data
+          return data
+        ).error (data) ->
+          $log.debug "[wechat service] failed to get sign message at #{API_ENDPOINT}/api/sign"
+          $log.debug data
+          return
   }

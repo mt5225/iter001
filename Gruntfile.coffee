@@ -234,7 +234,7 @@ module.exports = (grunt) ->
 
     sshexec:
       clean:
-        command: 'cd /usr/share/nginx/h5; rm -rf *'
+        command: 'cd /usr/share/nginx/h5; rm -rf *; mkdir -p /usr/share/nginx/h5/test'
         options: config: 'myhost'
       reload:
         command: 'service nginx reload'
@@ -252,7 +252,7 @@ module.exports = (grunt) ->
         files:  './': ['test/signTest/**']
         options:
           config: 'myhost'
-          path: '/usr/share/nginx/h5'
+          path: '/usr/share/nginx/h5/test'
           srcBasePath: 'test/signTest/'
           createDirectories: true
 

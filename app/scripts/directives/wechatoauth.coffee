@@ -4,7 +4,7 @@
  # @ngdoc directive
  # @name iter001App.directive:wechatOAuth
  # @description
- # # wechatOAuth
+ # check if we have user open_id at hand
 ###
 angular.module 'iter001App'
   .directive 'wechatOAuth', (API_ENDPOINT)->

@@ -1,0 +1,27 @@
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="./jquery.min.js"></script>
+<script src="./pingpp_pay.js"></script>>
+<script>
+
+  //get sign details
+  $.ajax({
+    url: "http://qa.aghchina.com.cn:3000/api/pingplus?user_openid=o82BBs8XqUSk84CNOA3hfQ0kNS90"
+  }).then(function(data) {
+    console.log("<----ping plus plus charge api return-------->");
+    console.log(data);
+    charge = data;
+    pingpp.createPayment(charge, function(result, error){
+      if (result == "success") {
+          // 微信公众账号支付的结果会在这里返回
+          alert ("pay success!!");
+      } else if (result == "fail") {
+          // charge 不正确或者微信公众账号支付失败时会在此处返回
+          alert ("pay fail!");
+      } else if (result == "cancel") {
+          // 微信公众账号支付取消支付
+          alert ("pay cancel!");
+      }
+    });    
+  });
+
+</script>
