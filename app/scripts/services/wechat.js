@@ -12,7 +12,7 @@
     var signData, userInfo;
     userInfo = {};
     signData = {};
-    console.log("[api endpoint] " + API_ENDPOINT);
+    $log.debug("api endpoint = " + API_ENDPOINT);
     return {
       loadUserInfo: function(uoid) {
         if (userInfo.openid) {
@@ -21,7 +21,7 @@
         }
         return $http({
           method: 'GET',
-          url: API_ENDPOINT + "/api/userinfo?user_openid=" + uoid
+          url: API_ENDPOINT + "/api/users/" + uoid
         }).success(function(data) {
           $log.debug(data);
           return userInfo = data;
@@ -37,18 +37,19 @@
         if (signData.signature) {
           $log.debug("[wechat service] cached sign data");
           return signData;
+        } else {
+          return $http({
+            method: 'GET',
+            url: API_ENDPOINT + "/api/sign"
+          }).success(function(data) {
+            $log.debug("get sign data success");
+            signData = data;
+            return data;
+          }).error(function(data) {
+            $log.debug("[wechat service] failed to get sign message at " + API_ENDPOINT + "/api/sign");
+            $log.debug(data);
+          });
         }
-        return $http({
-          method: 'GET',
-          url: API_ENDPOINT + "/api/sign"
-        }).success(function(data) {
-          $log.debug("get sign data success");
-          signData = data;
-          return data;
-        }).error(function(data) {
-          $log.debug("[wechat service] failed to get sign message");
-          $log.debug(data);
-        });
       }
     };
   });

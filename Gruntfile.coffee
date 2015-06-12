@@ -184,7 +184,7 @@ module.exports = (grunt) ->
             'views/{,*/}*.html'
             'static/{,*/}*.html'
             'images/{,*/}*.{webp}'
-            'fonts/{,*/}*.*'
+            'fonts/{,*/}*'
           ]
         }
         {
@@ -197,12 +197,6 @@ module.exports = (grunt) ->
           expand: true
           cwd: 'bower_components/bootstrap/dist'
           src: 'fonts/*'
-          dest: '<%= yeoman.dist %>'
-        }
-        {
-          expand: true
-          cwd: 'bower_components/materialize/dist'
-          src: 'font/roboto/*'
           dest: '<%= yeoman.dist %>'
         }
         {
@@ -310,7 +304,7 @@ module.exports = (grunt) ->
     'sshexec:reload'
   ]
 
-  grunt.registerTask 'compile_coffee', [
+  grunt.registerTask 'compile', [
     'coffee'
   ]
 

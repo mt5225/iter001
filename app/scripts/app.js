@@ -25,16 +25,31 @@
     }).when('/houses', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
-    }).when('/survey', {
+    }).when('/housesurvey', {
       templateUrl: 'views/survey.html',
       controller: 'SurveyCtrl'
     }).when('/share', {
       templateUrl: 'views/share.html',
       controller: 'ShareCtrl'
+    }).when('/artist', {
+      templateUrl: 'views/artist.html',
+      controller: 'ArtistCtrl'
+    }).when('/volunteer', {
+      templateUrl: 'views/volunteer.html',
+      controller: 'VolunteerCtrl'
+    }).when('/study', {
+      templateUrl: 'views/study.html',
+      controller: 'StudyCtrl'
+    }).when('/activity', {
+      templateUrl: 'views/activity.html',
+      controller: 'ActivityCtrl'
+    }).when('/partner', {
+      templateUrl: 'views/partner.html',
+      controller: 'PartnerCtrl'
     }).otherwise({
       redirectTo: '/'
     });
-  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').factory('flash', function($rootScope) {
+  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').constant('APP_ID', 'wxe2bdce057501817d').constant('APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90').factory('flash', function($rootScope) {
     var currentMessage, queue;
     queue = [];
     currentMessage = '';

@@ -10,7 +10,7 @@ angular.module('iter001App')
   userInfo = {}
   signData = {}
 
-  console.log "[api endpoint] #{API_ENDPOINT}"
+  $log.debug "api endpoint = #{API_ENDPOINT}"
 
   return {
     loadUserInfo: (uoid)->

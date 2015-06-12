@@ -20,30 +20,47 @@ angular.module('iter001App', [
   'ngTouch'
 ]).config ($routeProvider) ->
   $routeProvider
-    .when('/',
+    .when('/',  #首页
       templateUrl: 'views/frontpage.html'
       controller: 'FrontpageCtrl')
-    .when('/about',
+    .when('/about', #关于
       templateUrl: 'views/about.html'
       controller: 'AboutCtrl')
-    .when '/order',
+    .when '/order', #营地预定
       templateUrl: 'views/order.html'
       controller: 'OrderCtrl'
-    .when '/myorder',
+    .when '/myorder', #显示我的订单
       templateUrl: 'views/myorder.html'
       controller: 'MyorderCtrl'
-    .when '/houses',
+    .when '/houses', # 营地列表
       templateUrl: 'views/main.html'
       controller: 'MainCtrl'
-    .when '/survey',
+    .when '/housesurvey', #入住前问卷
       templateUrl: 'views/survey.html'
       controller: 'SurveyCtrl'
-    .when '/share',
+    .when '/share', #分享到朋友圈
       templateUrl: 'views/share.html'
       controller: 'ShareCtrl'
+    .when '/artist', # 生活艺术家
+      templateUrl: 'views/artist.html'
+      controller: 'ArtistCtrl'
+    .when '/volunteer',  #自愿者招募
+      templateUrl: 'views/volunteer.html'
+      controller: 'VolunteerCtrl'
+    .when '/study', # 学堂
+      templateUrl: 'views/study.html'
+      controller: 'StudyCtrl'
+    .when '/activity',  #活动
+      templateUrl: 'views/activity.html'
+      controller: 'ActivityCtrl'
+    .when '/partner', #执行合伙人招募
+      templateUrl: 'views/partner.html'
+      controller: 'PartnerCtrl'
     .otherwise redirectTo: '/'
 
 .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+.constant 'APP_ID', 'wxe2bdce057501817d'
+.constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
 #message service
 .factory 'flash', ($rootScope) ->

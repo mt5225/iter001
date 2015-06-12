@@ -1,4 +1,4 @@
-/* Space out content a bit */
+/* full screen content */
 body {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -124,3 +124,9 @@ html, body, .ng-view, .ng-scope, .container-fluid {
 }
 
 a, a:link, a:visited {text-decoration:none}
+
+/*get rid of roboto font*/
+html {
+  font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+}
+
