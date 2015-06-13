@@ -56,6 +56,12 @@ angular.module('iter001App', [
     .when '/partner', #执行合伙人招募
       templateUrl: 'views/partner.html'
       controller: 'PartnerCtrl'
+    .when '/housedetail/:id', #营地详细01
+      templateUrl: 'views/housedetail.html'
+      controller: 'HousedetailCtrl'
+    .when '/housedetail', #营地详细02
+      templateUrl: 'views/housedetail.html'
+      controller: 'HousedetailCtrl'
     .otherwise redirectTo: '/'
 
 .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
@@ -79,26 +85,11 @@ angular.module('iter001App', [
        currentMessage
   }
 
-#house service
-.factory 'houseService', ->
-  #todo put it into backend database
-  houses = [
-    {id: 'H001', name: '喜乐窝', likes: '16', price: '1050', image: 'images/xile.jpg' , avator: 'images/xielong.jpg',
-    description: '红色的主色调、通透的空间、温馨的阁楼...', owner: "Luke Xie", stars: 5}
-    {id: 'H002', name: '向日葵', likes: '22', price: '850', image: 'images/xrk.jpg', avator: 'images/xrk_owner_opt.jpg',
-    description: '向日葵营地，正如它的花语---勇敢去追求自己想要的幸福。如果...', owner: "Jerry Jiang", stars: 4}
-    {id: 'H003', name: '绿茶', likes: '32', price: '1250', image: 'images/greentea.jpg' , avator: 'images/avator.jpg',
-    description: '远离城市浮华，步入大自然的怀抱，在上水之间寻找内心的自我...', owner: "阳光男孩", stars: 5}
-  ]
-  return {
-    getHouseList: ->
-      houses
-    getHouseById: (id) ->
-      for h in houses
-        return h if h.id == id
-  }
-
-#UUID service
+########################
+## Simple Service
+########################
+#UUID generator
+#format xxxx-xxxx
 .factory 'uuidService', ->
   return {
     generateUUID: ->

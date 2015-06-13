@@ -8,77 +8,25 @@
    * # MainCtrl
    * Controller of the iter001App
    */
-  angular.module('iter001App').controller('MainCtrl', function($scope, $location, $log, flash, houseService, paramService) {
-    $scope.houses = houseService.getHouseList();
-    $scope.order = function(house) {
+  angular.module('iter001App').controller('MainCtrl', function($scope, $location, $log, flash, houseservice, paramService) {
+    var promise;
+    promise = houseservice.getHouseList();
+    promise.then((function(payload) {
+      $log.debug(payload);
+      return $scope.houses = payload.data;
+    }), function(errorPayload) {
+      $log.error('failure loading house list', errorPayload);
+    });
+    $scope.detail = function(house) {
       paramService.set(house);
-      return $location.path('/order');
-    };
-    $scope.share = function(house) {
-      paramService.set(house);
-      return $location.path('/share');
+      return $location.path('/housedetail');
     };
 
     /*
     for the slide show
     #todo store in bankend database, also need more org on folders and filenames
      */
-    $scope.slides = {
-      'H001': {
-        currentIndex: 0,
-        images: [
-          {
-            image: 'images/xile.jpg',
-            description: 'Image 00'
-          }, {
-            image: 'images/xile02.jpg',
-            description: 'Image 01'
-          }, {
-            image: 'images/xile03.jpg',
-            description: 'Image 02'
-          }, {
-            image: 'images/xile04.jpg',
-            description: 'Image 03'
-          }
-        ]
-      },
-      'H002': {
-        currentIndex: 0,
-        images: [
-          {
-            image: 'images/xrk.jpg',
-            description: 'Image 00'
-          }, {
-            image: 'images/xrk02.jpg',
-            description: 'Image 01'
-          }, {
-            image: 'images/xrk03.jpg',
-            description: 'Image 02'
-          }, {
-            image: 'images/xrk04.jpg',
-            description: 'Image 03'
-          }
-        ]
-      },
-      'H003': {
-        currentIndex: 0,
-        images: [
-          {
-            image: 'images/greentea.jpg',
-            description: 'Image 00'
-          }, {
-            image: 'images/greentea02.jpg',
-            description: 'Image 01'
-          }, {
-            image: 'images/greentea03.jpg',
-            description: 'Image 02'
-          }, {
-            image: 'images/greentea04.jpg',
-            description: 'Image 03'
-          }
-        ]
-      }
-    };
+    $scope.slides = houseservice.getSlideShow();
     $scope.direction = 'left';
     $scope.prevSlide = function(house) {
       $log.debug("previous slide with house id " + house.id);
@@ -113,7 +61,7 @@
           if (scope.direction !== 'right') {
             finishPoint = -finishPoint;
           }
-          TweenMax.to(element, 0.5, {
+          TweenMax.to(element, 0.2, {
             left: finishPoint,
             onComplete: done
           });
@@ -133,7 +81,7 @@
           TweenMax.set(element, {
             left: startPoint
           });
-          TweenMax.to(element, 0.5, {
+          TweenMax.to(element, 0.2, {
             left: 0,
             onComplete: done
           });

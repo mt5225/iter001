@@ -8,11 +8,11 @@
     * # OrderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderCtrl', function($scope, $location, flash, $log, houseService, orderService, uuidService, paramService, wechat) {
+  angular.module('iter001App').controller('OrderCtrl', function($scope, $location, flash, $log, orderService, uuidService, paramService) {
     $scope.flash = flash;
     $scope.house = paramService.get();
     $scope.newOrder = {};
-    $scope.orderConfirm = function(newOrder, houseId) {
+    return $scope.orderConfirm = function(newOrder, houseId) {
       $log.debug(newOrder);
       newOrder.orderId = uuidService.generateUUID();
       newOrder.houseId = houseId;

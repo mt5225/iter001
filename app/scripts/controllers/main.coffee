@@ -9,54 +9,28 @@
 ###
 
 angular.module('iter001App')
-.controller 'MainCtrl', ($scope, $location, $log, flash, houseService, paramService) ->
+.controller 'MainCtrl', ($scope, $location, $log, flash, houseservice, paramService) ->
 
-  $scope.houses = houseService.getHouseList()
+  promise = houseservice.getHouseList()
+  promise.then ((payload) ->
+    $log.debug payload
+    $scope.houses = payload.data
+    ), (errorPayload) ->
+      $log.error 'failure loading house list', errorPayload
+      return
 
   #user click the order button, navigate the order page
   #with house parameter
-  $scope.order = (house) ->
+  $scope.detail = (house) ->
     paramService.set house
-    $location.path '/order'
-
-  #to share page
-  $scope.share = (house) ->
-    paramService.set house
-    $location.path '/share'
+    $location.path '/housedetail'
 
   ###
   for the slide show
   #todo store in bankend database, also need more org on folders and filenames
   ###
 
-  $scope.slides =
-    'H001':
-      currentIndex: 0
-      images:
-        [
-          {image: 'images/xile.jpg', description: 'Image 00'}
-          {image: 'images/xile02.jpg', description: 'Image 01'}
-          {image: 'images/xile03.jpg', description: 'Image 02'}
-          {image: 'images/xile04.jpg', description: 'Image 03'}
-        ]
-    'H002':
-      currentIndex: 0
-      images:
-        [
-          {image: 'images/xrk.jpg', description: 'Image 00'}
-          {image: 'images/xrk02.jpg', description: 'Image 01'}
-          {image: 'images/xrk03.jpg', description: 'Image 02'}
-          {image: 'images/xrk04.jpg', description: 'Image 03'}
-        ]
-    'H003':
-      currentIndex: 0
-      images:
-        [
-          {image: 'images/greentea.jpg', description: 'Image 00'}
-          {image: 'images/greentea02.jpg', description: 'Image 01'}
-          {image: 'images/greentea03.jpg', description: 'Image 02'}
-          {image: 'images/greentea04.jpg', description: 'Image 03'}
-        ]
+  $scope.slides = houseservice.getSlideShow()
 
   $scope.direction = 'left'
 
@@ -90,7 +64,7 @@ angular.module('iter001App')
     if className == 'ng-hide'
       finishPoint = element.parent().width()
       finishPoint = -finishPoint if scope.direction != 'right'
-      TweenMax.to element, 0.5,
+      TweenMax.to element, 0.2,
         left: finishPoint
         onComplete: done
     else
@@ -104,7 +78,7 @@ angular.module('iter001App')
       startPoint = element.parent().width()
       startPoint = -startPoint if scope.direction == 'right'
       TweenMax.set element, {left: startPoint}
-      TweenMax.to element, 0.5,
+      TweenMax.to element, 0.2,
         left: 0
         onComplete: done
     else

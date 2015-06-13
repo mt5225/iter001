@@ -125,6 +125,10 @@ html, body, .ng-view, .ng-scope, .container-fluid {
 
 a, a:link, a:visited {text-decoration:none}
 
+.ui-datepicker .ui-widget-content {
+    background: #999 none;
+}
+
 /*get rid of roboto font*/
 html {
   font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 

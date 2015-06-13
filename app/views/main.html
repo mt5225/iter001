@@ -1,28 +1,26 @@
 <!--header-->
-<div wechatoauth="houses"></div> 
+<!-- <div wechatoauth="houses"></div>  -->
 <div ng-include src="views/header.html"/>
-<div class="card" ng-repeat="house in houses" >
+<div class="card" style="padding-top: 0; top:0;" ng-repeat="house in houses" >
   <!--card main image-->
   <div class="card-image  waves-block waves-light "  style="position:relative;">
     <div class="parallax-container" style="height: 285px; padding-top: 0;">
       <img class="activator slide-animation slide" style="position:absolute; top:0; left:0;"  ng-hide="!isCurrentSlideIndex(house, $index)"
            ng-repeat="slide in slides[house.id].images" ng-swipe-right="prevSlide(house)"
-           ng-swipe-left="nextSlide(house)" ng-src="{{slide.image}}">
+           ng-swipe-left="nextSlide(house)" ng-src="{{slide.image}}" ng-click="detail(house)">
       <span class="card-title left-align">
         {{house.name}}
-      <p>
-        <a class="waves-effect waves-light transparent white-text">
-          <i class="mdi-action-favorite-outline left-align"/></a>
-      </p>
-            </span>
+        <p>
+          <a class="waves-effect waves-light transparent white-text">
+            <i class="mdi-action-favorite-outline left-align"/></a>
+        </p>
+      </span>
     </div>
-
   </div>
-  <!--card content in front ------------------------------------------------------------------------------>
   <div class="card-content" style="padding: 0;">
     <ul class="collection" style="margin: 0;border:0;">
       <li class="collection-item avatar" style="padding-bottom: 0;">
-        <img src="{{house.avator}}" alt="" class="circle">
+        <img ng-src="{{house.avator}}" alt="" class="circle">
         <span class="title">{{house.description}}</span>
 
         <p>屋主: {{house.owner}} &nbsp;
@@ -32,67 +30,6 @@
         <p> &nbsp; </p>
       </li>
     </ul>
-  </div>
-
-  <!-- card detail in the back------------------------------------------------------------------------------->
-  <div class="card-reveal">
-    <!--the book and share button chain-->
-    <div class="fixed-action-btn" style="top: 48px; right: 8px;">
-      <a class="btn-floating btn-large red">
-        <i class="large mdi-content-add"/>
-      </a>
-      <ul style="top: 78px;">
-        <li><a class="btn-floating yellow darken-1"><i class="large  mdi-maps-local-phone"/></a></li>
-        <!--to order page-->
-        <li><a class="btn-floating green" href ng-click="order(house)"><i class="large mdi-action-shopping-cart"/></a>
-        </li>
-        <li><a class="btn-floating blue"><i class="large mdi-device-gps-fixed"/></a></li>
-        <li><a class="btn-floating  purple lighten-1" href ng-click="share(house)"><i class="large mdi-social-share"/></a></li>
-
-      </ul>
-    </div>
-    <!--title------>
-       <span class="card-title left-align" style="color: #EE6E73;">
-         <!--floating button -->
-        <i class="mdi-hardware-keyboard-backspace"></i> &nbsp;  &nbsp; {{house.name}}
-       </span>
-
-    <!--small content image-->
-    <div class="card small">
-      <div class="card-image">
-        <img class="circle" src="{{house.image}}">
-        <span class="card-title small">RMB {{house.price}}/night </span>
-      </div>
-
-      <!--own introduce-->
-      <div class="card-panel" style="margin: 0;padding: 0">
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <img src="{{house.avator}}" alt="" class="circle">
-            <span class="tiny">{{house.description}}</span>
-
-            <p>
-              <i class="tiny mdi-action-alarm"/> 3
-              <i class="tiny mdi-action-lock-outline"/> 5
-              <i class="tiny mdi-communication-phone"/> 5
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <!--user comment-->
-      <div class="card-panel">
-        <form class="left-align">
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="mdi-editor-mode-edit prefix"></i>
-              <input id="icon_prefix" type="text">
-              <label for="icon_prefix">留言</label>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 

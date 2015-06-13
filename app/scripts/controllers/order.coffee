@@ -8,11 +8,11 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'OrderCtrl', ($scope, $location, flash, $log, houseService, orderService,uuidService, paramService, wechat) ->
+  .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService,uuidService, paramService) ->
 
     $scope.flash = flash
 
-    #get hotel selection
+    #get house selected by user
     $scope.house = paramService.get()
     $scope.newOrder = {}
 
@@ -23,4 +23,4 @@ angular.module('iter001App')
       orderService.saveOrder newOrder
       flash.setMessage "订单提交成功！"
       $location.path '/houses'
-    return
+    

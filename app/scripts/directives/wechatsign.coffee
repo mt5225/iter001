@@ -8,7 +8,6 @@
 ###
 angular.module('iter001App')
   .directive('wechatsign', (API_ENDPOINT)->
-
     template: '<div></div>'
     restrict: 'EA'
     link: (scope, element, attrs) ->
