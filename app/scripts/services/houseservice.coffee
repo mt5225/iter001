@@ -21,7 +21,7 @@ angular.module 'iter001App'
           $log.error "[house  service] failed to get houses list from API_ENDPOINT"
           $log.error data
        
-      getHouseById: (id) ->   #todo, change to api call
+      getHouseById: (id) -> 
         $log.debug "loading house id=#{id}"
         $http(
           method: 'GET'
@@ -62,5 +62,4 @@ angular.module 'iter001App'
                 {image: 'images/greentea04.jpg', description: 'Image 03'}
               ]
         return slides
-
     }

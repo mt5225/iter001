@@ -14,13 +14,17 @@ angular.module('iter001App')
 
     #get house selected by user
     $scope.house = paramService.get()
+
     $scope.newOrder = {}
 
-    $scope.orderConfirm = (newOrder, houseId) ->
+    $scope.orderReview = (newOrder, house) ->
       $log.debug newOrder
       newOrder.orderId = uuidService.generateUUID()
-      newOrder.houseId = houseId
-      orderService.saveOrder newOrder
-      flash.setMessage "订单提交成功！"
-      $location.path '/houses'
+      #orderService.saveOrder newOrder
+      flash.setMessage "加载预定信息成功 ！"
+      newOrder.house =  house
+      newOrder.dayPrices = $scope.dayPrices
+      console.log newOrder
+      paramService.set newOrder
+      $location.path '/orderreview'
     

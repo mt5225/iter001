@@ -13,14 +13,16 @@ angular.module 'iter001App'
     if paramService.get().name
       $log.debug "fetch house in paramService"
       $scope.house = paramService.get()
-    else if $routeParams.id
-      $log.debug "fetch house by id #{id}"
+
+    #direct link with house id, from wechat rich text message: http://qa.aghchina.com.cn:9000/#/housedetail?id=H001
+    else if $routeParams.id   
+      $log.debug "fetch house by id #{$routeParams.id}"
       promise = houseservice.getHouseById($routeParams.id)
       promise.then ((payload) ->
-        $log.debug payload
-        $scope.house = payload.data
-        paramService.set payload.data
-        ), (errorPayload) ->
+        $log.debug payload.data
+        $scope.house = payload.data[0]
+        paramService.set payload.data[0]
+      ), (errorPayload) ->
           $log.error 'failure loading house detail', errorPayload
           return
     else

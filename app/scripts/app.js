@@ -52,6 +52,9 @@
     }).when('/housedetail', {
       templateUrl: 'views/housedetail.html',
       controller: 'HousedetailCtrl'
+    }).when('/orderreview', {
+      templateUrl: 'views/orderreview.html',
+      controller: 'OrderreviewCtrl'
     }).otherwise({
       redirectTo: '/'
     });

@@ -11,23 +11,22 @@
 
   <div style="padding-left: 20px">
     <div class="row">
-    <form class="col s12">
-      
+    <form class="col s12">     
         <div class="input-field col s6">
-          <i class="mdi-action-account-circle prefix"></i>
-          <input id="check-in" type="text" class="validate">
+          <i class="mdi-notification-event-available prefix"></i>
+          <input id="check-in" type="text" ng-model="newOrder.checkInDay">
           <label for="icon_prefix">入住</label>
         </div>
         <div class="input-field col s6">
-          <i class="mdi-communication-phone prefix"></i>
-          <input id="check-out" type="tel" class="validate">
+          <i class="mdi-maps-directions prefix"></i>
+          <input id="check-out" type="text" ng-model="newOrder.checkOutDay">
           <label for="icon_telephone">退房</label>
         </div>
       
       <div class="input-field col s6">
-          <i class="mdi-action-account-circle prefix"></i>
-          <input id="numOfGuest" type="email" class="validate" value="1" ng-model="newOrder.numOfGuest">
-          <label for="numOfGuest">客人数</label>
+          <i class="mdi-social-group-add prefix"></i>
+          <input id="numOfGuest" type="text" value="1" ng-model="newOrder.numOfGuest">
+          <label for="numOfGuest">客人数</label> 
       </div>
     </form>
   </div>
@@ -42,44 +41,14 @@
     blah blah
    </p> 
   </div>
-
-    <!-- Confirm Modal Trigger -->
-    <button data-target="modalConfirm" class="btn modal-trigger waves-effect waves-light col s12 closelayout"
-            style="background-color: #EE6E73;">
-      <i class="mdi-content-send right"> 提交 </i>
+  <div id="footer" class="ui-frame ui-frame-footer">
+    <button class="waves-effect waves-light btn col s12"
+            style="background-color: #EE6E73;" ng-click="orderReview(newOrder, house)">
+      <i class="mdi-content-send right"> 预定 </i>
     </button>
-    
-    <!-- Confirm Modal Structure -->
-    <div id="modalConfirm" class="modal bottom-sheet">
-      <div class="modal-content">
-        <ul class="collection">
-          <li class="collection-item avatar">
-            <img src="{{house.avator}}" alt="" class="circle">
-            <span class="title"> 确定下单吗</span>
-
-            <div class="right-align">
-              <a href class="modal-action modal-close waves-effect waves-green btn-floating red">
-                <i class="large mdi-content-clear center"/>
-              </a>
-              &nbsp;&nbsp;
-              <!--place order-->
-              <button ng-click="orderConfirm(newOrder, house.id)"
-                      class="modal-action modal-close waves-effect waves-green btn-floating green">
-                <i class="large mdi-action-done center"/>
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+  </div>
 </div>
 
+<div checkinout="{{house.id}}"> </div>
 <div ng-include src="'views/footer.html'"></div>
-
-<script>
- $(function() {
-    $( "#check-in" ).datepicker();
-    $( "#check-out" ).datepicker();
-  });
-</script>
 

@@ -12,13 +12,15 @@
     $scope.flash = flash;
     $scope.house = paramService.get();
     $scope.newOrder = {};
-    return $scope.orderConfirm = function(newOrder, houseId) {
+    return $scope.orderReview = function(newOrder, house) {
       $log.debug(newOrder);
       newOrder.orderId = uuidService.generateUUID();
-      newOrder.houseId = houseId;
-      orderService.saveOrder(newOrder);
-      flash.setMessage("订单提交成功！");
-      return $location.path('/houses');
+      flash.setMessage("加载预定信息成功 ！");
+      newOrder.house = house;
+      newOrder.dayPrices = $scope.dayPrices;
+      console.log(newOrder);
+      paramService.set(newOrder);
+      return $location.path('/orderreview');
     };
   });
 

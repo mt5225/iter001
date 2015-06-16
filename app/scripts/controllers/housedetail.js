@@ -14,12 +14,12 @@
       $log.debug("fetch house in paramService");
       $scope.house = paramService.get();
     } else if ($routeParams.id) {
-      $log.debug("fetch house by id " + id);
+      $log.debug("fetch house by id " + $routeParams.id);
       promise = houseservice.getHouseById($routeParams.id);
       promise.then((function(payload) {
-        $log.debug(payload);
-        $scope.house = payload.data;
-        return paramService.set(payload.data);
+        $log.debug(payload.data);
+        $scope.house = payload.data[0];
+        return paramService.set(payload.data[0]);
       }), function(errorPayload) {
         $log.error('failure loading house detail', errorPayload);
       });

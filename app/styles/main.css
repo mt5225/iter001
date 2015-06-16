@@ -129,6 +129,19 @@ a, a:link, a:visited {text-decoration:none}
     background: #999 none;
 }
 
+.ui-frame {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+.ui-frame-footer {
+    position: absolute;
+    bottom: 0
+}
+
 /*get rid of roboto font*/
 html {
   font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 

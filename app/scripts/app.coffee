@@ -59,12 +59,16 @@ angular.module('iter001App', [
     .when '/housedetail/:id', #营地详细01
       templateUrl: 'views/housedetail.html'
       controller: 'HousedetailCtrl'
-    .when '/housedetail', #营地详细02
+    .when '/housedetail', #营地详细02，如果无法读取house id，则重定向到 /houses
       templateUrl: 'views/housedetail.html'
       controller: 'HousedetailCtrl'
+    .when '/orderreview', #订单的review界面
+      templateUrl: 'views/orderreview.html'
+      controller: 'OrderreviewCtrl'
     .otherwise redirectTo: '/'
 
 .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+#.constant 'API_ENDPOINT', 'http://localhost:3000'
 .constant 'APP_ID', 'wxe2bdce057501817d'
 .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
