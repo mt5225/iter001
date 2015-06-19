@@ -14,6 +14,9 @@
       link: function(scope, element, attrs) {
         var house_id, promise;
         house_id = attrs['checkinout'];
+        if (house_id === '') {
+          return;
+        }
         $log.debug("checkinout directive with house id " + house_id);
         promise = availableroom.getAvailableDateById(house_id);
         return promise.then((function(payload) {

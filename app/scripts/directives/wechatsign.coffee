@@ -33,7 +33,7 @@ angular.module('iter001App')
             timestamp: parseInt(data.timestamp),
             nonceStr: data.nonceStr,
             signature: data.signature,
-            jsApiList: ['hideOptionMenu', 'showOptionMenu', 'onMenuShareAppMessage', 'onMenuShareTimeline']
+            jsApiList: ['hideOptionMenu', 'showOptionMenu', 'onMenuShareAppMessage', 'onMenuShareTimeline', 'closeWindow']
           });
 
           //hide the share button

@@ -12,13 +12,16 @@ angular.module 'iter001App'
     console.log "[api endpoint] #{API_ENDPOINT}"
     return {  
       getAvailableDateById: (id) ->   
-        $log.debug "loading available dates by house id=#{id}"
-        $http(
-          method: 'GET'
-          url: "#{API_ENDPOINT}/api/available/#{id}"
-        ).success((data) ->
-          return data
-        ).error (data) ->
-          $log.error "[house service] fail to get available room record from API_ENDPOINT"
-          $log.error data
+        if id
+          $log.debug "loading available dates by house id=#{id}"
+          $http(
+            method: 'GET'
+            url: "#{API_ENDPOINT}/api/available/#{id}"
+          ).success((data) ->
+            return data
+          ).error (data) ->
+            $log.error "[availableroom service] fail to get available room record from #{API_ENDPOINT}"
+            $log.error data
+        else
+          return {}
     }

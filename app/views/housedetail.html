@@ -5,7 +5,7 @@
 
 <div class="card" style="padding-top: 0; top:0;">
 <blockquote >
-  <h5>{{house.name}} 文案第一部分　</h5>
+  <h5>{{house.name}} 营地介绍</h5>
 </blockquote>
   <!--card main image-->
   <div class="card-image"  style="position:relative;">
@@ -14,8 +14,7 @@
       <span class="card-title left-align">
         {{house.name}}
         <p>
-          <a class="waves-effect waves-light transparent white-text">
-            <i class="mdi-action-favorite-outline left-align"/></a>
+          &nbsp;
         </p>
       </span>
     </div>
@@ -26,7 +25,7 @@
         <img ng-src="{{house.avator}}" alt="" class="circle">
         <span class="title">{{house.description}}</span>
         <p>屋主: {{house.owner}} &nbsp;
-          <i class="tiny mdi-action-favorite"/> {{house.likes}}
+          ❤ {{house.likes}}
         </p>
         <p> &nbsp; </p>
         <p> &nbsp; </p>
@@ -36,20 +35,17 @@
 </div>
 
 <blockquote >
-  <h5>{{house.name}} 文案第二部分</h5>
+  <h5>营地故事</h5>
 </blockquote>
 <p class="flow-text">
-&nbsp;&nbsp;儿时的情节，十年的酝酿，八年的成长，以及一生的寄托，芦茨土屋表达我们对生活与家最本质的追寻。<br>
-&nbsp;&nbsp;石舍香樟——开放身心，拥抱自然，寻回童真，发现真实自己的原生态露营基地。那弯清澈可见底的涓涓细流，那种草飞莺长衍生情趣……石舍学堂，快乐营创意成长基地；香樟部落，生活艺术家创作体验。石舍香樟，完美生活的体验，回归自我的见证。<br>
-&nbsp;&nbsp;梦想，指引你前进的动力与目标。专注，实现梦想的助力。或大或小的梦想，只要你能专注，就有实现的那一天。怀带着你的梦想，来这里和喜欢的人，做喜欢的事！
+{{house.story}}
 </p>
 
 <blockquote >
-  <h5>{{house.name}} 文案第三部分</h5>
+  <h5>营地主人故事</h5>
 </blockquote>
 <p class="flow-text">
-  &nbsp;&nbsp; 关于营地主人 
+  {{house.owner_story}}
 </p>
-<a ng-click="order()" class="waves-effect waves-light btn"><i class="mdi-content-send right"></i>我要预定</a>
-
+<a ng-click="order()" class="fixbuttom waves-effect waves-light btn-large">我要预定 ▷ </a>
 <div ng-include src="'views/footer.html'"></div>

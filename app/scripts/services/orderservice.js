@@ -29,6 +29,7 @@
         userInfo = wechat.getUserInfo();
         order.wechatOpenID = userInfo['openid'];
         order.wechatNickName = userInfo['nickname'];
+        order.status = "submitted";
         $log.debug("[order service] save user " + (JSON.stringify(userInfo)) + " order to backend " + (JSON.stringify(order)));
         return $http({
           method: 'POST',

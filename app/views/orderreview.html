@@ -3,10 +3,12 @@
     <h5>{{house.name}} 预定详单</h5>
   </blockquote>
     <ul class="collection">
-    <li class="collection-item">
-        <div ng-repeat="item in bookingDayPriceArray">  <i class="mdi-editor-insert-invitation"></i> {{item.day}} &nbsp;&nbsp;<i class="mdi-editor-attach-money"></i>{{item.price}} 人民币</div> </li>
+      <li class="collection-item">
+          <div ng-repeat="item in bookingDayPriceArray"> 
+           √ {{item.day}} &nbsp;&nbsp;  ¥ {{item.price}} </div> 
+      </li>
     </ul>
-        <blockquote> 总计： {{totalPrice}} 人民币 </blockquote> 
+        <blockquote> 总计：  ¥ {{totalPrice}} 人民币 </blockquote> 
 </div>
 
 <div>
@@ -31,15 +33,14 @@
 
 <div id="footer" class="ui-frame ui-frame-footer">
     <div class="row">
-        <div class="col s6">
+        <div class="col s6 offset-s1">
             <button class="waves-effect waves-light btn" ng-click="">
-              取消 <i class="mdi-content-clear right"> </i>
+             取 消 ☒ 
             </button>
         </div>
-        <div class="col s6">
-            <button class="waves-effect waves-light btn"
-                    style="background-color: #EE6E73;" ng-click="">
-              提交订单 <i class="mdi-content-send right"> </i>
+        <div class="col s4">
+            <button class="waves-effect waves-light btn red darken-3 z-depth-2" ng-click="submitOrder()">
+              提交订单 √ 
             </button>
         </div>
     </div>

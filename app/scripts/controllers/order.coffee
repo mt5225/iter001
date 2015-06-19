@@ -13,15 +13,23 @@ angular.module('iter001App')
     $scope.flash = flash
 
     #get house selected by user
-    $scope.house = paramService.get()
+    if paramService.get()['id']
+      $scope.house = paramService.get()
+      $scope.capacity = () ->
+        lowBound = 1
+        highBound = $scope.house.capacity
+        return [lowBound...highBound]
+    else
+      $log.debug "house id is not set, return to house list"
+      $location.path '/houses'
+      return
 
     $scope.newOrder = {}
 
     $scope.orderReview = (newOrder, house) ->
       $log.debug newOrder
       newOrder.orderId = uuidService.generateUUID()
-      #orderService.saveOrder newOrder
-      flash.setMessage "加载预定信息成功 ！"
+      flash.setMessage "加载营地预定信息成功 ！"
       newOrder.house =  house
       newOrder.dayPrices = $scope.dayPrices
       console.log newOrder

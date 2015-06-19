@@ -182,9 +182,8 @@ module.exports = (grunt) ->
             '.htaccess'
             '*.html'
             'views/{,*/}*.html'
-            'static/{,*/}*.html'
+            'static/{,*/}*'
             'images/{,*/}*.{webp}'
-            'fonts/{,*/}*'
           ]
         }
         {
@@ -195,15 +194,9 @@ module.exports = (grunt) ->
         }
         {
           expand: true
-          cwd: 'bower_components/bootstrap/dist'
-          src: 'fonts/*'
-          dest: '<%= yeoman.dist %>'
-        }
-        {
-          expand: true
-          cwd: 'bower_components/materialize/dist'
-          src: 'font/material-design-icons/*'
-          dest: '<%= yeoman.dist %>'
+          cwd: 'bower_components/jquery-ui/themes/smoothness'
+          src: 'images/{,*/}*'
+          dest: '<%= yeoman.dist %>/styles'
         }
       ]
       styles:
@@ -311,6 +304,4 @@ module.exports = (grunt) ->
   grunt.registerTask 'run-local', [
     'serve'
   ]
-
-  return
 

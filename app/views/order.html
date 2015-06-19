@@ -1,54 +1,49 @@
 <div class="form-group row" ng-controller="OrderCtrl">
-  <div class="col s4">
-    <img class="z-depth-1" style="width: 135px; height: auto;" src="{{house.image}}"/>
-  </div>
-  <div class="col s7 offset-s1 center">
-    <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
-
-    <p id="price_per_night">平时:{{house.price}} 节假日:{{house.price}}</p>
-    <br/>
-  </div>
-
-  <div style="padding-left: 20px">
-    <div class="row">
-    <form class="col s12">     
-        <div class="input-field col s6">
-          <i class="mdi-notification-event-available prefix"></i>
-          <input id="check-in" type="text" ng-model="newOrder.checkInDay">
-          <label for="icon_prefix">入住</label>
+    <div class="col s4">
+        <img class="z-depth-1" style="width: 135px; height: auto;" src="{{house.image}}" />
+    </div>
+    <div class="col s7 offset-s1 center">
+        <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
+        <p id="price_per_night">均价:{{house.price}}, 包含服务费</p>
+    </div>
+    <div style="padding-left: 20px">
+        <div class="row">
+            <div class="col s5 left-align">
+                <blockquote>
+                    <h5>入住</h5>
+                    <input id="check-in" type="text" value="点这里" class="red-text text-darken-2" ng-model="newOrder.checkInDay" readonly="readonly">
+                </blockquote>
+            </div>
+            <div class="col s6 left-align">
+                <blockquote>
+                    <h5>退房</h5>
+                    <input id="check-out" type="text" class="datepicker red-text text-darken-2" ng-model="newOrder.checkOutDay" readonly="readonly">
+                </blockquote>
+            </div>
+            <div class="col s6">
+                <blockquote>
+                    <select class="browser-default" id="numOfGuest" ng-model="newOrder.numOfGuest">
+                        <option value="" disabled selected>客人数</option>
+                        <option ng-repeat="i in capacity()" value="{{i}}">{{i}}</option>
+                    </select>
+                </blockquote>
+            </div>
         </div>
-        <div class="input-field col s6">
-          <i class="mdi-maps-directions prefix"></i>
-          <input id="check-out" type="text" ng-model="newOrder.checkOutDay">
-          <label for="icon_telephone">退房</label>
+        <div>
+            <blockquote>
+                <h5>{{house.name}} 设施文案</h5>
+            </blockquote>
+            <p class="flow-text">
+                &nbsp;&nbsp; 营地设施介绍 blah blah
+                <br> blah blah
+            </p>
         </div>
-      
-      <div class="input-field col s6">
-          <i class="mdi-social-group-add prefix"></i>
-          <input id="numOfGuest" type="text" value="1" ng-model="newOrder.numOfGuest">
-          <label for="numOfGuest">客人数</label> 
-      </div>
-    </form>
-  </div>
-  </div>
-
-  <div class="card-panel">
-  <blockquote>
-    <h5>{{house.name}} 设施文案</h5>
-  </blockquote>
-  <p class="flow-text">
-    &nbsp;&nbsp; 营地设施介绍 blah blah <br>
-    blah blah
-   </p> 
-  </div>
-  <div id="footer" class="ui-frame ui-frame-footer">
-    <button class="waves-effect waves-light btn col s12"
-            style="background-color: #EE6E73;" ng-click="orderReview(newOrder, house)">
-      <i class="mdi-content-send right"> 预定 </i>
-    </button>
-  </div>
+        <div class="fixbuttom">
+            <button class="waves-effect waves-light btn col s8 offset-s2" style="background-color: #EE6E73;" ng-click="orderReview(newOrder, house)">
+                预定 ▷ 
+        </button>
+        </div>
+    </div>
 </div>
-
 <div checkinout="{{house.id}}"> </div>
 <div ng-include src="'views/footer.html'"></div>
-

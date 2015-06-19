@@ -13,6 +13,8 @@ angular.module 'iter001App'
     link: (scope, element, attrs) ->
           #get availbe days of the house
       house_id = attrs['checkinout']
+      if house_id == '' 
+        return
       $log.debug "checkinout directive with house id #{house_id}"
       promise = availableroom.getAvailableDateById(house_id)
       promise.then ((payload) ->

@@ -65,6 +65,8 @@ angular.module('iter001App', [
     .when '/orderreview', #订单的review界面
       templateUrl: 'views/orderreview.html'
       controller: 'OrderreviewCtrl'
+    .when '/close', #关闭App窗口，回到公众号
+      templateUrl: 'views/close.html'
     .otherwise redirectTo: '/'
 
 .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'

@@ -8,7 +8,7 @@
     * # OrderreviewCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, flash, paramService, dayarray) {
+  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, flash, paramService, dayarray, orderService) {
     var bookingArray, bookingDayPriceArray, dayprice, i, item, len, orderDetails, totalPrice;
     $log.debug("===> OrderreviewCtrl <===");
     $scope.flash = flash;
@@ -32,7 +32,12 @@
     $log.debug(bookingDayPriceArray);
     $log.debug("total = " + totalPrice);
     $scope.bookingDayPriceArray = bookingDayPriceArray;
-    return $scope.totalPrice = totalPrice;
+    $scope.totalPrice = totalPrice;
+    return $scope.submitOrder = function() {
+      orderService.saveOrder(orderDetails);
+      flash.setMessage("通过[公众号]->[我的订单]进行查询或变更");
+      return $location.path("/houses");
+    };
   });
 
 }).call(this);

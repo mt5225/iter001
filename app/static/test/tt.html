@@ -1,0 +1,25 @@
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="./jquery.min.js"></script>
+<script src="./pingpp_pay.js"></script>
+<script>
+   //osIpsuPO6L9VIJAH0SIRjzz97Ww0 漫生活下的openId
+  //channel_type:  1. wx_pub  2. alipay_wap 3. alipay
+  $.ajax({
+    url: "http://qa.aghchina.com.cn:3000/api/pingplus?channel_type=alipay&user_openid=osIpsuPO6L9VIJAH0SIRjzz97Ww0"
+  }).then(function(data) {
+    console.log(data);
+    charge = data;
+    pingpp.createPayment(charge, function(result, error){
+      if (result == "success") {
+          // 支付的结果会在这里返回
+          alert ("pay success!!");
+      } else if (result == "fail") {
+          // charge 不正确或者支付失败时会在此处返回
+          alert ("pay fail!");
+      } else if (result == "cancel") {
+          // 支付取消支付
+          alert ("pay cancel!");
+      }
+    });    
+  });
+</script>

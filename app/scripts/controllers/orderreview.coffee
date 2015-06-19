@@ -8,13 +8,13 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'OrderreviewCtrl', ($scope, $log, $location, flash, paramService, dayarray) ->
+  .controller 'OrderreviewCtrl', ($scope, $log, $location, flash, paramService, dayarray, orderService) ->
     $log.debug "===> OrderreviewCtrl <==="
     $scope.flash = flash
     orderDetails = paramService.get()
 
     $scope.house = orderDetails.house
-    #get booking day and price
+    #get booking day and price, caculate total price
     bookingDayPriceArray = []
     bookingArray = dayarray.getDayArray(orderDetails.checkInDay, orderDetails.checkOutDay)
     $log.debug orderDetails.dayPrices 
@@ -31,4 +31,9 @@ angular.module 'iter001App'
     $log.debug "total = #{totalPrice}"
     $scope.bookingDayPriceArray = bookingDayPriceArray
     $scope.totalPrice = totalPrice
+
+    $scope.submitOrder = ()->
+      orderService.saveOrder orderDetails
+      flash.setMessage "通过[公众号]->[我的订单]进行查询或变更"
+      $location.path "/houses"
 

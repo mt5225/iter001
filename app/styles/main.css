@@ -97,9 +97,12 @@ html, body, .ng-view, .ng-scope, .container-fluid {
   width: 100%;
 }
 
-/*leave some place for navbar*/
 .card {
-  padding-top: 10px;
+  padding-top: 0px;
+}
+
+.article {
+  padding-left: 5px;
 }
 
 .orderdate {
@@ -140,6 +143,14 @@ a, a:link, a:visited {text-decoration:none}
 .ui-frame-footer {
     position: absolute;
     bottom: 0
+}
+
+.fixbuttom{
+    height: 3em;
+    width: 100%;
+    position: fixed;
+    top: 100%;
+    margin-top: -3em;
 }
 
 /*get rid of roboto font*/

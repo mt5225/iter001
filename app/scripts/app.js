@@ -55,6 +55,8 @@
     }).when('/orderreview', {
       templateUrl: 'views/orderreview.html',
       controller: 'OrderreviewCtrl'
+    }).when('/close', {
+      templateUrl: 'views/close.html'
     }).otherwise({
       redirectTo: '/'
     });
