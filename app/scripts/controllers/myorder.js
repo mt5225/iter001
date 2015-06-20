@@ -8,14 +8,21 @@
     * # MyorderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, wechat, orderService) {
-    var userInfo;
-    userInfo = wechat.getUserInfo();
-    $log.debug("[MyorderCtrl] query order record with user " + userInfo.nickname + " openid = " + userInfo.openid);
-    return orderService.queryOrder(userInfo.openid, function(data) {
-      $log.debug(data);
-      return $scope.orders = data;
-    });
+  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, wechat, orderService, $location, $routeParams) {
+    var promise;
+    if ($routeParams.openid) {
+      promise = wechat.loadUserInfo($routeParams.openid);
+      return promise.then(function(payload) {
+        var userInfo;
+        userInfo = wechat.getUserInfo();
+        promise = orderService.queryOrder(userInfo.openid);
+        return promise.then(function(payload) {
+          $log.debug(payload.data);
+          $scope.orders = payload.data;
+          return $scope.$evalAsync();
+        });
+      });
+    }
   });
 
 }).call(this);

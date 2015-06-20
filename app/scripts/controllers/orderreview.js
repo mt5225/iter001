@@ -8,10 +8,13 @@
     * # OrderreviewCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, flash, paramService, dayarray, orderService) {
+  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, paramService, dayarray, orderService) {
     var bookingArray, bookingDayPriceArray, dayprice, i, item, len, orderDetails, totalPrice;
     $log.debug("===> OrderreviewCtrl <===");
-    $scope.flash = flash;
+    $scope.currentShow = "orderReview";
+    if (!paramService.get().house) {
+      $location.path("/houses");
+    }
     orderDetails = paramService.get();
     $scope.house = orderDetails.house;
     bookingDayPriceArray = [];
@@ -21,22 +24,36 @@
     totalPrice = 0;
     for (i = 0, len = bookingArray.length; i < len; i++) {
       item = bookingArray[i];
+      dayprice = {};
+      dayprice.day = item;
       if (orderDetails.dayPrices[item]) {
-        dayprice = {};
-        dayprice.day = item;
         dayprice.price = orderDetails.dayPrices[item];
         totalPrice = totalPrice + parseInt(dayprice.price);
-        bookingDayPriceArray.push(dayprice);
+      } else {
+        dayprice.price = 'N/A';
       }
+      bookingDayPriceArray.push(dayprice);
     }
     $log.debug(bookingDayPriceArray);
-    $log.debug("total = " + totalPrice);
     $scope.bookingDayPriceArray = bookingDayPriceArray;
     $scope.totalPrice = totalPrice;
-    return $scope.submitOrder = function() {
-      orderService.saveOrder(orderDetails);
-      flash.setMessage("通过[公众号]->[我的订单]进行查询或变更");
-      return $location.path("/houses");
+    $scope.submitOrder = function() {
+      var promise;
+      $scope.currentShow = "payResult";
+      orderDetails.houseId = $scope.house['id'];
+      orderDetails.houseName = $scope.house['name'];
+      promise = orderService.saveOrder(orderDetails);
+      promise.then((function(payload) {
+        $log.debug(payload);
+        return $scope.payMessage = "支付成功，订单号为" + payload.data['orderId'] + " 您可以通过[客服]->[订单查询] 查看订单状态。 亲，" + $scope.house.name + "见！";
+      }), function(errorPayload) {
+        $log.error('failure to save submit Order', errorPayload);
+        return $scope.payMessage = "订单提交失败!";
+      });
+      return $scope.$evalAsync();
+    };
+    return $scope.close = function() {
+      return $location.path("/close");
     };
   });
 

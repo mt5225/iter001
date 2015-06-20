@@ -7,7 +7,7 @@
     * @description
     * check if we have user open_id at hand
    */
-  angular.module('iter001App').directive('wechatoauth', function(API_ENDPOINT, wechat, $log, $location, $window) {
+  angular.module('iter001App').directive('wechatoauth', function(API_ENDPOINT, wechat, $log, $location, $window, paramService) {
     return {
       template: '',
       restrict: 'AE',
@@ -21,10 +21,14 @@
         }
         openid = $location.search().openid;
         if (openid) {
-          $log.debug('store user info in session');
-          wechat.loadUserInfo(openid);
+          $log.debug('load user info by openid');
+          return wechat.loadUserInfo(openid);
         } else {
           backurl = attrs['wechatoauth'];
+          if (backurl === 'housedetail') {
+            $log.debug(scope.houseId);
+            backurl = backurl + '/' + scope.houseId;
+          }
           $log.debug("goback url = " + backurl);
           REDIRECT_URI = $window.encodeURIComponent(API_ENDPOINT + "/api/useroauth");
           url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2bdce057501817d&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_userinfo&state=" + backurl + "#wechat_redirect";

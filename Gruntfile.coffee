@@ -235,13 +235,6 @@ module.exports = (grunt) ->
           path: '/usr/share/nginx/h5'
           srcBasePath: 'dist/'
           createDirectories: true
-      signTest:
-        files:  './': ['test/signTest/**']
-        options:
-          config: 'myhost'
-          path: '/usr/share/nginx/h5/test'
-          srcBasePath: 'test/signTest/'
-          createDirectories: true
 
   grunt.registerTask 'serve', 'Compile then start a connect web server', (target) ->
     if target == 'dist'
@@ -293,7 +286,6 @@ module.exports = (grunt) ->
     'build'
     'sshexec:clean'
     'sftp:dev'
-    'sftp:signTest'
     'sshexec:reload'
   ]
 

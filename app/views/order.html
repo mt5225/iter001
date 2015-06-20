@@ -4,7 +4,7 @@
     </div>
     <div class="col s7 offset-s1 center">
         <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
-        <p id="price_per_night">均价:{{house.price}}, 包含服务费</p>
+        <p id="price_per_night">{{house.price}}, 包含服务费</p>
     </div>
     <div style="padding-left: 20px">
         <div class="row">
@@ -31,11 +31,10 @@
         </div>
         <div>
             <blockquote>
-                <h5>{{house.name}} 设施文案</h5>
+                <h5>{{house.name}} 设施介绍</h5>
             </blockquote>
             <p class="flow-text">
-                &nbsp;&nbsp; 营地设施介绍 blah blah
-                <br> blah blah
+               {{house.facility}}
             </p>
         </div>
         <div class="fixbuttom">
@@ -44,6 +43,13 @@
         </button>
         </div>
     </div>
-</div>
+
+ <!-- show warnning message for validation check -->        
+<div validationmessage></div>
+ <!-- set available day in datepicker --> 
 <div checkinout="{{house.id}}"> </div>
-<div ng-include src="'views/footer.html'"></div>
+</div>
+
+
+
+

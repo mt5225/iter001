@@ -8,32 +8,14 @@
     * # surveyservice
     * Service in the iter001App.
    */
-  var getToday;
-
-  getToday = function() {
-    var dd, mm, today, yyyy;
-    today = new Date;
-    dd = today.getDate();
-    mm = today.getMonth() + 1;
-    yyyy = today.getFullYear();
-    if (dd < 10) {
-      dd = '0' + dd;
-    }
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    return today;
-  };
-
-  angular.module('iter001App').service('surveyservice', function($http, $log, wechat, API_ENDPOINT) {
+  angular.module('iter001App').service('surveyservice', function($http, $log, wechat, API_ENDPOINT, dateService) {
     return {
       save: function(surveyResult) {
         surveyResult.userinfo = wechat.getUserInfo();
         if (!surveyResult.userinfo['openid']) {
           surveyResult.userinfo['openid'] = 'unknown';
         }
-        surveyResult.createDay = getToday();
+        surveyResult.createDay = dateService.getToday();
         $log.debug("[survey service] save survey result to backend " + (JSON.stringify(surveyResult)));
         return $http({
           method: 'POST',

@@ -8,15 +8,17 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'HousedetailCtrl', ($scope, paramService, $routeParams, houseservice, $location, $log) ->
-    #get house selected by user in house list,  or direct link with param :houseid
+  .controller 'HousedetailCtrl', ($scope, paramService, $routeParams, houseservice, wechat, $location, $log) ->
+          
+    #link from house list, house info in stored in session
     if paramService.get().name
       $log.debug "fetch house in paramService"
       $scope.house = paramService.get()
 
-    #direct link with house id, from wechat rich text message: http://qa.aghchina.com.cn:9000/#/housedetail?id=H001
-    else if $routeParams.id   
+    #direct link with house id, then redirct by wechat as: http://qa.aghchina.com.cn:9000/#/housedetail/H001?openid=xxxx
+    else if $routeParams.id
       $log.debug "fetch house by id #{$routeParams.id}"
+      $scope.houseId = $routeParams.id
       promise = houseservice.getHouseById($routeParams.id)
       promise.then ((payload) ->
         $log.debug payload.data

@@ -88,6 +88,24 @@
         return S4() + delim + S4();
       }
     };
+  }).factory('dateService', function() {
+    return {
+      getToday: function() {
+        var dd, mm, today, yyyy;
+        today = new Date;
+        dd = today.getDate();
+        mm = today.getMonth() + 1;
+        yyyy = today.getFullYear();
+        if (dd < 10) {
+          dd = '0' + dd;
+        }
+        if (mm < 10) {
+          mm = '0' + mm;
+        }
+        today = yyyy + '-' + mm + '-' + dd;
+        return today;
+      }
+    };
   }).factory('paramService', function() {
     var saveData;
     saveData = {};

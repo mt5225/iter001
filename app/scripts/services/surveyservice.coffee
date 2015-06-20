@@ -7,24 +7,14 @@
  # # surveyservice
  # Service in the iter001App.
 ###
-getToday = () ->
-  today = new Date
-  dd = today.getDate()
-  mm = today.getMonth() + 1
-  yyyy = today.getFullYear()
-  dd = '0' + dd if dd < 10
-  mm = '0' + mm if mm < 10  
-  today = yyyy + '-' + mm + '-' + dd
-  return today
-
 angular.module 'iter001App'
-  .service 'surveyservice', ($http, $log, wechat, API_ENDPOINT)->
+  .service 'surveyservice', ($http, $log, wechat, API_ENDPOINT, dateService)->
     return {
       save: (surveyResult) ->
         surveyResult.userinfo = wechat.getUserInfo()
         if !surveyResult.userinfo['openid']
           surveyResult.userinfo['openid'] = 'unknown'
-        surveyResult.createDay = getToday()
+        surveyResult.createDay = dateService.getToday()
         $log.debug "[survey service] save survey result to backend #{JSON.stringify(surveyResult)}"
         $http(
           method: 'POST'

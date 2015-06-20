@@ -105,6 +105,19 @@ angular.module('iter001App', [
       (S4() + delim + S4())
   }
 
+.factory 'dateService', ->
+  return {
+    getToday: ->
+      today = new Date
+      dd = today.getDate()
+      mm = today.getMonth() + 1
+      yyyy = today.getFullYear()
+      dd = '0' + dd if dd < 10
+      mm = '0' + mm if mm < 10  
+      today = yyyy + '-' + mm + '-' + dd
+      return today
+  }
+
 #Passing data between pages
 .factory 'paramService', ->
   saveData = {}
