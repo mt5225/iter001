@@ -28,21 +28,83 @@ angular.module 'iter001App'
         div = angular.element "<div>"
         div.html """
         <script>
+          Date.prototype.addDays = function(days) {
+              var dat;
+              dat = new Date(this.valueOf());
+              dat.setDate(dat.getDate() + days);
+              return dat;
+            };
+
+          formatDate = function(date) {
+            var d, day, month, year;
+            d = new Date(date);
+            month = '' + (d.getMonth() + 1);
+            day = '' + d.getDate();
+            year = d.getFullYear();
+            if (month.length < 2) {
+              month = '0' + month;
+            }
+            if (day.length < 2) {
+              day = '0' + day;
+            }
+            return [year, month, day].join('-');
+          };
+
           console.log("availble days array = " + '#{daysArray}');
-          var availableArray = '#{daysArray}'.split(',');
+          var allAvailableArray = '#{daysArray}'.split(',');
+
+          //delete days before than today
+          var availableArray = []
+          todayString = formatDate(new Date())
+          for(var i=0; i< allAvailableArray.length; i++) {
+            if(allAvailableArray[i] >= todayString){
+              availableArray.push(allAvailableArray[i]);
+            }
+          }
+
           $(function() {
             $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
+
             $("#check-in").datepicker({
               beforeShowDay: function(date){
                 var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
                 return [$.inArray(string, availableArray) >= 0 ? true : false, ""];
+              },
+              onSelect: function() {
+                $(this).change();
               }
             });
-            $("#check-out").datepicker({
-              beforeShowDay: function(date){
-                var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                return [$.inArray(string, availableArray) >= 0 ? true : false, ""];
+            $('#check-in').on('change',function(e){
+              var checkInDay = e.target['value'];
+              checkInDay = checkInDay.replace(new RegExp('/', 'g'), '-');
+              console.log(checkInDay);
+
+              //////////////////////////////////////
+              ////// enable checkou out widget and set available days for checkout
+              var checkoutArray = []
+              var currentDay = new Date(checkInDay)
+              for(var i=0; i< availableArray.length; i++) {
+                if(availableArray[i] == formatDate(currentDay)) {
+                  checkoutArray.push(availableArray[i]);
+                  currentDay = currentDay.addDays(1);
+                }
               }
+              var checkoutArrayAdjust = []
+              for (var i=0; i< checkoutArray.length; i++) {
+                tmp = (new Date(checkoutArray[i])).addDays(1);
+                checkoutArrayAdjust.push(formatDate(tmp));
+              }
+              console.log(checkoutArray);
+              $("#check-out").datepicker("destroy");
+              $("#check-out").datepicker({
+                 beforeShowDay: function(date){
+                  var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+                  return [$.inArray(string, checkoutArrayAdjust) >= 0 ? true : false, ""];
+                 }
+                });
+              $("#check-out").val('');
+              $("#check-out").datepicker("refresh");
+              //////////////////////////////////////////
             });
           });
         </script>

@@ -42,4 +42,7 @@ angular.module 'iter001App'
         startDate = new Date(startDayString)
         endDate = new Date(endDayString)
         getDates startDate, endDate
+      getNextDay: (currentDate) ->
+        currentDate = new Date(currentDate) 
+        formatDate currentDate.addDays(1)        
     }

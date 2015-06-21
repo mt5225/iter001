@@ -28,9 +28,12 @@
       $log.debug("could not locate an specify house, goto house list");
       $location.path("/houses");
     }
-    return $scope.order = function() {
+    $scope.order = function() {
       $log.debug("goto order page");
       return $location.path("/order");
+    };
+    return $scope.close = function() {
+      return $location.path("/houses");
     };
   });
 

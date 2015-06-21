@@ -1,53 +1,57 @@
 <div>
     <blockquote>
-        <h5>{{house.name}} 预定详单</h5>
+        <h5 class="red-text textlighten-2">{{house['name']}} 预定详单</h5>
     </blockquote>
     <ul class="collection">
         <li class="collection-item">
             <div ng-repeat="item in bookingDayPriceArray">
-                {{item.day}} &nbsp;&nbsp;  {{item.price}} </div>
+                {{item.day}} &nbsp;&nbsp; {{item.price}} </div>
         </li>
     </ul>
-    <blockquote> 总计： ¥ {{totalPrice}} 人民币 </blockquote>
+    <blockquote> 总计： ¥ <b>{{totalPrice}}</b> 人民币 </blockquote>
+    <blockquote>
+        <p class="green-text text-darken-2">入住：&nbsp;{{checkInDay}}</p>
+        <p class="red-text text-darken-2">退房: &nbsp;&nbsp;{{checkOutDay}}</p>
+    </blockquote>
 </div>
 <div ng-show="currentShow == 'orderReview'">
+    <blockquote>
+        <h6>支付方式</h6>
+    </blockquote>
     <div class="row">
-        <blockquote>
-            <h5>支付方式</h5>
-        </blockquote>
-        <div class="form-group col s10 offset-s1">
-            <p>
+        <div>
+            <p class="col s4">
                 <input name="paymentType" type="radio" id="wechat" checked/>
                 <label for="wechat">微信支付</label>
             </p>
-            <p>
+            <p class="col s4">
                 <input class="with-gap" name="paymentType" type="radio" id="bank" />
                 <label for="bank">银行转账</label>
             </p>
-            <p>
+            <p class="col s4">
                 <input name="paymentType" type="radio" id="unipay" disabled="disabled" />
-                <label for="unipay">银联支付 （暂缓开通）</label>
+                <label for="unipay">银联支付</label>
             </p>
         </div>
-        <div id="footer" class="ui-frame ui-frame-footer">
-            <div class="row">
-                <div class="col s6 offset-s1">
-                    <button class="waves-effect waves-light btn" ng-click="close()">
-                        取 消 ☒
-                    </button>
-                </div>
-                <div class="col s4">
-                    <button class="waves-effect waves-light btn red darken-3 z-depth-2" ng-click="submitOrder()">
-                        提交订单 √
-                    </button>
-                </div>
+        <p> &nbsp; </p>
+        <p> &nbsp; </p>
+        <div>
+            <div class="col s2 offset-s1">
+                <button class="waves-effect waves-light btn" ng-click="close()">
+                    取 消 ☒
+                </button>
+            </div>
+            <div class="col s3 offset-s3">
+                <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="submitOrder()">
+                    提交订单 √
+                </button>
             </div>
         </div>
     </div>
 </div>
 <div ng-show="currentShow == 'payResult'">
     <blockquote>
-        <h5>{{payMessage}}</h5>
+        <p>{{payMessage}}</p>
     </blockquote>
     <div class="row">
         <div class="col s6 offset-s1">

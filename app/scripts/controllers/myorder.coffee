@@ -8,8 +8,8 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'MyorderCtrl', ($scope, $log, wechat, orderService, $location, $routeParams) ->
-    if $routeParams.openid       
+  .controller 'MyorderCtrl', ($scope, $log, wechat, orderService, $location, $routeParams, $window) ->
+    if $routeParams.openid || wechat.getUserInfo().openid
         promise = wechat.loadUserInfo $routeParams.openid
         promise.then((payload) ->
           userInfo = wechat.getUserInfo()
@@ -21,4 +21,9 @@ angular.module('iter001App')
             $scope.$evalAsync()
           )
         )
-      
+    
+    $scope.close = () ->
+      $location.path "/close"
+
+    $scope.refresh = () ->
+      $window.location.reload();

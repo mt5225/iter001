@@ -1,23 +1,23 @@
 <div class="form-group row" ng-controller="OrderCtrl">
     <div class="col s4">
-        <img class="z-depth-1" style="width: 135px; height: auto;" src="{{house.image}}" />
+        <img class="z-depth-1 " style="width: 135px; height: auto;" src="{{house.image}}" />
     </div>
     <div class="col s7 offset-s1 center">
-        <h4 class="header" style="color: #EE6E73;font-weight: 300;">{{house.name}}</h4>
+        <h4 class="header red-text textlighten-2">{{house.name}}</h4>
         <p id="price_per_night">{{house.price}}, 包含服务费</p>
     </div>
     <div style="padding-left: 20px">
         <div class="row">
-            <div class="col s5 left-align">
-                <blockquote>
-                    <h5>入住</h5>
-                    <input id="check-in" type="text" value="点这里" class="red-text text-darken-2" ng-model="newOrder.checkInDay" readonly="readonly">
-                </blockquote>
-            </div>
             <div class="col s6 left-align">
                 <blockquote>
-                    <h5>退房</h5>
-                    <input id="check-out" type="text" class="datepicker red-text text-darken-2" ng-model="newOrder.checkOutDay" readonly="readonly">
+                    <h5 class="green-text text-darken-2">入住日期</h5>
+                    <input id="check-in" type="text" value="点这里" class="green-text text-darken-2" ng-model="newOrder.checkInDay" readonly="readonly">
+                </blockquote>
+            </div>
+            <div class="col s6 right-align">
+                <blockquote>
+                    <h5 class="red-text red-darken-2">退房日期</h5>
+                    <input id="check-out" type="text" class="datepicker red-text text-darken-2 right-align" ng-model="newOrder.checkOutDay" readonly="readonly">
                 </blockquote>
             </div>
             <div class="col s6">
@@ -38,8 +38,11 @@
             </p>
         </div>
         <div class="fixbuttom">
-            <button class="waves-effect waves-light btn col s8 offset-s2" style="background-color: #EE6E73;" ng-click="orderReview(newOrder, house)">
-                预定 ▷ 
+            <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="close()">
+                关 闭 ☒
+        </button>
+            <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderReview(newOrder, house)">
+                下一步 ->
         </button>
         </div>
     </div>

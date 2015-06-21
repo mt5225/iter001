@@ -25,12 +25,12 @@ angular.module('iter001App')
     $scope.newOrder = {}
     $scope.validateMsg = ''
 
-    checkIfDayNotContinious = (newOrder) ->
-      bookingArray = dayarray.getDayArray(newOrder.checkInDay, newOrder.checkOutDay)
-      for item in bookingArray 
-        if !$scope.dayPrices[item]
-          return true
-      return false
+    # checkIfDayNotContinious = (newOrder) ->
+    #   bookingArray = dayarray.getDayArray(newOrder.checkInDay, newOrder.checkOutDay)
+    #   for item in bookingArray 
+    #     if !$scope.dayPrices[item]
+    #       return true
+    #   return false
 
     $scope.orderReview = (newOrder, house) ->
       if !newOrder.checkInDay
@@ -41,8 +41,8 @@ angular.module('iter001App')
         $scope.validateMsg = "请指定客人数|" + uuidService.generateUUID()
       else if newOrder.checkInDay > newOrder.checkOutDay
         $scope.validateMsg = "入住日期不能晚于退房日期|" + uuidService.generateUUID()
-      else if checkIfDayNotContinious(newOrder)
-        $scope.validateMsg = "预定日期不连续，请重新选择|" + uuidService.generateUUID()
+      # else if checkIfDayNotContinious(newOrder)
+      #   $scope.validateMsg = "预定日期不连续，请重新选择|" + uuidService.generateUUID()
       else #goto orderreview page
         $log.debug newOrder
         newOrder.house =  house
@@ -50,6 +50,9 @@ angular.module('iter001App')
         $log.debug newOrder
         paramService.set newOrder
         $location.path '/orderreview'
+
+    $scope.close = () ->
+      $location.path '/houses'
 
 
 

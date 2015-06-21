@@ -50,6 +50,10 @@
         startDate = new Date(startDayString);
         endDate = new Date(endDayString);
         return getDates(startDate, endDate);
+      },
+      getNextDay: function(currentDate) {
+        currentDate = new Date(currentDate);
+        return formatDate(currentDate.addDays(1));
       }
     };
   });

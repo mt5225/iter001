@@ -34,4 +34,7 @@ angular.module 'iter001App'
     $scope.order = () ->
       $log.debug "goto order page"
       $location.path "/order"
+
+    $scope.close = () ->
+      $location.path "/houses"
     
