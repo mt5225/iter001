@@ -47,4 +47,21 @@ angular.module('iter001App')
         ).error (data) ->
           $log.error "[order service] failed to save order"
           $log.debug data
+
+      checkAvailable: (order) ->
+        $log.debug "check availability for #{order.houseName}"
+        re = /\//g
+        order.checkInDay = order.checkInDay.replace re, '-'
+        order.checkOutDay = order.checkOutDay.replace re, '-'
+        $http(
+          method: 'POST'
+          url: "#{API_ENDPOINT}/api/orders/availability"
+          headers: {'Content-Type': 'application/json'}
+          data: JSON.stringify(order)
+          dataType: 'json'
+        ).success((data) ->
+          return data
+        ).error (data) ->
+          $log.error "[house service] fail to get availability record from #{API_ENDPOINT}"
+          $log.error data
     }

@@ -49,6 +49,27 @@
           $log.error("[order service] failed to save order");
           return $log.debug(data);
         });
+      },
+      checkAvailable: function(order) {
+        var re;
+        $log.debug("check availability for " + order.houseName);
+        re = /\//g;
+        order.checkInDay = order.checkInDay.replace(re, '-');
+        order.checkOutDay = order.checkOutDay.replace(re, '-');
+        return $http({
+          method: 'POST',
+          url: API_ENDPOINT + "/api/orders/availability",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(order),
+          dataType: 'json'
+        }).success(function(data) {
+          return data;
+        }).error(function(data) {
+          $log.error("[house service] fail to get availability record from " + API_ENDPOINT);
+          return $log.error(data);
+        });
       }
     };
   });

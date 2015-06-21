@@ -48,14 +48,26 @@ angular.module 'iter001App'
       $scope.currentShow = "payResult"
       orderDetails.houseId = orderDetails.house['id']
       orderDetails.houseName = orderDetails.house['name']
-      promise = orderService.saveOrder orderDetails
-      promise.then ((payload) ->
-        $log.debug payload
-        $scope.payMessage = "支付成功，订单号为#{payload.data['orderId']} 您可以通过[客服]->[订单查询] 查看订单状态。 亲，#{$scope.house.name}见！"
-        $scope.$evalAsync()
-      ), (errorPayload) ->
-          $log.error 'failure to save submit Order', errorPayload
-          $scope.payMessage = "订单提交失败!"
+      orderDetails.totalPrice = totalPrice
+      #check if house is available
+      promise = orderService.checkAvailable orderDetails
+      promise.then((payload) ->
+        $log.debug payload.data
+        if payload.data.available == 'false'
+          $scope.payMessage = "很抱歉，#{orderDetails.houseName}已经被人捷足先登了！"
+          $scope.$evalAsync()
+        else
+         #save order to backend
+          promise = orderService.saveOrder orderDetails
+          promise.then ((payload) ->
+            $log.debug payload
+            $scope.payMessage = "支付成功，订单号为#{payload.data['orderId']} 您可以通过[客服]->[订单查询] 查看订单状态。 亲，#{$scope.house.name}见！"
+            $scope.$evalAsync()
+          ), (errorPayload) ->
+              $log.error 'failure to save submit Order', errorPayload
+              $scope.payMessage = "订单提交失败!"
+
+      )
 
     $scope.close = () ->
       $location.path "/close"

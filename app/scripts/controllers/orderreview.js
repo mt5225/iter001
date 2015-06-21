@@ -43,14 +43,24 @@
       $scope.currentShow = "payResult";
       orderDetails.houseId = orderDetails.house['id'];
       orderDetails.houseName = orderDetails.house['name'];
-      promise = orderService.saveOrder(orderDetails);
-      return promise.then((function(payload) {
-        $log.debug(payload);
-        $scope.payMessage = "支付成功，订单号为" + payload.data['orderId'] + " 您可以通过[客服]->[订单查询] 查看订单状态。 亲，" + $scope.house.name + "见！";
-        return $scope.$evalAsync();
-      }), function(errorPayload) {
-        $log.error('failure to save submit Order', errorPayload);
-        return $scope.payMessage = "订单提交失败!";
+      orderDetails.totalPrice = totalPrice;
+      promise = orderService.checkAvailable(orderDetails);
+      return promise.then(function(payload) {
+        $log.debug(payload.data);
+        if (payload.data.available === 'false') {
+          $scope.payMessage = "很抱歉，" + orderDetails.houseName + "已经被人捷足先登了！";
+          return $scope.$evalAsync();
+        } else {
+          promise = orderService.saveOrder(orderDetails);
+          return promise.then((function(payload) {
+            $log.debug(payload);
+            $scope.payMessage = "支付成功，订单号为" + payload.data['orderId'] + " 您可以通过[客服]->[订单查询] 查看订单状态。 亲，" + $scope.house.name + "见！";
+            return $scope.$evalAsync();
+          }), function(errorPayload) {
+            $log.error('failure to save submit Order', errorPayload);
+            return $scope.payMessage = "订单提交失败!";
+          });
+        }
       });
     };
     return $scope.close = function() {

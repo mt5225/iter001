@@ -61,7 +61,7 @@ angular.module 'iter001App'
               availableArray.push(allAvailableArray[i]);
             }
           }
-
+          availableArray = availableArray.sort();
           $(function() {
             $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
 
@@ -81,8 +81,10 @@ angular.module 'iter001App'
 
               //////////////////////////////////////
               ////// enable checkou out widget and set available days for checkout
+              //////////////////////////////////////
               var checkoutArray = []
               var currentDay = new Date(checkInDay)
+              console.log(availableArray);
               for(var i=0; i< availableArray.length; i++) {
                 if(availableArray[i] == formatDate(currentDay)) {
                   checkoutArray.push(availableArray[i]);
@@ -94,6 +96,7 @@ angular.module 'iter001App'
                 tmp = (new Date(checkoutArray[i])).addDays(1);
                 checkoutArrayAdjust.push(formatDate(tmp));
               }
+              console.log("====> checkoutArray <====");
               console.log(checkoutArray);
               $("#check-out").datepicker("destroy");
               $("#check-out").datepicker({

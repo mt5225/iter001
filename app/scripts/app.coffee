@@ -70,7 +70,7 @@ angular.module('iter001App', [
     .otherwise redirectTo: '/'
 
 .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
-#.constant 'API_ENDPOINT', 'http://localhost:3000'
+# .constant 'API_ENDPOINT', 'http://localhost:3000'
 .constant 'APP_ID', 'wxe2bdce057501817d'
 .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
