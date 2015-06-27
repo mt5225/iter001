@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'VolunteerCtrl', ($scope, $log, flash, $location, surveyservice) ->
+  .controller 'VolunteerCtrl', ($scope, $log, flash, $location, surveyservice, wechat) ->
     $scope.currentShow = 'survey'
     $scope.survey = {
         type: '志愿者'
@@ -24,6 +24,7 @@ angular.module 'iter001App'
     $scope.finishSurvey = () ->
       $scope.currentShow = 'finish'
       $scope.$evalAsync()
+      $scope.survey.userInfo = wechat.getUserInfo()
       surveyservice.save $scope.survey
 
     $scope.gotoFrontPage = () ->

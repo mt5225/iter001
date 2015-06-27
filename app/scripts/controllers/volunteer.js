@@ -8,7 +8,7 @@
     * # VolunteerCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('VolunteerCtrl', function($scope, $log, flash, $location, surveyservice) {
+  angular.module('iter001App').controller('VolunteerCtrl', function($scope, $log, flash, $location, surveyservice, wechat) {
     $scope.currentShow = 'survey';
     $scope.survey = {
       type: '志愿者',
@@ -23,6 +23,7 @@
     $scope.finishSurvey = function() {
       $scope.currentShow = 'finish';
       $scope.$evalAsync();
+      $scope.survey.userInfo = wechat.getUserInfo();
       return surveyservice.save($scope.survey);
     };
     $scope.gotoFrontPage = function() {

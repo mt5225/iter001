@@ -1,6 +1,5 @@
-<!--header-->
-<!-- <div wechatoauth="houses"></div>  -->
-<div ng-include src="views/header.html" />
+<!-- make sure we have user info from wechat server -->
+<div wechatoauth="houses"></div> 
 <div class="card" ng-repeat="house in houses" style="padding-top: 0; top:0;">
     <!--card main image-->
     <div class="card-image" style="position:relative;">
@@ -24,4 +23,3 @@
         </ul>
     </div>
 </div>
-<div ng-include src="'views/footer.html'"></div>

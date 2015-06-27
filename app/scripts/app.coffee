@@ -35,7 +35,7 @@ angular.module('iter001App', [
     .when '/houses', # 营地列表
       templateUrl: 'views/main.html'
       controller: 'MainCtrl'
-    .when '/housesurvey', #入住前问卷
+    .when '/survey', #入住前问卷
       templateUrl: 'views/survey.html'
       controller: 'SurveyCtrl'
     .when '/share', #分享到朋友圈
@@ -59,7 +59,7 @@ angular.module('iter001App', [
     .when '/housedetail/:id', #营地详细01
       templateUrl: 'views/housedetail.html'
       controller: 'HousedetailCtrl'
-    .when '/housedetail', #营地详细02，如果无法读取house id，则重定向到 /houses
+    .when '/housedetail', #营地详细02，如果无法读取house id，则重定向到 /wxoauth
       templateUrl: 'views/housedetail.html'
       controller: 'HousedetailCtrl'
     .when '/orderreview', #订单的review界面

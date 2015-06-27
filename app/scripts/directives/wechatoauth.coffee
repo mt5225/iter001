@@ -4,7 +4,7 @@
  # @ngdoc directive
  # @name iter001App.directive:wechatOAuth
  # @description
- # check if we have user open_id at hand
+ # fill userInfo by openid and put in scope
 ###
 
 angular.module('iter001App')
@@ -16,14 +16,22 @@ angular.module('iter001App')
       $log.debug "API_ENDPOINT = #{API_ENDPOINT}"
       
       if wechat.getUserInfo().openid
-        $log.debug "user info #{wechat.getUserInfo().openid} cached"
+        $log.debug "user info #{wechat.getUserInfo().openid} cached, put into session"
+        scope.userInfo = wechat.getUserInfo()
         return      
       
       #page is redircted with ?openid = xxx, store in session
       openid = $location.search().openid
+      #in local debug mode 
+      #openid = 'o82BBs8XqUSk84CNOA3hfQ0kNS90'
       if openid
-        $log.debug 'load user info by openid'
-        wechat.loadUserInfo openid      
+        $log.debug "load user info by openid #{openid}"
+        promise = wechat.loadUserInfo openid
+        promise.then((payload) ->
+          $log.debug "get user info, put in scope.userInfo"
+          $log.debug payload.data
+          scope.userInfo = payload.data
+        )      
       else #call at first time, redirect to wechat oauth with callback
         backurl = attrs['wechatoauth'] 
         if backurl == 'housedetail'
@@ -34,7 +42,6 @@ angular.module('iter001App')
         url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2bdce057501817d&redirect_uri=#{REDIRECT_URI}&response_type=code&scope=snsapi_userinfo&state=#{backurl}#wechat_redirect"
         $log.debug "redirect user to auth page with srv api-endpoint as callback"
         $window.location.href = url
-        return
   )
    
 

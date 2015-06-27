@@ -13,19 +13,19 @@ angular.module('iter001App')
   $log.debug "api endpoint = #{API_ENDPOINT}"
 
   return {
-    loadUserInfo: (uoid)->
+    loadUserInfo: (openid)->
       if userInfo.openid
         $log.debug "[wechat service] cached user info"
         return userInfo
       #get user info from openid
       $http(
         method: 'GET'
-        url: "#{API_ENDPOINT}/api/users/#{uoid}"
+        url: "#{API_ENDPOINT}/api/users/#{openid}"
       ).success((data) ->
         $log.debug data
         userInfo = data
       ).error (data) ->
-        $log.debug "[wechat service] failed to get userinfo from #{uoid}"
+        $log.debug "[wechat service] failed to get userinfo from #{openid}"
         $log.debug data
         return
 

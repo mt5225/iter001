@@ -8,13 +8,17 @@
     * # SurveyCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('SurveyCtrl', function($scope, $location, $log, wechat) {
-    var userinfo;
-    userinfo = wechat.getUserInfo();
-    $log.debug(userinfo);
-    $scope.nickname = userinfo.nickname;
+  angular.module('iter001App').controller('SurveyCtrl', function($scope, $location, $log, wechat, surveycheck, surveyservice) {
+    var userInfo;
+    userInfo = wechat.getUserInfo();
+    $scope.nickname = userInfo.nickname;
     return $scope.FinishSurvey = function() {
-      return $location.path('/houses');
+      var survey;
+      survey = $scope.survey;
+      survey.userInfo = userInfo;
+      survey.type = "入住";
+      surveyservice.save(survey);
+      return $location.path('/order');
     };
   });
 

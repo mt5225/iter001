@@ -9,13 +9,17 @@
    * Controller of the iter001App
    */
   angular.module('iter001App').controller('MainCtrl', function($scope, $location, $log, flash, houseservice, paramService) {
-    var promise;
-    promise = houseservice.getHouseList();
-    promise.then((function(payload) {
-      $log.debug(payload);
-      return $scope.houses = payload.data;
-    }), function(errorPayload) {
-      $log.error('failure loading house list', errorPayload);
+    $scope.$watch('userInfo', function() {
+      var promise;
+      if ($scope.userInfo) {
+        promise = houseservice.getHouseList();
+        return promise.then((function(payload) {
+          $log.debug(payload);
+          return $scope.houses = payload.data;
+        }), function(errorPayload) {
+          $log.error('failure loading house list', errorPayload);
+        });
+      }
     });
     return $scope.detail = function(house) {
       paramService.set(house);

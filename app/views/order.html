@@ -1,4 +1,4 @@
-<div class="form-group row" ng-controller="OrderCtrl">
+<div class="form-group row" ng-show="currentShow == 'main'">
     <div class="col s4">
         <img class="z-depth-1 " style="width: 135px; height: auto;" src="{{house.image}}" />
     </div>
@@ -28,20 +28,29 @@
                     </select>
                 </blockquote>
             </div>
-        </div>
-        <div>
-            <blockquote>
-                <h5>{{house.name}} 设施介绍</h5>
-            </blockquote>
-            <p class="flow-text">
-               {{house.facility}}
-            </p>
+            <div class="col s12">
+                <blockquote>
+                    <h5 class="green-text text-darken-2">联系信息</h5>
+                </blockquote>
+                <div class="input-field col s6">
+                    <input id="cell" type="text" class="validate" ng-model="newOrder.cell">
+                    <label for="cell">手机号</label>
+                </div> 
+                <div class="input-field col s6">
+                    <input id="email" type="text" class="validate" ng-model="newOrder.email">
+                    <label for="email">email</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="plan" type="text" class="validate" ng-model="newOrder.plan">
+                    <label for="plan">我的活动计划(庆生，烧烤，etc.)</label>
+                </div>             
+            </div>
         </div>
         <div class="fixbuttom">
             <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="close()">
                 关 闭 ☒
         </button>
-            <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderReview(newOrder, house)">
+            <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderCheck(newOrder, house)">
                 下一步 ->
         </button>
         </div>
@@ -49,8 +58,25 @@
 
  <!-- show warnning message for validation check -->        
 <div validationmessage></div>
- <!-- set available day in datepicker --> 
+ <!-- set available days in datepicker --> 
 <div checkinout="{{house.id}}"> </div>
+</div>
+
+<div ng-show="currentShow == 'warnning'">
+    <blockquote>
+        <h5>营地生活须知</h5>
+    </blockquote>
+    <p class="flow-text">
+        blah blah blah
+    </p>
+    <div class="fixbuttom row">
+        <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="exitApp()">
+            关 闭 ☒
+        </button>
+        <button class="waves-effect waves-light btn col s6 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderReview()">
+            开启{{house.name}}体验 ▷
+        </button>
+    </div>
 </div>
 
 

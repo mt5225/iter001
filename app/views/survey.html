@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-controller="SurveyCtrl">
   <div class="col s3 pinned">
     <ul class="section table-of-contents">
       <li><a href="#section000">前言</a></li>
@@ -7,7 +7,6 @@
       <li><a href="#section003">愿望</a></li>
       <li>
         <button class="btn waves-effect waves-light" type="submit" ng-click="FinishSurvey()" name="action">提交
-          <i class="mdi-content-send right"></i>
         </button>
       </li>
     </ul>
@@ -25,15 +24,15 @@
 
           <div class="row left-align">
             <div class="col s4" style="padding: 0">
-              <input name="group1" type="radio" id="test1"/>
+              <input name="group1" type="radio" value="1个月" id="test1" ng-model="survey.question1"/>
               <label for="test1">1个月</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input name="group1" type="radio" id="test2"/>
+              <input name="group1" type="radio" value="3个月" id="test2" ng-model="survey.question1"/>
               <label for="test2">3个月</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input name="group1" type="radio" id="test3"/>
+              <input name="group1" type="radio" value="半年" id="test3" ng-model="survey.question1"/>
               <label for="test3">半年</label>
             </div>
           </div>
@@ -45,7 +44,7 @@
             <div class="switch">
               <label>
                 前者
-                <input type="checkbox">
+                <input type="checkbox" ng-model="survey.question2" ng-false-value="'前者'" ng-true-value="'后者'">
                 <span class="lever"></span>
                 后者
               </label>
@@ -55,9 +54,8 @@
         <li class="collection-item">
           3. 凭栏处潇潇雨斜，郁郁葱葱；楼阁前举杯眺望，远山近水，有这样一个地方，您会拒绝吗？试想在这里您会思考什么？
           <div class="input-field">
-            <i class="mdi-editor-mode-edit prefix"></i>
-            <input id="icon_prefix" type="text" class="validate">
-            <label for="icon_prefix">写在这儿</label>
+            <input id="think" type="text" class="validate" ng-model="survey.question3">
+            <label for="think">写在这儿</label>
           </div>
         </li>
       </ul>
@@ -70,32 +68,32 @@
           <p>&nbsp;</p>
 
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-01"/>
+            <input type="checkbox" class="filled-in" id="filled-in-box-01" ng-model="survey.question4.music"/>
             <label for="filled-in-box-01">从北美南部到东部海岸，一路畅听弗拉门戈</label>
           </p>
 
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-02"/>
+            <input type="checkbox" class="filled-in" id="filled-in-box-02" ng-model="survey.question4.movie"/>
             <label for="filled-in-box-02">看一部公路电影，踏上前往伍德斯托克音乐节的逍遥骑士征程</label>
           </p>
 
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-03"/>
+            <input type="checkbox" class="filled-in" id="filled-in-box-03" ng-model="survey.question4.party"/>
             <label for="filled-in-box-03">在欢乐嘉年华疯玩一天</label>
           </p>
 
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-04"/>
+            <input type="checkbox" class="filled-in" id="filled-in-box-04" ng-model="survey.question4.fishing"/>
             <label for="filled-in-box-04">扬帆远航，去格鲁西斯特港做一周惬意的钓手</label>
           </p>
 
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-05"/>
+            <input type="checkbox" class="filled-in" id="filled-in-box-05" ng-model="survey.question4.worldzoo"/>
             <label for="filled-in-box-05">在北京世界公园，领略各地风情</label>
           </p>
 
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-06"/>
+            <input type="checkbox" class="filled-in" id="filled-in-box-06" ng-model="survey.question4.japan"/>
             <label for="filled-in-box-06">在北海道，泡在温泉里听雪</label>
           </p>
 
@@ -106,8 +104,8 @@
           <div class="switch">
             <label>
               否
-              <input type="checkbox">
-              <span class="lever"></span>
+              <input type="checkbox" ng-model="survey.question5">
+              <span class="lever" ng-false-value="'否'" ng-true-value="'是'"></span>
               是
             </label>
           </div>
@@ -121,15 +119,15 @@
           6. 在来部落之前，在您的心目中，房间价位应该在什么范围？
           <div class="row left-align">
             <div class="col s6" style="padding: 0">
-              <input name="group1" type="radio" id="price1"/>
+              <input name="group1" type="radio" value="少于500" id="price1" ng-model="survey.question6"/>
               <label for="price1"><500</label>
             </div>
             <div class="col s6" style="padding: 0">
-              <input name="group1" type="radio" id="price2"/>
+              <input name="group1" type="radio" id="price2" value="500~1000" ng-model="survey.question6"/>
               <label for="price2">500~1,000</label>
             </div>
             <div class="col s12 left-align" style="padding: 0">
-              <input name="group1" type="radio" id="price3"/>
+              <input name="group1" type="radio" id="price3" value="超过1000" ng-model="survey.question6"/>
               <label for="price3">&gt;1,000</label>
             </div>
           </div>
@@ -140,63 +138,59 @@
 
           <div class="row left-align">
             <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel01"/>
+              <input type="checkbox" class="filled-in" id="feel01" ng-model="survey.question7.coffee"/>
               <label for="feel01">咖啡吧</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel02"/>
+              <input type="checkbox" class="filled-in" id="feel02" ng-model="survey.question7.bar"/>
               <label for="feel02">酒吧</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel03"/>
+              <input type="checkbox" class="filled-in" id="feel03" ng-model="survey.question7.painting"/>
               <label for="feel03">画室</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel04"/>
+              <input type="checkbox" class="filled-in" id="feel04" ng-model="survey.question7.movie"/>
               <label for="feel04">影音室</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel05"/>
+              <input type="checkbox" class="filled-in" id="feel05" ng-model="survey.question7.card"/>
               <label for="feel05">棋牌室</label>
             </div>
             <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel06"/>
+              <input type="checkbox" class="filled-in" id="feel06" ng-model="survey.question7.fishing"/>
               <label for="feel06">垂钓</label>
             </div>
             <div class="col s4"style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel07"/>
+              <input type="checkbox" class="filled-in" id="feel07" ng-model="survey.question7.boat"/>
               <label for="feel07">小船</label>
             </div>
             <p>&nbsp;</p>
             <div class="input-field">
-              <i class="mdi-editor-mode-edit prefix"></i>
-              <input id="fill-in" type="text" class="validate">
-              <label for="icon_prefix">其他</label>
+              <input id="fill-in" type="text" class="validate" ng-model="survey.question7.other">
+              <label for="filled-in">其他</label>
             </div>
           </div>
         </li>
         <li class="collection-item">
           8.	您是否有过自己盖一间屋子的想法，无论形式？如果你来盖自己的家园，会有什么样的构思？
           <div class="input-field">
-            <i class="mdi-editor-mode-edit prefix"></i>
-            <input id="house-throught" type="text" class="validate">
-            <label for="icon_prefix">写在这儿</label>
+            <input id="house-throught" type="text" class="validate" ng-model="survey.question8">
+            <label for="house-throught">写在这儿</label>
           </div>
         </li>
         <li class="collection-item">
           9.	你愿意分享一下你的人生最大的愿望？
           <div class="input-field">
-            <i class="mdi-editor-mode-edit prefix"></i>
-            <input id="wish" type="text" class="validate">
-            <label for="icon_prefix">写在这儿</label>
+            <input id="wish" type="text" class="validate" ng-model="survey.question9">
+            <label for="wish">写在这儿</label>
           </div>
         </li>
         <li class="collection-item">
           10.	人以群分，你希望来部落的是一群怎样的人？
           <div class="input-field">
-            <i class="mdi-editor-mode-edit prefix"></i>
-            <input id="people" type="text" class="validate">
-            <label for="icon_prefix">写在这儿</label>
+            <input id="people" type="text" class="validate" ng-model="survey.question10">
+            <label for="people">写在这儿</label>
           </div>
         </li>
       </ul>

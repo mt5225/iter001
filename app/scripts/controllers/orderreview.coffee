@@ -17,6 +17,7 @@ angular.module 'iter001App'
       $location.path "/houses"
 
     orderDetails = paramService.get()
+    $log.debug orderDetails
     re = /\//g
     $scope.checkInDay = orderDetails.checkInDay.replace re, '-'
     $scope.checkOutDay = orderDetails.checkOutDay.replace re, '-'
@@ -49,6 +50,7 @@ angular.module 'iter001App'
       orderDetails.houseId = orderDetails.house['id']
       orderDetails.houseName = orderDetails.house['name']
       orderDetails.totalPrice = totalPrice
+      orderDetails.priceByDayArray = JSON.stringify bookingDayPriceArray
       #check if house is available
       promise = orderService.checkAvailable orderDetails
       promise.then((payload) ->

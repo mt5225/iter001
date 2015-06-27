@@ -7,11 +7,14 @@
  # # SurveyCtrl
  # Controller of the iter001App
 ###
-angular.module('iter001App')
-  .controller 'SurveyCtrl', ($scope, $location, $log, wechat) ->
-    userinfo = wechat.getUserInfo()
-    $log.debug userinfo
-    $scope.nickname = userinfo.nickname
+angular.module 'iter001App'
+  .controller 'SurveyCtrl', ($scope, $location, $log, wechat, surveycheck, surveyservice) ->
+    userInfo = wechat.getUserInfo()
+    $scope.nickname = userInfo.nickname
 
     $scope.FinishSurvey = ->
-      $location.path '/houses'
+      survey = $scope.survey
+      survey.userInfo = userInfo
+      survey.type = "入住"
+      surveyservice.save survey
+      $location.path '/order'

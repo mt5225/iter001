@@ -25,7 +25,7 @@
     }).when('/houses', {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
-    }).when('/housesurvey', {
+    }).when('/survey', {
       templateUrl: 'views/survey.html',
       controller: 'SurveyCtrl'
     }).when('/share', {

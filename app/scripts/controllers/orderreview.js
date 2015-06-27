@@ -16,6 +16,7 @@
       $location.path("/houses");
     }
     orderDetails = paramService.get();
+    $log.debug(orderDetails);
     re = /\//g;
     $scope.checkInDay = orderDetails.checkInDay.replace(re, '-');
     $scope.checkOutDay = orderDetails.checkOutDay.replace(re, '-');
@@ -44,6 +45,7 @@
       orderDetails.houseId = orderDetails.house['id'];
       orderDetails.houseName = orderDetails.house['name'];
       orderDetails.totalPrice = totalPrice;
+      orderDetails.priceByDayArray = JSON.stringify(bookingDayPriceArray);
       promise = orderService.checkAvailable(orderDetails);
       return promise.then(function(payload) {
         $log.debug(payload.data);

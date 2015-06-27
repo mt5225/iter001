@@ -14,19 +14,19 @@
     signData = {};
     $log.debug("api endpoint = " + API_ENDPOINT);
     return {
-      loadUserInfo: function(uoid) {
+      loadUserInfo: function(openid) {
         if (userInfo.openid) {
           $log.debug("[wechat service] cached user info");
           return userInfo;
         }
         return $http({
           method: 'GET',
-          url: API_ENDPOINT + "/api/users/" + uoid
+          url: API_ENDPOINT + "/api/users/" + openid
         }).success(function(data) {
           $log.debug(data);
           return userInfo = data;
         }).error(function(data) {
-          $log.debug("[wechat service] failed to get userinfo from " + uoid);
+          $log.debug("[wechat service] failed to get userinfo from " + openid);
           $log.debug(data);
         });
       },

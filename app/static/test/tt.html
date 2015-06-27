@@ -3,9 +3,10 @@
 <script src="./pingpp_pay.js"></script>
 <script>
    //osIpsuPO6L9VIJAH0SIRjzz97Ww0 漫生活下的openId
+   //osIpsuHE6jlAKu-jduZw3AYkQfu8  Luke
   //channel_type:  1. wx_pub  2. alipay_wap 3. alipay
   $.ajax({
-    url: "http://qa.aghchina.com.cn:3000/api/pingplus?channel_type=alipay&user_openid=osIpsuPO6L9VIJAH0SIRjzz97Ww0"
+    url: "http://qa.aghchina.com.cn:3000/api/pingplus?channel_type=wx_pub&user_openid=osIpsuPO6L9VIJAH0SIRjzz97Ww0"
   }).then(function(data) {
     console.log(data);
     charge = data;
@@ -20,6 +21,6 @@
           // 支付取消支付
           alert ("pay cancel!");
       }
-    });    
+    });
   });
 </script>
