@@ -23,7 +23,7 @@ angular.module('iter001App')
       #page is redircted with ?openid = xxx, store in session
       openid = $location.search().openid
       #in local debug mode 
-      #openid = 'o82BBs8XqUSk84CNOA3hfQ0kNS90'
+      openid = 'o82BBs8XqUSk84CNOA3hfQ0kNS90'
       if openid
         $log.debug "load user info by openid #{openid}"
         promise = wechat.loadUserInfo openid

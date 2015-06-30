@@ -16,14 +16,18 @@ angular.module 'iter001App'
     #   $scope.house = paramService.get()
 
     #direct link with house id, then redirct by wechat as: http://qa.aghchina.com.cn:9000/#/housedetail/H001?openid=xxxx
+    
     $scope.$watch 'userInfo', ->
       $log.debug "userInfo value changed!"
       if $scope.userInfo #wechat directive got the userInfo
-        $log.debug "check if house is srore in paramService"
+        $log.debug "check if house is stored in paramService"
         house = paramService.get()
         $log.debug house
+        $log.debug $routeParams.id 
         if house.id
           $scope.house = house
+        else if $routeParams.id == undefined
+          $location.path "/houses"
         else
           promise = houseservice.getHouseById $routeParams.id
           promise.then ((payload) ->

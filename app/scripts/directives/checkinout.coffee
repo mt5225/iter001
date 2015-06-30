@@ -53,15 +53,21 @@ angular.module 'iter001App'
           console.log("availble days array = " + '#{daysArray}');
           var allAvailableArray = '#{daysArray}'.split(',');
 
-          //delete days before than today
+          //delete days before than today, force utc + 8
           var availableArray = []
-          todayString = formatDate(new Date())
+          //var d = new Date();
+          //var utc = d.getTime() - (d.getTimezoneOffset() * 60000);
+          //var nd = new Date(utc + (3600000*8));
+          var todayString = formatDate(new Date());
           for(var i=0; i< allAvailableArray.length; i++) {
             if(allAvailableArray[i] >= todayString){
               availableArray.push(allAvailableArray[i]);
             }
           }
           availableArray = availableArray.sort();
+          /////////////////
+          // init check-in widget
+          /////////////////
           $(function() {
             $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
 
@@ -84,7 +90,12 @@ angular.module 'iter001App'
               //////////////////////////////////////
               var checkoutArray = []
               var currentDay = new Date(checkInDay)
+              console.log(currentDay.getTimezoneOffset());
               console.log(availableArray);
+              if(currentDay.getTimezoneOffset() != -480){
+                console.log("adjust timezone");
+                currentDay = currentDay.addDays(2);
+              }
               for(var i=0; i< availableArray.length; i++) {
                 if(availableArray[i] == formatDate(currentDay)) {
                   checkoutArray.push(availableArray[i]);

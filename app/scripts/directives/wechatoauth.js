@@ -21,6 +21,7 @@
           return;
         }
         openid = $location.search().openid;
+        openid = 'o82BBs8XqUSk84CNOA3hfQ0kNS90';
         if (openid) {
           $log.debug("load user info by openid " + openid);
           promise = wechat.loadUserInfo(openid);

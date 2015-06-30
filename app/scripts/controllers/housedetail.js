@@ -13,11 +13,14 @@
       var house, promise;
       $log.debug("userInfo value changed!");
       if ($scope.userInfo) {
-        $log.debug("check if house is srore in paramService");
+        $log.debug("check if house is stored in paramService");
         house = paramService.get();
         $log.debug(house);
+        $log.debug($routeParams.id);
         if (house.id) {
           return $scope.house = house;
+        } else if ($routeParams.id === void 0) {
+          return $location.path("/houses");
         } else {
           promise = houseservice.getHouseById($routeParams.id);
           return promise.then((function(payload) {

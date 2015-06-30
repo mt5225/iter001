@@ -65,8 +65,11 @@
         }
       });
     };
-    return $scope.close = function() {
+    $scope.close = function() {
       return $location.path("/close");
+    };
+    return $scope.back = function() {
+      return $location.path("/order");
     };
   });
 

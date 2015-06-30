@@ -8,25 +8,29 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService, paramService, uuidService, dayarray, wechat, surveycheck) ->
+  .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService, paramService, uuidService, dayarray, wechat, surveycheck, updateuserinfo) ->
    
-    #gate: check if we have user id and house id
-    userInfo = wechat.getUserInfo()   
-    $scope.house = paramService.get()
-    if !userInfo['openid'] || !$scope.house['id']
-      $log.debug userInfo
-      $log.debug $scope.house
+
+    if paramService.get().house #back from order review
+      $scope.newOrder = paramService.get()
+      $scope.house = $scope.newOrder.house
+      $scope.userInfo = $scope.newOrder.userInfo 
+    else #from house list
+      $scope.newOrder = {}
+      $scope.house = paramService.get()
+      $scope.userInfo = wechat.getUserInfo() 
+
+    if !$scope.userInfo['openid'] or !$scope.house['id']
       $log.debug "cannot load user info or house info, got back to houses list page"
       $location.path '/houses'
-      return
 
     $scope.currentShow = "main"
     $scope.capacity = () ->
       lowBound = 1
-      highBound = $scope.house.capacity
+      highBound = (parseInt $scope.house.capacity) + 1
       [lowBound...highBound]
 
-    $scope.newOrder = {}
+    
     $scope.validateMsg = ''
 
     # checkIfDayNotContinious = (newOrder) ->
@@ -47,13 +51,17 @@ angular.module('iter001App')
         $scope.validateMsg = "入住日期不能晚于退房日期|" + uuidService.generateUUID()
       # else if checkIfDayNotContinious(newOrder)
       #   $scope.validateMsg = "预定日期不连续，请重新选择|" + uuidService.generateUUID()
-      else #goto orderreview page or survey page
-        $log.debug newOrder
-        newOrder.house =  house
-        newOrder.dayPrices = $scope.dayPrices #store all available data and price 
-        $log.debug newOrder
-        paramService.set newOrder #store order infomation in session
-        $scope.currentShow = "warnning"
+      else # update user info then goto orderreview page or survey page
+        promise = updateuserinfo.update($scope.userInfo)
+        promise.then ((payload) ->
+          newOrder.house =  house
+          newOrder.userInfo = $scope.userInfo
+          newOrder.dayPrices = $scope.dayPrices #store all available data and price 
+          $log.debug newOrder
+          paramService.set newOrder #store order infomation in session
+          $scope.currentShow = "warnning"
+        )
+
           
 
     $scope.close = () ->

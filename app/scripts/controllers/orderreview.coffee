@@ -74,3 +74,7 @@ angular.module 'iter001App'
     $scope.close = () ->
       $location.path "/close"
 
+    $scope.back = () ->
+      $location.path "/order"
+      
+
