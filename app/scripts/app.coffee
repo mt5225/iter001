@@ -67,12 +67,27 @@ angular.module('iter001App', [
       controller: 'OrderreviewCtrl'
     .when '/close', #关闭App窗口，回到公众号
       templateUrl: 'views/close.html'
+    .when '/pay', #支付
+      templateUrl: 'views/pay.html'
+      controller: 'PayCtrl'
     .otherwise redirectTo: '/'
 
-.constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+
+##local setting
 # .constant 'API_ENDPOINT', 'http://localhost:3000'
-.constant 'APP_ID', 'wxe2bdce057501817d'
-.constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
+# .constant 'APP_ID', 'wxe2bdce057501817d'
+# .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
+
+
+# #dev Setting
+# .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+# .constant 'APP_ID', 'wxe2bdce057501817d'
+# .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
+
+#Prod Setting
+.constant 'API_ENDPOINT', 'http://app.aghchina.com.cn:3000'
+.constant 'APP_ID', 'wx2744e355f1816d95'
+.constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
 
 #message service
 .factory 'flash', ($rootScope) ->
@@ -106,16 +121,25 @@ angular.module('iter001App', [
   }
 
 .factory 'dateService', ->
+  Date::timeNow = ->
+    (if @getHours() < 10 then '0' else '') + @getHours() + ':' + (if @getMinutes() < 10 then '0' else '') + @getMinutes() + ':' + (if @getSeconds() < 10 then '0' else '') + @getSeconds()
+  
+  todayStr = ->
+    today = new Date
+    dd = today.getDate()
+    mm = today.getMonth() + 1
+    yyyy = today.getFullYear()
+    dd = '0' + dd if dd < 10
+    mm = '0' + mm if mm < 10  
+    today = yyyy + '-' + mm + '-' + dd
+
   return {
     getToday: ->
-      today = new Date
-      dd = today.getDate()
-      mm = today.getMonth() + 1
-      yyyy = today.getFullYear()
-      dd = '0' + dd if dd < 10
-      mm = '0' + mm if mm < 10  
-      today = yyyy + '-' + mm + '-' + dd
-      return today
+      todayStr()
+
+    getTodayTime: ->
+      currentdate = new Date
+      datetime = todayStr() + " "+ currentdate.timeNow()
   }
 
 #Passing data between pages

@@ -40,7 +40,7 @@ angular.module('iter001App')
     #       return true
     #   return false
 
-    $scope.orderCheck = (newOrder, house) ->
+    $scope.orderCheck = (newOrder, house, userInfo) ->
       if !newOrder.checkInDay
         $scope.validateMsg = "请指定入住日期|" + uuidService.generateUUID()
       else if !newOrder.checkOutDay
@@ -51,6 +51,8 @@ angular.module('iter001App')
         $scope.validateMsg = "入住日期不能晚于退房日期|" + uuidService.generateUUID()
       # else if checkIfDayNotContinious(newOrder)
       #   $scope.validateMsg = "预定日期不连续，请重新选择|" + uuidService.generateUUID()
+      else if !userInfo.realname.length or !userInfo.identity.length or !userInfo.cell.length
+        $scope.validateMsg = "请完整填写联系信息|" + uuidService.generateUUID()
       else # update user info then goto orderreview page or survey page
         promise = updateuserinfo.update($scope.userInfo)
         promise.then ((payload) ->

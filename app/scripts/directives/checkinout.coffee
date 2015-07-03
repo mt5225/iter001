@@ -93,18 +93,23 @@ angular.module 'iter001App'
               console.log(currentDay.getTimezoneOffset());
               console.log(availableArray);
               if(currentDay.getTimezoneOffset() != -480){
-                console.log("adjust timezone");
-                currentDay = currentDay.addDays(2);
-              }
+                  console.log("adjust timezone");
+                  currentDay = currentDay.addDays(1);
+                }
               for(var i=0; i< availableArray.length; i++) {
                 if(availableArray[i] == formatDate(currentDay)) {
                   checkoutArray.push(availableArray[i]);
                   currentDay = currentDay.addDays(1);
                 }
               }
+              console.log(checkoutArray);
               var checkoutArrayAdjust = []
               for (var i=0; i< checkoutArray.length; i++) {
                 tmp = (new Date(checkoutArray[i])).addDays(1);
+                if(tmp.getTimezoneOffset() != -480){
+                  console.log("adjust timezone");
+                  tmp = tmp.addDays(1);
+                }
                 checkoutArrayAdjust.push(formatDate(tmp));
               }
               console.log("====> checkoutArray <====");

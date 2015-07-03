@@ -1,0 +1,36 @@
+<div>
+    <blockquote>
+        <h5 class="red-text textlighten-2"> 你需要支付人民币 {{totalPrice}} 元，请选择支付方式</h5>
+    </blockquote>
+    <div class="row">
+        <p class="col s3 offset-s1">
+            <input name="paymentType" type="radio" id="wechat" checked/>
+            <label for="wechat">微信</label>
+        </p>
+        <p class="col s3 left-align">
+            <input class="with-gap" name="paymentType" type="radio" id="bank" />
+            <label for="bank">支付宝</label>
+        </p>
+        <p class="col s3 left-align">
+            <input name="paymentType" type="radio" id="unipay" disabled="disabled" />
+            <label for="unipay">银联</label>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col s2 offset-s1">
+            <button class="waves-effect waves-light btn" ng-click="close()">
+                过一会再说 ✕
+            </button>
+        </div>
+        <div class="col s3 offset-s3">
+            <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="pay()">
+                进行支付 ▷
+            </button>
+        </div>
+    </div>
+    <blockquote>
+        <h6>温馨提示：您可以通过访问 <b>漫生活服务号</b> <br><br>[客服]->[订单查询] &nbsp;&nbsp;&nbsp;进入到支付环节。 <br><br>如果30分钟内未完成支付，您的预订可能被取消。<br><br>您也可以通过银行转账的方式完成支付，账号为招商银行 888-8888-8888-88888。 <br><br>漫生活客服电话: 010-12345678 </h6>
+    </blockquote>
+</div>
+
+<div pay="{{totalPrice}}" openid="{{openid}}"></div>

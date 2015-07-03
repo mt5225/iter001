@@ -50,7 +50,7 @@
                 </div>
                 <div class="input-field col s12">
                     <input id="plan" type="text" class="validate" ng-model="newOrder.plan">
-                    <label for="plan">活动计划(如庆生，烧烤，etc.)</label>
+                    <label class="active" for="plan">活动计划(如庆生，烧烤，etc.)</label>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
             <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="close()">
                 关 闭 ✕
             </button>
-            <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderCheck(newOrder, house)">
+            <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderCheck(newOrder, house, userInfo)">
                 下一步 ▷
             </button>
         </div>

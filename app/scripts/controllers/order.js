@@ -34,7 +34,7 @@
       }).apply(this);
     };
     $scope.validateMsg = '';
-    $scope.orderCheck = function(newOrder, house) {
+    $scope.orderCheck = function(newOrder, house, userInfo) {
       var promise;
       if (!newOrder.checkInDay) {
         return $scope.validateMsg = "请指定入住日期|" + uuidService.generateUUID();
@@ -44,6 +44,8 @@
         return $scope.validateMsg = "请指定客人数|" + uuidService.generateUUID();
       } else if (newOrder.checkInDay > newOrder.checkOutDay) {
         return $scope.validateMsg = "入住日期不能晚于退房日期|" + uuidService.generateUUID();
+      } else if (!userInfo.realname.length || !userInfo.identity.length || !userInfo.cell.length) {
+        return $scope.validateMsg = "请完整填写联系信息|" + uuidService.generateUUID();
       } else {
         promise = updateuserinfo.update($scope.userInfo);
         return promise.then((function(payload) {

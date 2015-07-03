@@ -7,7 +7,7 @@
     * @description
     * fill userInfo by openid and put in scope
    */
-  angular.module('iter001App').directive('wechatoauth', function(API_ENDPOINT, wechat, $log, $location, $window, paramService) {
+  angular.module('iter001App').directive('wechatoauth', function(API_ENDPOINT, APP_ID, wechat, $log, $location, $window, paramService) {
     return {
       template: '',
       restrict: 'AE',
@@ -21,7 +21,6 @@
           return;
         }
         openid = $location.search().openid;
-        openid = 'o82BBs8XqUSk84CNOA3hfQ0kNS90';
         if (openid) {
           $log.debug("load user info by openid " + openid);
           promise = wechat.loadUserInfo(openid);
@@ -38,7 +37,7 @@
           }
           $log.debug("goback url = " + backurl);
           REDIRECT_URI = $window.encodeURIComponent(API_ENDPOINT + "/api/useroauth");
-          url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe2bdce057501817d&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_userinfo&state=" + backurl + "#wechat_redirect";
+          url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + APP_ID + "&redirect_uri=" + REDIRECT_URI + "&response_type=code&scope=snsapi_userinfo&state=" + backurl + "#wechat_redirect";
           $log.debug("redirect user to auth page with srv api-endpoint as callback");
           return $window.location.href = url;
         }

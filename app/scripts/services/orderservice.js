@@ -29,7 +29,7 @@
         order.wechatOpenID = userInfo['openid'];
         order.wechatNickName = userInfo['nickname'];
         order.status = "已提交";
-        order.createDay = dateService.getToday();
+        order.createDay = dateService.getTodayTime();
         order.orderId = uuidService.generateUUID();
         re = /\//g;
         order.checkInDay = order.checkInDay.replace(re, '-');

@@ -218,6 +218,7 @@ module.exports = (grunt) ->
 
     sshconfig:
         'myhost': grunt.file.readJSON 'tc.host'
+        'myhost_prod': grunt.file.readJSON 'tc_prod.host'
 
     sshexec:
       clean:
@@ -226,12 +227,25 @@ module.exports = (grunt) ->
       reload:
         command: 'service nginx reload'
         options: config: 'myhost'
+      clean_prod:
+        command: 'cd /usr/share/nginx/h5; rm -rf *; mkdir -p /usr/share/nginx/h5/test'
+        options: config: 'myhost_prod'
+      reload_prod:
+        command: 'service nginx reload'
+        options: config: 'myhost_prod'
 
     sftp:
       dev:
         files:  './': ['dist/**']
         options:
           config: 'myhost'
+          path: '/usr/share/nginx/h5'
+          srcBasePath: 'dist/'
+          createDirectories: true
+      prod:
+        files:  './': ['dist/**']
+        options:
+          config: 'myhost_prod'
           path: '/usr/share/nginx/h5'
           srcBasePath: 'dist/'
           createDirectories: true
@@ -287,6 +301,13 @@ module.exports = (grunt) ->
     'sshexec:clean'
     'sftp:dev'
     'sshexec:reload'
+  ]
+
+  grunt.registerTask 'run-remote-prod', [
+    'build'
+    'sshexec:clean_prod'
+    'sftp:prod'
+    'sshexec:reload_prod'
   ]
 
   grunt.registerTask 'compile', [

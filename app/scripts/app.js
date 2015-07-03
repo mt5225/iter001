@@ -57,10 +57,13 @@
       controller: 'OrderreviewCtrl'
     }).when('/close', {
       templateUrl: 'views/close.html'
+    }).when('/pay', {
+      templateUrl: 'views/pay.html',
+      controller: 'PayCtrl'
     }).otherwise({
       redirectTo: '/'
     });
-  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').constant('APP_ID', 'wxe2bdce057501817d').constant('APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90').factory('flash', function($rootScope) {
+  }).constant('API_ENDPOINT', 'http://app.aghchina.com.cn:3000').constant('APP_ID', 'wx2744e355f1816d95').constant('APP_SEC', '41a601d93fc3795d964d08f369ce5b11').factory('flash', function($rootScope) {
     var currentMessage, queue;
     queue = [];
     currentMessage = '';
@@ -89,21 +92,32 @@
       }
     };
   }).factory('dateService', function() {
+    var todayStr;
+    Date.prototype.timeNow = function() {
+      return (this.getHours() < 10 ? '0' : '') + this.getHours() + ':' + (this.getMinutes() < 10 ? '0' : '') + this.getMinutes() + ':' + (this.getSeconds() < 10 ? '0' : '') + this.getSeconds();
+    };
+    todayStr = function() {
+      var dd, mm, today, yyyy;
+      today = new Date;
+      dd = today.getDate();
+      mm = today.getMonth() + 1;
+      yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd;
+      }
+      if (mm < 10) {
+        mm = '0' + mm;
+      }
+      return today = yyyy + '-' + mm + '-' + dd;
+    };
     return {
       getToday: function() {
-        var dd, mm, today, yyyy;
-        today = new Date;
-        dd = today.getDate();
-        mm = today.getMonth() + 1;
-        yyyy = today.getFullYear();
-        if (dd < 10) {
-          dd = '0' + dd;
-        }
-        if (mm < 10) {
-          mm = '0' + mm;
-        }
-        today = yyyy + '-' + mm + '-' + dd;
-        return today;
+        return todayStr();
+      },
+      getTodayTime: function() {
+        var currentdate, datetime;
+        currentdate = new Date;
+        return datetime = todayStr() + " " + currentdate.timeNow();
       }
     };
   }).factory('paramService', function() {
