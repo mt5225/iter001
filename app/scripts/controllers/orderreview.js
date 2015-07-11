@@ -26,11 +26,13 @@
     bookingArray.pop();
     $log.debug(bookingArray);
     totalPrice = 0;
+    $log.debug("<-- day price list [ALL] in orderDetails -->");
+    $log.debug(orderDetails.dayPrices);
     for (i = 0, len = bookingArray.length; i < len; i++) {
       item = bookingArray[i];
       dayprice = {};
       dayprice.day = item;
-      if (orderDetails.dayPrices[item]) {
+      if (orderDetails.dayPrices[item] != null) {
         dayprice.price = orderDetails.dayPrices[item];
         totalPrice = totalPrice + parseInt(dayprice.price);
         bookingDayPriceArray.push(dayprice);

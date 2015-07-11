@@ -10,15 +10,17 @@
 
 angular.module('iter001App')
 .controller 'MainCtrl', ($scope, $location, $log, flash, houseservice, paramService) ->
-  $scope.$watch 'userInfo', ->
-    if $scope.userInfo #wechat directive got the userInfo
-      promise = houseservice.getHouseList()
-      promise.then ((payload) ->
-        $log.debug payload
-        $scope.houses = payload.data
-        ), (errorPayload) ->
-          $log.error 'failure loading house list', errorPayload
-          return
+  promise = houseservice.getHouseList()
+  promise.then ((payload) ->
+    tribe = paramService.get()
+    $log.debug payload
+    records = []
+    for item in payload.data
+      records.push item if tribe.name is item.tribe
+    $scope.houses = records
+    ), (errorPayload) ->
+      $log.error 'failure loading house list', errorPayload
+      return
 
   #user click the order button, navigate the order page
   #with house parameter

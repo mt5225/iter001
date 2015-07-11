@@ -11,10 +11,7 @@ angular.module 'iter001App'
   .service 'surveyservice', ($http, $log, wechat, API_ENDPOINT, dateService)->
     return {
       save: (surveyResult) ->
-        surveyResult.userinfo = wechat.getUserInfo()
-        if !surveyResult.userinfo['openid']
-          surveyResult.userinfo['openid'] = 'unknown'
-        surveyResult.createDay = dateService.getToday()
+        surveyResult.createDay = dateService.getTodayTime()
         $log.debug "[survey service] save survey result to backend #{JSON.stringify(surveyResult)}"
         $http(
           method: 'POST'
@@ -28,4 +25,16 @@ angular.module 'iter001App'
         ).error (data) ->
           $log.error "[survey service] failed to save surveyResult"
           $log.debug data
+
+      #get user survey by openid
+      loadByOpenID: (openid) ->
+        $log.debug "load user survey by #{openid} "
+        $http(
+          method: 'GET'
+          url: "#{API_ENDPOINT}/api/surveys/#{openid}"
+        ).success((data) ->
+          return data
+        ).error (data) ->
+          $log.error "[survey service] fail to get survey record from #{API_ENDPOINT}"
+          $log.error data
     }

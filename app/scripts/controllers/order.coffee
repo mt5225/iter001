@@ -8,9 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-  .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService, paramService, uuidService, dayarray, wechat, surveycheck, updateuserinfo) ->
-   
-
+  .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService, paramService, uuidService, dayarray, wechat, surveycheck, updateuserinfo, verifyService) ->
     if paramService.get().house #back from order review
       $scope.newOrder = paramService.get()
       $scope.house = $scope.newOrder.house
@@ -53,6 +51,15 @@ angular.module('iter001App')
       #   $scope.validateMsg = "预定日期不连续，请重新选择|" + uuidService.generateUUID()
       else if !userInfo.realname.length or !userInfo.identity.length or !userInfo.cell.length
         $scope.validateMsg = "请完整填写联系信息|" + uuidService.generateUUID()
+      else if !userInfo.identity_type or !userInfo.identity
+        $scope.validateMsg = "请选择证件类型并填写相应证件号|" + uuidService.generateUUID()
+      else if userInfo.identity_type is "身份证" and !verifyService.isIdCardNo(userInfo.identity).status
+        $scope.validateMsg =  verifyService.isIdCardNo(userInfo.identity).msg + "|" + uuidService.generateUUID()
+      else if !userInfo.cell or not verifyService.isPhone(userInfo.cell)
+        $scope.validateMsg = "请输入合法手机号|" + uuidService.generateUUID()
+      else if !userInfo.email or not verifyService.isEmail(userInfo.email)
+        $scope.validateMsg = "请输入合法email地址|" + uuidService.generateUUID()
+     
       else # update user info then goto orderreview page or survey page
         promise = updateuserinfo.update($scope.userInfo)
         promise.then ((payload) ->
@@ -64,13 +71,8 @@ angular.module('iter001App')
           $scope.currentShow = "warnning"
         )
 
-          
-
     $scope.close = () ->
-      $location.path "/houses"
-
-    $scope.exitApp = () ->
-      $location.path "/close"
+      $location.path "/"
 
     $scope.orderReview = () ->
       $location.path "/orderreview"

@@ -15,11 +15,7 @@
     $log.debug(orderDetails);
     $scope.openid = orderDetails.wechatOpenID;
     $scope.orderId = orderDetails.orderId;
-
-    /*
-    test only, 1 = 一元
-     */
-    $scope.totalPrice = 1;
+    $scope.totalPrice = orderDetails.totalPrice;
     $scope.activatePayDirective = false;
     $scope.pay = function() {
       return $scope.activatePayDirective = true;

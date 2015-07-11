@@ -8,9 +8,10 @@
     * # MyorderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, wechat, orderService, $location, $route, $anchorScroll, paramService) {
+  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, orderService, $location, $route, $anchorScroll, paramService) {
     var dataloaded;
     dataloaded = false;
+    $scope.orderId = null;
     $scope.$watch('userInfo', function() {
       var openid, promise;
       if ($scope.userInfo && !dataloaded) {
@@ -31,30 +32,44 @@
       return $route.reload();
     };
     $scope.showOrderDetail = function(order) {
-      var old;
-      $log.debug("scroll to order details");
-      old = $location.hash();
-      $location.hash("buttom");
-      $anchorScroll.yOffset = 100;
-      $anchorScroll();
-      $location.hash(old);
+      $log.debug("show order details");
       $scope.orderdetail = order;
-      return $scope.showdetail = true;
+      $scope.orderId = order.orderId;
+      $scope.showdetail = true;
+      $('html, body').animate({
+        scrollTop: $("#bottom").offset().top
+      }, 1000);
     };
     $scope.allowPay = function(orderdetail) {
-      var ref;
-      if (!orderdetail) {
-        return false;
-      } else if ((ref = orderdetail.status) === '支付失败' || ref === '支付已取消' || ref === '已提交') {
-        return true;
-      } else {
-        return false;
+      var ref, show;
+      show = false;
+      if (orderdetail != null) {
+        show = (ref = orderdetail.status) === '支付失败' || ref === '支付已取消' || ref === '已提交';
       }
+      return show;
     };
-    return $scope.gotoPay = function(orderdetail) {
+    $scope.allowCancel = function(orderdetail) {
+      var ref, show;
+      show = false;
+      if (orderdetail != null) {
+        show = (ref = orderdetail.status) !== "订单取消" && ref !== "支付成功";
+      }
+      return show;
+    };
+    $scope.gotoPay = function(orderdetail) {
       $log.debug(orderdetail);
       paramService.set(orderdetail);
       return $location.path("/pay");
+    };
+    return $scope.cancelOrder = function(orderdetail) {
+      var promise;
+      promise = orderService.cancelOrder(orderdetail);
+      return promise.then(function(payload) {
+        $log.debug(payload);
+        orderdetail.status = "订单取消";
+        $scope.orderdetail = orderdetail;
+        return $scope.showdetail = true;
+      });
     };
   });
 

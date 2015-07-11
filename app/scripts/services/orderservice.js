@@ -50,6 +50,25 @@
           return $log.debug(data);
         });
       },
+      cancelOrder: function(order) {
+        $log.debug("cancel order " + order.orderId);
+        return $http({
+          method: 'POST',
+          url: API_ENDPOINT + "/api/orders/" + order.orderId,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify({
+            status: '订单取消'
+          }),
+          dataType: 'json'
+        }).success(function(data) {
+          return $log.info("[order service] order cancel success  !");
+        }).error(function(data) {
+          $log.error("[order service] failed to cancel order");
+          return $log.debug(data);
+        });
+      },
       checkAvailable: function(order) {
         var re;
         $log.debug("check availability for " + order.houseName);

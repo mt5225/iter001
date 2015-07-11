@@ -1,5 +1,7 @@
+<!-- make sure we have user info from wechat server -->
+<div wechatoauth="/frontpage"></div> 
 <div class="row">
   <div ng-repeat="tribe in tribes" class="col s12">
-    <div class="waves-effect waves-light"><img ng-click="toHouseList()" ng-src="{{tribe.image}}"/></div>
+    <div class="waves-effect waves-light"><img ng-click="toHouseList(tribe)" ng-src="{{tribe.image}}"/></div>
   </div>
 </div>

@@ -20,7 +20,10 @@ angular.module('iter001App', [
   'ngTouch'
 ]).config ($routeProvider) ->
   $routeProvider
-    .when('/',  #首页
+    .when '/',
+      templateUrl: 'views/loadwechat.html'
+      controller: 'LoadwechatCtrl'
+    .when('/frontpage',  #首页
       templateUrl: 'views/frontpage.html'
       controller: 'FrontpageCtrl')
     .when('/about', #关于
@@ -70,6 +73,12 @@ angular.module('iter001App', [
     .when '/pay', #支付
       templateUrl: 'views/pay.html'
       controller: 'PayCtrl'
+    .when '/checkinsurvey',
+      templateUrl: 'views/checkinsurvey.html'
+      controller: 'CheckinsurveyCtrl'
+    .when '/loadwechat',
+      templateUrl: 'views/loadwechat.html'
+      controller: 'LoadwechatCtrl'
     .otherwise redirectTo: '/'
 
 
@@ -80,14 +89,14 @@ angular.module('iter001App', [
 
 
 # #dev Setting
-# .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
-# .constant 'APP_ID', 'wxe2bdce057501817d'
-# .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
+.constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+.constant 'APP_ID', 'wxe2bdce057501817d'
+.constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
 #Prod Setting
-.constant 'API_ENDPOINT', 'http://app.aghchina.com.cn:3000'
-.constant 'APP_ID', 'wx2744e355f1816d95'
-.constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
+# .constant 'API_ENDPOINT', 'http://app.aghchina.com.cn:3000'
+# .constant 'APP_ID', 'wx2744e355f1816d95'
+# .constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
 
 #message service
 .factory 'flash', ($rootScope) ->
@@ -114,7 +123,7 @@ angular.module('iter001App', [
 .factory 'uuidService', ->
   return {
     generateUUID: ->
-      delim = "-"
+      delim = ""
       S4 = ->
         (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
       (S4() + delim + S4())
@@ -152,6 +161,14 @@ angular.module('iter001App', [
       saveData
   }
 
+.factory 'sortByKey', ->
+  return {
+    sort : (array, key) ->
+      array.sort (a, b) ->
+        x = a[key]
+        y = b[key]
+        if x < y then 1 else if x > y then -1 else 0
+  }
 
 ################################################################################
 #### Directives

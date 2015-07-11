@@ -15,10 +15,8 @@ angular.module 'iter001App'
     #$scope.totalPrice = orderDetails.totalPrice
     $scope.openid = orderDetails.wechatOpenID
     $scope.orderId = orderDetails.orderId
-    ###
-    test only, 1 = 一元
-    ###
-    $scope.totalPrice = 1     
+    $scope.totalPrice = orderDetails.totalPrice
+    #$scope.totalPrice = 1     
     # $scope.openid = "osIpsuPO6L9VIJAH0SIRjzz97Ww0"
     # $scope.orderId = "eiew-2eu3"
     

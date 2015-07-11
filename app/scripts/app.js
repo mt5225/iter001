@@ -11,6 +11,9 @@
    */
   angular.module('iter001App', ['ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch']).config(function($routeProvider) {
     return $routeProvider.when('/', {
+      templateUrl: 'views/loadwechat.html',
+      controller: 'LoadwechatCtrl'
+    }).when('/frontpage', {
       templateUrl: 'views/frontpage.html',
       controller: 'FrontpageCtrl'
     }).when('/about', {
@@ -60,10 +63,16 @@
     }).when('/pay', {
       templateUrl: 'views/pay.html',
       controller: 'PayCtrl'
+    }).when('/checkinsurvey', {
+      templateUrl: 'views/checkinsurvey.html',
+      controller: 'CheckinsurveyCtrl'
+    }).when('/loadwechat', {
+      templateUrl: 'views/loadwechat.html',
+      controller: 'LoadwechatCtrl'
     }).otherwise({
       redirectTo: '/'
     });
-  }).constant('API_ENDPOINT', 'http://app.aghchina.com.cn:3000').constant('APP_ID', 'wx2744e355f1816d95').constant('APP_SEC', '41a601d93fc3795d964d08f369ce5b11').factory('flash', function($rootScope) {
+  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').constant('APP_ID', 'wxe2bdce057501817d').constant('APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90').factory('flash', function($rootScope) {
     var currentMessage, queue;
     queue = [];
     currentMessage = '';
@@ -84,7 +93,7 @@
     return {
       generateUUID: function() {
         var S4, delim;
-        delim = "-";
+        delim = "";
         S4 = function() {
           return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
         };
@@ -129,6 +138,23 @@
       },
       get: function() {
         return saveData;
+      }
+    };
+  }).factory('sortByKey', function() {
+    return {
+      sort: function(array, key) {
+        return array.sort(function(a, b) {
+          var x, y;
+          x = a[key];
+          y = b[key];
+          if (x < y) {
+            return 1;
+          } else if (x > y) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
       }
     };
   }).directive("alertmessage", [

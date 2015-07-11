@@ -23,7 +23,7 @@
     $scope.finishSurvey = function() {
       $scope.currentShow = 'finish';
       $scope.$evalAsync();
-      $scope.survey.userInfo = wechat.getUserInfo();
+      $scope.survey.userinfo = wechat.getUserInfo();
       return surveyservice.save($scope.survey);
     };
     $scope.gotoFrontPage = function() {

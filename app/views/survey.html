@@ -1,208 +1,175 @@
 <div class="row" ng-controller="SurveyCtrl">
-  <div class="col s3 pinned">
-    <ul class="section table-of-contents">
-      <li><a href="#section000">前言</a></li>
-      <li><a href="#section001">旅行</a></li>
-      <li><a href="#section002">风景</a></li>
-      <li><a href="#section003">愿望</a></li>
-      <li>
-        <button class="btn waves-effect waves-light" type="submit" ng-click="FinishSurvey()" name="action">提交
-        </button>
-      </li>
-    </ul>
-  </div>
-  <div class="col s9 offset-s3 right-align">
-    <div id="section000" class="scrollspy section">
-      <p class="caption flow-text left-align">Hi {{nickname}},在来部落之前,希望美丽的部落能给每个回家的人栖息心灵的力量,通过这份问卷,我们渴望能让热爱家园、对生活充满激情的人有着先入为主的感知和期待，并提出您宝贵的意见
-      </p>
+    <div class="col s3 pinned">
+        <ul class="section table-of-contents">
+            <li><a href="#section000">前言</a></li>
+            <li><a href="#section001">旅行</a></li>
+            <li><a href="#section002">营地</a></li>
+            <li><a href="#section003">愿望</a></li>
+            <li>
+                <button class="btn waves-effect waves-light" type="submit" ng-click="FinishSurvey()" name="action">提交
+                </button>
+            </li>
+        </ul>
     </div>
-    <div id="section001" class="scrollspy section">
-      <h4>关于旅行</h4>
-      <ul class="collection left-align">
-        <li class="collection-item">
-          1. 通常说来，您会多久产生一次装点烦恼，远足寻找心灵净土的感觉? <br/>
-
-          <div class="row left-align">
-            <div class="col s4" style="padding: 0">
-              <input name="group1" type="radio" value="1个月" id="test1" ng-model="survey.question1"/>
-              <label for="test1">1个月</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input name="group1" type="radio" value="3个月" id="test2" ng-model="survey.question1"/>
-              <label for="test2">3个月</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input name="group1" type="radio" value="半年" id="test3" ng-model="survey.question1"/>
-              <label for="test3">半年</label>
-            </div>
-          </div>
-        </li>
-        <li class="collection-item">
-          2. 旅游对您来说，是感悟在路上的拾缺，还是跟团匆忙的渡过一个假期？ <br/>
-
-          <div class="row left-align">
-            <div class="switch">
-              <label>
-                前者
-                <input type="checkbox" ng-model="survey.question2" ng-false-value="'前者'" ng-true-value="'后者'">
-                <span class="lever"></span>
-                后者
-              </label>
-            </div>
-          </div>
-        </li>
-        <li class="collection-item">
-          3. 凭栏处潇潇雨斜，郁郁葱葱；楼阁前举杯眺望，远山近水，有这样一个地方，您会拒绝吗？试想在这里您会思考什么？
-          <div class="input-field">
-            <input id="think" type="text" class="validate" ng-model="survey.question3">
-            <label for="think">写在这儿</label>
-          </div>
-        </li>
-      </ul>
+    <div class="col s9 offset-s3 right-align">
+        <div id="section000" class="scrollspy section">
+            <p class="caption flow-text left-align">Hi {{nickname}},这里，犹如一片世外桃源。宁静，远离城市的喧嚣；质朴，回归原始的生活。我们希望每一个来到这里的人，都能找到最纯真的自己，释放心灵最强大的能量。通过这份问卷，我们也希望可以更了解亲爱的你。
+            </p>
+        </div>
+        <div id="section001" class="scrollspy section">
+            <h4>关于旅行</h4>
+            <ul class="collection left-align">
+                <li class="collection-item">
+                    1. 通常说来，您会多久产生一次装点烦恼，远足寻找心灵净土的感觉?
+                    <br/>
+                    <div class="row left-align">
+                        <div class="col s4" style="padding: 0">
+                            <input name="question1" type="radio" value="1个月" id="question1_1" ng-model="survey.question1" />
+                            <label for="question1_1">1个月</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input name="question1" type="radio" value="3个月" id="question1_2" ng-model="survey.question1" />
+                            <label for="question1_2">3个月</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input name="question1" type="radio" value="半年" id="question1_3" ng-model="survey.question1" />
+                            <label for="question1_3">半年</label>
+                        </div>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    2. 对于您来说，旅行的意义在于什么？
+                    <div class="input-field">
+                        <input id="people" type="text" class="validate" ng-model="survey.question2">
+                        <label for="people" class="active">写在这儿</label>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    3. 您觉得我们的营地应该是怎样的？房间价位多少是您能接受的？
+                    <div class="input-field">
+                        <input id="think" type="text" class="validate" ng-model="survey.question3">
+                        <label for="think" class="active">写在这儿</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="section002" class="scrollspy section">
+            <h4>关于营地</h4>
+            <ul class="collection left-align">
+                <li class="collection-item">
+                    4. 从以下选项中选择您希望去的地方,再选择您是否会来部落：
+                    <p>
+                        <input type="checkbox" class="filled-in" id="question4.music" ng-model="survey.question4.music" />
+                        <label for="question4.music">从北美南部到东部海岸，一路畅听弗拉门戈</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box-02" ng-model="survey.question4.movie" />
+                        <label for="filled-in-box-02">看一部公路电影，踏上前往伍德斯托克音乐节的逍遥骑士征程</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box-03" ng-model="survey.question4.party" />
+                        <label for="filled-in-box-03">在欢乐嘉年华疯玩一天</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box-04" ng-model="survey.question4.fishing" />
+                        <label for="filled-in-box-04">扬帆远航，去格鲁西斯特港做一周惬意的钓手</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box-05" ng-model="survey.question4.worldzoo" />
+                        <label for="filled-in-box-05">在北京世界公园，领略各地风情</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box-06" ng-model="survey.question4.japan" />
+                        <label for="filled-in-box-06">在北海道，泡在温泉里听雪</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="filled-in-box-08" ng-model="survey.question4.lijiang" />
+                        <label for="filled-in-box-08">绝美的丽江，平静的洱海，拍足一年的风景照</label>
+                    </p>
+                </li>
+                <li class="collection-item">
+                    5. 如果希望营地给你足够多的感动，您还希望这里有些什么项目？
+                    <p>&nbsp;</p>
+                    <div class="row left-align">
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.coffee" ng-model="survey.question5.coffee" />
+                            <label for="question5.coffee">咖啡吧</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.bar" ng-model="survey.question5.bar" />
+                            <label for="question5.bar">酒吧</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.painting" ng-model="survey.question5.painting" />
+                            <label for="question5.painting">画室</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.movie" ng-model="survey.question5.movie" />
+                            <label for="question5.movie">影音室</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.card" ng-model="survey.question5.card" />
+                            <label for="question5.card">棋牌室</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.fishing" ng-model="survey.question5.fishing" />
+                            <label for="question5.checkbox">垂钓</label>
+                        </div>
+                        <div class="col s4" style="padding: 0">
+                            <input type="checkbox" class="filled-in" id="question5.boat" ng-model="survey.question5.boat" />
+                            <label for="question5.boat">小船</label>
+                        </div>
+                        <p>
+                            <input type="checkbox" class="filled-in" id="question5.other" ng-model="survey.question5.other" />
+                            <label for="question5.other">其他</label>
+                        </p>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    6. 您是否接受营地里可能会有小动物、小昆虫的骚扰？
+                    <div class="switch">
+                        <label>
+                            否
+                            <input type="checkbox" checked ng-model="survey.question6">
+                            <span class="lever" ng-false-value="'否'" ng-true-value="'是'"></span> 是
+                        </label>
+                    </div>
+                </li>
+                </li>
+            </ul>
+        </div>
+        <div id="section003" class="scrollspy section">
+            <h4>关于愿望</h4>
+            <ul class="collection left-align">
+                <li class="collection-item">
+                    7. 在我们的营地，您可以临江高歌，自有群山回应；品尝天然馈赠的鲜笋，鲜嫩无比的江鱼（很可能是你自己钓的）；一草一木、一椽一柱，皆生于自然，纯手工制作；您会喜欢这里吗？
+                    <div class="input-field">
+                        <input id="house-throught" type="text" class="validate" ng-model="survey.question7">
+                        <label for="house-throught" class="active">写在这儿</label>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    8. 你愿意分享一下你的人生最大的愿望？
+                    <div class="input-field">
+                        <input id="wish" type="text" class="validate" ng-model="survey.question8">
+                        <label for="wish" class="active">写在这儿</label>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    9. 如果您是营地的主人，您会希望怎样的朋友前来？
+                    <div class="input-field">
+                        <input id="people" type="text" class="validate" ng-model="survey.question9">
+                        <label for="people" class="active">写在这儿</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="section002" class="scrollspy section">
-      <h4>关于风景</h4>
-      <ul class="collection left-align">
-        <li class="collection-item">
-          4. 从以下选项中选择您希望去的地方（3项），再选择您是否会来部落：
-          <p>&nbsp;</p>
-
-          <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-01" ng-model="survey.question4.music"/>
-            <label for="filled-in-box-01">从北美南部到东部海岸，一路畅听弗拉门戈</label>
-          </p>
-
-          <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-02" ng-model="survey.question4.movie"/>
-            <label for="filled-in-box-02">看一部公路电影，踏上前往伍德斯托克音乐节的逍遥骑士征程</label>
-          </p>
-
-          <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-03" ng-model="survey.question4.party"/>
-            <label for="filled-in-box-03">在欢乐嘉年华疯玩一天</label>
-          </p>
-
-          <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-04" ng-model="survey.question4.fishing"/>
-            <label for="filled-in-box-04">扬帆远航，去格鲁西斯特港做一周惬意的钓手</label>
-          </p>
-
-          <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-05" ng-model="survey.question4.worldzoo"/>
-            <label for="filled-in-box-05">在北京世界公园，领略各地风情</label>
-          </p>
-
-          <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box-06" ng-model="survey.question4.japan"/>
-            <label for="filled-in-box-06">在北海道，泡在温泉里听雪</label>
-          </p>
-
-        </li>
-        <li class="collection-item">
-          5.
-          在这里，创作力枯竭的画家能重拾画笔、远足的摇滚歌手有了新的灵感、在路上的叛逆一代可以重拾自己的日记、建筑师面对空白的图纸不再恐惧、电影摄制组无须再千里迢迢去取景、远离校园的忧愁无影无踪。请告诉我们，您是否愿意参与其中？
-          <div class="switch">
-            <label>
-              否
-              <input type="checkbox" ng-model="survey.question5">
-              <span class="lever" ng-false-value="'否'" ng-true-value="'是'"></span>
-              是
-            </label>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div id="section003" class="scrollspy section">
-      <h4>关于愿望</h4>
-      <ul class="collection left-align">
-        <li class="collection-item">
-          6. 在来部落之前，在您的心目中，房间价位应该在什么范围？
-          <div class="row left-align">
-            <div class="col s6" style="padding: 0">
-              <input name="group1" type="radio" value="少于500" id="price1" ng-model="survey.question6"/>
-              <label for="price1"><500</label>
-            </div>
-            <div class="col s6" style="padding: 0">
-              <input name="group1" type="radio" id="price2" value="500~1000" ng-model="survey.question6"/>
-              <label for="price2">500~1,000</label>
-            </div>
-            <div class="col s12 left-align" style="padding: 0">
-              <input name="group1" type="radio" id="price3" value="超过1000" ng-model="survey.question6"/>
-              <label for="price3">&gt;1,000</label>
-            </div>
-          </div>
-        </li>
-        <li class="collection-item">
-          7. 如果希望部落带给你足够多的感动，您还希望这里有些什么项目？
-          <p>&nbsp;</p>
-
-          <div class="row left-align">
-            <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel01" ng-model="survey.question7.coffee"/>
-              <label for="feel01">咖啡吧</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel02" ng-model="survey.question7.bar"/>
-              <label for="feel02">酒吧</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel03" ng-model="survey.question7.painting"/>
-              <label for="feel03">画室</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel04" ng-model="survey.question7.movie"/>
-              <label for="feel04">影音室</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel05" ng-model="survey.question7.card"/>
-              <label for="feel05">棋牌室</label>
-            </div>
-            <div class="col s4" style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel06" ng-model="survey.question7.fishing"/>
-              <label for="feel06">垂钓</label>
-            </div>
-            <div class="col s4"style="padding: 0">
-              <input type="checkbox" class="filled-in" id="feel07" ng-model="survey.question7.boat"/>
-              <label for="feel07">小船</label>
-            </div>
-            <p>&nbsp;</p>
-            <div class="input-field">
-              <input id="fill-in" type="text" class="validate" ng-model="survey.question7.other">
-              <label for="filled-in">其他</label>
-            </div>
-          </div>
-        </li>
-        <li class="collection-item">
-          8.	您是否有过自己盖一间屋子的想法，无论形式？如果你来盖自己的家园，会有什么样的构思？
-          <div class="input-field">
-            <input id="house-throught" type="text" class="validate" ng-model="survey.question8">
-            <label for="house-throught">写在这儿</label>
-          </div>
-        </li>
-        <li class="collection-item">
-          9.	你愿意分享一下你的人生最大的愿望？
-          <div class="input-field">
-            <input id="wish" type="text" class="validate" ng-model="survey.question9">
-            <label for="wish">写在这儿</label>
-          </div>
-        </li>
-        <li class="collection-item">
-          10.	人以群分，你希望来部落的是一群怎样的人？
-          <div class="input-field">
-            <input id="people" type="text" class="validate" ng-model="survey.question10">
-            <label for="people">写在这儿</label>
-          </div>
-        </li>
-      </ul>
-
-    </div>
-  </div>
-
+<div validationmessage></div>
 </div>
 
 <script>
-  $(document).ready(function () {
+$(document).ready(function() {
     $('.scrollspy').scrollSpy();
-  });
-
+});
 </script>

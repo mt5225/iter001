@@ -15,7 +15,7 @@ angular.module 'iter001App'
           method: 'GET'
           url: "#{API_ENDPOINT}/api/surveys/#{openid}"
         ).success((data) ->
-          $log.debug "get sign data success"
+          $log.debug "get survey data success"
           return data
         ).error (data) ->
           $log.debug "[surveycheck service] failed to get surveycheck info #{API_ENDPOINT}/api/surveys/#{openid}"

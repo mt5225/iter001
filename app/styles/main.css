@@ -1,105 +1,115 @@
 /* full screen content */
-body {
-  padding-top: 0;
-  padding-bottom: 0;
-}
 
+body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
+
 .header,
 .marketing,
 .footer {
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
-
 /* Custom page header */
+
 .header {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
-
 /* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
 
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
 /* Customize container */
+
 @media (min-width: 768px) {
-  .container {
-    max-width: 730;
-  }
+    .container {
+        max-width: 730;
+    }
 }
 
 .container-narrow > hr {
-  margin: 30 0;
+    margin: 30 0;
 }
-
-
 /* Responsive: Portrait tablets and up */
+
 @media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30;
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+    /* Remove the padding we set earlier */
+    
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* Space out the masthead */
+    
+    .header {
+        margin-bottom: 30;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    
+    .jumbotron {
+        border-bottom: 0;
+    }
 }
-
 /*make full screen*/
-.container, .card {
-  padding: 0;
-  margin: 0 auto;
-  min-height: 100%;
-  min-width: 100%;
+
+.container,
+.card {
+    padding: 0;
+    margin: 0 auto;
+    min-height: 100%;
+    min-width: 100%;
 }
 
-html, body, .ng-view, .ng-scope, .container-fluid {
-  height: 100%;
-  width: 100%;
+html,
+body,
+.ng-view,
+.ng-scope,
+.container-fluid {
+    height: 100%;
+    width: 100%;
 }
 
 .card {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .article {
-  padding-left: 5px;
+    padding-left: 5px;
 }
 
 .orderdate {
-  background-color: #f2f2f2;
-  font-weight: 300;
-  font-size: large;
-  color: #EE6E73;
-  text-align: center;
+    background-color: #f2f2f2;
+    font-weight: 300;
+    font-size: large;
+    color: #EE6E73;
+    text-align: center;
 }
 
 .orderheader {
-  border-bottom-color: transparent;
-  color: #EE6E73;
-  font-weight: 300;
-  padding-top: 10;
+    border-bottom-color: transparent;
+    color: #EE6E73;
+    font-weight: 300;
+    padding-top: 10;
 }
 
 .closelayout {
-  padding: 0;
-  border: 0;
-  margin: 0;
+    padding: 0;
+    border: 0;
+    margin: 0;
 }
 
-a, a:link, a:visited {text-decoration:none}
+a,
+a:link,
+a:visited {
+    text-decoration: none
+}
 
 .ui-datepicker .ui-widget-content {
     background: #999 none;
@@ -118,7 +128,7 @@ a, a:link, a:visited {text-decoration:none}
     bottom: 0
 }
 
-.fixbuttom{
+.fixbuttom {
     height: 3em;
     width: 100%;
     position: fixed;
@@ -126,8 +136,55 @@ a, a:link, a:visited {text-decoration:none}
     margin-top: -3em;
 }
 
-/*get rid of roboto font*/
-html {
-  font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+ 
+@-webkit-keyframes spinner {
+    to {-webkit-transform: rotate(360deg);}
+}
+ 
+.spinner {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  margin: 150px auto;
 }
 
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+/*get rid of roboto font*/
+
+html {
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}

@@ -1,7 +1,7 @@
 <div>
     <div wechatoauth="myorder"></div>
     <div id="orderlist">
-        <table class="bordered striped">
+        <table class="bordered striped" id="indexedTable">
             <thead>
                 <tr>
                     <th>订单号</th>
@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody ng-repeat="order in orders" ng-click="showOrderDetail(order)">
-                <tr>
+                <tr id="orderRow" ng-class="{'teal lighten-2': order.orderId === orderId}">
                     <td>{{order.orderId}}</td>
                     <td>{{order.houseName}}</td>
                     <td>{{order.checkInDay}}</td>
@@ -25,9 +25,12 @@
     <div id="orderdetail" ng-show="showdetail">
         <blockquote>
             <h5>{{orderdetail.houseName}} &nbsp; {{orderdetail.status}}                
-                &nbsp; <button ng-show="allowPay(orderdetail)" class="waves-effect waves-light btn red darken-3 z-depth-2" ng-click="gotoPay(orderdetail)"> 去支付 ▷ </button>
             </h5>
-            <p> 订单号:&nbsp;{{orderdetail.orderId}} &nbsp;&nbsp;</p>
+            <p>
+                <button ng-show="allowCancel(orderdetail)" class="waves-effect waves-light btn" ng-click="cancelOrder(orderdetail)">取消订单 ✕</button> &nbsp; &nbsp;
+                <button ng-show="allowPay(orderdetail)" class="waves-effect waves-light btn red darken-3" ng-click="gotoPay(orderdetail)"> 去支付 ▷ </button>
+            </p>
+            <p> 订单号:&nbsp;{{orderdetail.orderId}}</p>
             <p class="green-text text-darken-2">入住：&nbsp;{{orderdetail.checkInDay}}</p>
             <p class="red-text text-darken-2">退房: &nbsp;&nbsp;{{orderdetail.checkOutDay}}</p>
             <p> 总计:&nbsp;{{orderdetail.totalPrice}} 人民币 </p>
@@ -35,7 +38,7 @@
         </blockquote>
         <p> &nbsp; </p>
     </div>
-    <div id="buttom" class="fixbuttom row">
+    <div class="fixbuttom row" id="bottom">
         <div class="col s6 offset-s1">
             <button class="waves-effect waves-light btn red darken-3 z-depth-2" ng-click="close()">
                 关 闭 ☒
@@ -43,7 +46,7 @@
         </div>
         <div class="col s4">
             <button class="waves-effect waves-light btn z-depth-2" ng-click="refresh()">
-                刷 新 √
+                刷 新
             </button>
         </div>
     </div>

@@ -48,6 +48,21 @@ angular.module('iter001App')
           $log.error "[order service] failed to save order"
           $log.debug data
 
+      #Cancel order
+      cancelOrder: (order) ->
+        $log.debug "cancel order #{order.orderId}"
+        $http(
+          method: 'POST'
+          url: "#{API_ENDPOINT}/api/orders/#{order.orderId}"
+          headers: {'Content-Type': 'application/json'}
+          data: JSON.stringify({ status: '订单取消'})
+          dataType: 'json'
+        ).success((data) ->
+          $log.info "[order service] order cancel success  !"
+        ).error (data) ->
+          $log.error "[order service] failed to cancel order"
+          $log.debug data
+
       checkAvailable: (order) ->
         $log.debug "check availability for #{order.houseName}"
         re = /\//g

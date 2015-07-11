@@ -15,7 +15,7 @@
           method: 'GET',
           url: API_ENDPOINT + "/api/surveys/" + openid
         }).success(function(data) {
-          $log.debug("get sign data success");
+          $log.debug("get survey data success");
           return data;
         }).error(function(data) {
           $log.debug("[surveycheck service] failed to get surveycheck info " + API_ENDPOINT + "/api/surveys/" + openid);

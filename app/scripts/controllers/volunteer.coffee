@@ -24,7 +24,7 @@ angular.module 'iter001App'
     $scope.finishSurvey = () ->
       $scope.currentShow = 'finish'
       $scope.$evalAsync()
-      $scope.survey.userInfo = wechat.getUserInfo()
+      $scope.survey.userinfo = wechat.getUserInfo()
       surveyservice.save $scope.survey
 
     $scope.gotoFrontPage = () ->

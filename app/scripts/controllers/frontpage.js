@@ -7,23 +7,24 @@
     * @description
     * # FrontpageCtrl
     * Controller of the iter001App
-    * @note APP_ID =
    */
-  angular.module('iter001App').controller('FrontpageCtrl', function($scope, $location, $window, wechat, $log) {
+  angular.module('iter001App').controller('FrontpageCtrl', function($scope, $location, $log, paramService) {
     $scope.tribes = [
       {
-        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/lz_opt.jpg'
+        name: "石舍",
+        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/%E7%9F%B3%E8%88%8D%E9%A6%99%E6%A8%9Fwith%20name.jpg'
       }, {
-        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/lztw_opt.jpg'
+        name: "土屋",
+        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/%E8%8A%A6%E8%8C%A8%E5%9C%9F%E5%B1%8Bwith%20name.jpg'
       }, {
-        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/ss_opt.jpg'
-      }, {
-        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/ssxz_opt.jpg'
+        name: "玫瑰部落",
+        image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/%E7%8E%AB%E7%91%B0%E9%83%A8%E8%90%BDwith%20name.jpg'
       }
     ];
-    return $scope.toHouseList = function() {
-      $log.debug("to /houses");
-      return $location.path("/houses");
+    return $scope.toHouseList = function(tribe) {
+      $log.debug("go to house list filter:tribe=" + tribe.name);
+      paramService.set(tribe);
+      return $location.path('/houses');
     };
   });
 

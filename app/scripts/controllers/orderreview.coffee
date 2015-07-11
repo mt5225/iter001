@@ -32,10 +32,12 @@ angular.module 'iter001App'
     $log.debug bookingArray
 
     totalPrice = 0
+    $log.debug "<-- day price list [ALL] in orderDetails -->"
+    $log.debug orderDetails.dayPrices
     for item in bookingArray #for each day from checkin day to checkout day
       dayprice = {}
       dayprice.day = item
-      if orderDetails.dayPrices[item]
+      if orderDetails.dayPrices[item]?
         dayprice.price = orderDetails.dayPrices[item]
         totalPrice = totalPrice + parseInt(dayprice.price)       
         bookingDayPriceArray.push(dayprice)
@@ -55,7 +57,7 @@ angular.module 'iter001App'
       promise = orderService.checkAvailable orderDetails
       promise.then((payload) ->
         $log.debug payload.data
-        if payload.data.available == 'false'
+        if payload.data.available is 'false'
           $scope.payMessage = "很抱歉，#{orderDetails.houseName}已经被人捷足先登了！"
           $scope.$evalAsync()
         else
@@ -69,7 +71,6 @@ angular.module 'iter001App'
           ), (errorPayload) ->
               $log.error 'failure to save submit Order', errorPayload
               $scope.payMessage = "订单提交失败!"
-
       )
 
     $scope.close = () ->

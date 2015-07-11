@@ -23,7 +23,7 @@ angular.module 'iter001App'
               //todo: mark as pay in progress
               //channel_type:  1. wx_pub  2. alipay_wap 3. alipay
               $.ajax({
-                url: "#{API_ENDPOINT}/api/pingplus?channel_type=wx_pub&user_openid=#{scope.openid}&total_price=1&order_number=#{scope.orderId}"
+                url: "#{API_ENDPOINT}/api/pingplus?channel_type=wx_pub&user_openid=#{scope.openid}&total_price=#{scope.totalPrice}&order_number=#{scope.orderId}"
               }).then(function(data) {
                 console.log(data);
                 charge = data;

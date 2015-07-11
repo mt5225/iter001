@@ -17,12 +17,14 @@
           return scope.validateMsg;
         }), function(msg) {
           var div;
-          msg = msg.split('|')[0];
-          $log.debug("something changed " + msg);
-          if (msg.length > 1) {
-            div = angular.element("<div>");
-            div.html("<script> Materialize.toast('" + msg + "', 2000); </script>");
-            return element.append(div);
+          if (msg != null) {
+            msg = msg.split('|')[0];
+            $log.debug("something changed " + msg);
+            if (msg.length > 1) {
+              div = angular.element("<div>");
+              div.html("<script> Materialize.toast('" + msg + "', 2000); </script>");
+              return element.append(div);
+            }
           }
         });
       }

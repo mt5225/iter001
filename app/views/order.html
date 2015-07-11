@@ -24,33 +24,44 @@
                 <h5 class="green-text text-darken-2">
                     <div class="col s4 left-align"> 客人数 </div>
                 <div class="col s2 left-align" ng-repeat="i in capacity()">
-                    <input name="numOfGuest" type="radio" value="{{i}}" id="{{i}}" ng-model="newOrder.numOfGuest"/> <label for="{{i}}">{{i}}</label></div>                   
+                    <input name="numOfGuest" type="radio" value="{{i}}" id="{{i}}" ng-model="newOrder.numOfGuest"/> 
+                    <label for="{{i}}">{{i}}</label>
+                </div>                   
                 </h5>
             </div>
             <div class="col s12">
                 <blockquote>
                     <h6 class="green-text text-darken-2">联系信息</h6>
-                 </blockquote>
-                    <div class="input-field col s6">
-                        <input id="cell" type="text" class="validate" ng-model="userInfo.realname">
+                </blockquote>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="realname" type="text" class="validate" ng-model="userInfo.realname">
                         <label class="active" for="cell">姓名</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="cell" type="text" class="validate" ng-model="userInfo.identity">
-                        <label class="active" for="cell">证件号</label>
+                        <input id="cell" type="text" class="validate" ng-model="userInfo.cell">
+                        <label class="active" for="cell">手机号</label>
                     </div>
-               
-                <div class="input-field col s6">
-                    <input id="cell" type="text" class="validate" ng-model="userInfo.cell">
-                    <label class="active" for="cell">手机号</label>
-                </div>
-                <div class="input-field col s6">
-                    <input id="email" type="text" class="validate" ng-model="userInfo.email">
-                    <label class="active" for="email">email</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="plan" type="text" class="validate" ng-model="newOrder.plan">
-                    <label class="active" for="plan">活动计划(如庆生，烧烤，etc.)</label>
+                    <div class="input-field col s4">
+                        <select id="identity_type" class="browser-default" ng-model="userInfo.identity_type">
+                            <option value="身份证">身份证</option>
+                            <option value="护照">护照</option>
+                            <option value="军官证">军官证</option>
+                        </select>
+                        <label class="active" for="identity_type">证件类型</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="identity" type="text" class="validate" ng-model="userInfo.identity">
+                        <label class="active" for="identity">证件号</label>
+                    </div>
+                    <div class="input-field col s5">
+                        <input id="email" type="text" class="validate" ng-model="userInfo.email">
+                        <label class="active" for="email">email</label>
+                    </div>
+                    <div class="input-field col s7">
+                        <input id="plan" type="text" class="validate" ng-model="newOrder.plan">
+                        <label class="active" for="plan">活动计划(如庆生，烧烤，etc.)</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,7 +82,7 @@
 <div ng-show="currentShow == 'warnning'">
     <div ng-include src="'views/instruction.html'"></div>
     <div class="fixbuttom row">
-        <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="exitApp()">
+        <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="close()">
             关 闭 ✕
         </button>
         <button class="waves-effect waves-light btn col s6 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderReview()">
