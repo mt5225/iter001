@@ -1,7 +1,10 @@
 <!-- make sure we have user info from wechat server -->
-<div wechatoauth="/frontpage"></div> 
+<div wechatoauth="/frontpage"></div>
+<div class="fixed-action-btn" style="top: 45px; left: 88%;">
+    <a class="btn-floating btn-large waves-effect waves-light red"><img class="fiticon" ng-src="http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/icon/search.png"/ ng-click="toSearchPage()"></a>
+</div>
 <div class="row">
-  <div ng-repeat="tribe in tribes" class="col s12">
-    <div class="waves-effect waves-light"><img ng-click="toHouseList(tribe)" ng-src="{{tribe.image}}"/></div>
-  </div>
+    <div ng-repeat="tribe in tribes" class="col s12">
+        <div class="waves-effect waves-light"><img ng-click="toHouseList(tribe)" ng-src="{{tribe.image}}" /></div>
+    </div>
 </div>

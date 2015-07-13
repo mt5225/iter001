@@ -73,12 +73,15 @@ angular.module('iter001App', [
     .when '/pay', #支付
       templateUrl: 'views/pay.html'
       controller: 'PayCtrl'
-    .when '/checkinsurvey',
+    .when '/checkinsurvey', #入住前问卷
       templateUrl: 'views/checkinsurvey.html'
       controller: 'CheckinsurveyCtrl'
-    .when '/loadwechat',
+    .when '/loadwechat', #通过 js-sdk查询 openid
       templateUrl: 'views/loadwechat.html'
       controller: 'LoadwechatCtrl'
+    .when '/checkavail', #查询可用营地
+      templateUrl: 'views/checkavail.html'
+      controller: 'CheckavailCtrl'
     .otherwise redirectTo: '/'
 
 

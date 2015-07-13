@@ -19,7 +19,11 @@
       ref = payload.data;
       for (i = 0, len = ref.length; i < len; i++) {
         item = ref[i];
-        if (tribe.name === item.tribe) {
+        if (tribe.name != null) {
+          if (tribe.name === item.tribe) {
+            records.push(item);
+          }
+        } else {
           records.push(item);
         }
       }

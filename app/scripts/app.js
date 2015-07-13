@@ -69,6 +69,9 @@
     }).when('/loadwechat', {
       templateUrl: 'views/loadwechat.html',
       controller: 'LoadwechatCtrl'
+    }).when('/checkavail', {
+      templateUrl: 'views/checkavail.html',
+      controller: 'CheckavailCtrl'
     }).otherwise({
       redirectTo: '/'
     });

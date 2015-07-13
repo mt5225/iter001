@@ -16,7 +16,10 @@ angular.module('iter001App')
     $log.debug payload
     records = []
     for item in payload.data
-      records.push item if tribe.name is item.tribe
+      if tribe.name?
+        records.push item if tribe.name is item.tribe
+      else
+        records.push item #list all house record if no tribe is selected.
     $scope.houses = records
     ), (errorPayload) ->
       $log.error 'failure loading house list', errorPayload

@@ -9,7 +9,7 @@
 ###
 angular.module('iter001App')
   .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService, paramService, uuidService, dayarray, wechat, surveycheck, updateuserinfo, verifyService) ->
-    if paramService.get().house #back from order review
+    if paramService.get().house #back from order review or available query
       $scope.newOrder = paramService.get()
       $scope.house = $scope.newOrder.house
       $scope.userInfo = $scope.newOrder.userInfo 

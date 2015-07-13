@@ -16,10 +16,11 @@ angular.module('iter001App')
       {name: "玫瑰部落", image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/%E7%8E%AB%E7%91%B0%E9%83%A8%E8%90%BDwith%20name.jpg'}
     ]
 
-    
-
     $scope.toHouseList = (tribe)->
       $log.debug "go to house list filter:tribe=#{tribe.name}"
       paramService.set tribe
       $location.path '/houses'
+
+    $scope.toSearchPage = () ->
+      $location.path '/checkavail'
 

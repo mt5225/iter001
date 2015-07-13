@@ -21,10 +21,13 @@
         image: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/%E7%8E%AB%E7%91%B0%E9%83%A8%E8%90%BDwith%20name.jpg'
       }
     ];
-    return $scope.toHouseList = function(tribe) {
+    $scope.toHouseList = function(tribe) {
       $log.debug("go to house list filter:tribe=" + tribe.name);
       paramService.set(tribe);
       return $location.path('/houses');
+    };
+    return $scope.toSearchPage = function() {
+      return $location.path('/checkavail');
     };
   });
 

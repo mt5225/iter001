@@ -136,52 +136,78 @@ a:visited {
     margin-top: -3em;
 }
 
-@keyframes spinner {
-    to {transform: rotate(360deg);}
-}
- 
-@-webkit-keyframes spinner {
-    to {-webkit-transform: rotate(360deg);}
-}
- 
-.spinner {
-  width: 120px;
-  height: 120px;
-  position: relative;
-  margin: 150px auto;
+.fixsearch {
+    height: 3em;
+    width: 100%;
+    position: fixed;
+    top: 100%;
+    margin-top: -3em;
 }
 
-.double-bounce1, .double-bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-animation: bounce 2.0s infinite ease-in-out;
-  animation: bounce 2.0s infinite ease-in-out;
+.fiticon {
+    max-width: 80%;
+    max-height: 80%;
+    margin: auto;
+    padding-top: 8px;
+    display: block;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spinner {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    margin: 150px auto;
+}
+
+.double-bounce1,
+.double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: bounce 2.0s infinite ease-in-out;
+    animation: bounce 2.0s infinite ease-in-out;
 }
 
 .double-bounce2 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
 }
 
 @-webkit-keyframes bounce {
-  0%, 100% { -webkit-transform: scale(0.0) }
-  50% { -webkit-transform: scale(1.0) }
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
 }
 
 @keyframes bounce {
-  0%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
-  } 50% { 
-    transform: scale(1.0);
-    -webkit-transform: scale(1.0);
-  }
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
 }
 /*get rid of roboto font*/
 

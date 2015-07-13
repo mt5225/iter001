@@ -1,0 +1,71 @@
+<div wechatoauth="/checkavail"></div>
+<div>
+    <div style="padding-left: 20px">
+        <div class="row">
+            <div class="col s6 left-align">
+                <blockquote>
+                    <h5 class="green-text text-darken-2">入住日期</h5>
+                    <input id="check-in" type="text" value="点这里" class="green-text text-darken-2" ng-model="checkInDay" readonly="readonly">
+                </blockquote>
+            </div>
+            <div class="col s6 right-align">
+                <blockquote>
+                    <h5 class="red-text red-darken-2">退房日期</h5>
+                    <input id="check-out" type="text" class="datepicker red-text text-darken-2 right-align" ng-model="checkOutDay" readonly="readonly">
+                </blockquote>
+            </div>
+        </div>
+        <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="seachAvail()">
+            查询空闲营地 ▷
+        </button>
+    </div>
+</div>
+<div ng-show="showResult" style="padding: 20px">
+    <table class="table striped">
+        <thead>
+            <tr class="grey darken-1 white-text">
+                <th>营地名</th>
+                <th>所属部落</th>
+                <th>查询结果</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="record in availableArray" ng-click="onRecordSelect(record)">
+            <tr id="row" ng-class="{'teal lighten-2': record.houseInfo.houseId === currentRecord.houseInfo.houseId}">
+                <td>{{record.houseInfo.houseName}}</td>
+                <td>{{record.houseInfo.tribeName}}</td>
+                <td>{{record.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col s4 offset-s1" ng-show="showClose">
+        <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="close()">
+            关 闭 ☒
+        </button>
+    </div>
+    <div class="col s4" ng-show="showGotoOrder">
+        <button class="waves-effect waves-light btn z-depth-2" ng-click="gotoOrderPage(currentRecord)">
+            预定{{currentRecord.houseInfo.houseName}} ▷
+        </button>
+    </div>
+</div>
+<div validationmessage></div>
+<script>
+$(function() {
+    $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
+    $('#check-in').datepicker({
+        minDate: new Date(),
+        onSelect: function() {
+            $(this).change();
+        }
+    });
+    $('#check-in').on('change', function(e) {
+        $("#check-out").datepicker({
+            minDate: new Date()
+        });
+    });
+});
+</script>
