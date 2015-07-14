@@ -29,7 +29,7 @@ angular.module('iter001App', [
     .when('/about', #关于
       templateUrl: 'views/about.html'
       controller: 'AboutCtrl')
-    .when '/order', #营地预定
+    .when '/order', #营地预订
       templateUrl: 'views/order.html'
       controller: 'OrderCtrl'
     .when '/myorder', #显示我的订单

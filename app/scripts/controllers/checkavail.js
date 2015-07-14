@@ -20,8 +20,13 @@
     $log.debug($scope.userInfo);
     $scope.validateMsg = '';
     initState();
+    $scope.hideResultTable = function() {
+      return initState();
+    };
     return $scope.seachAvail = function() {
       initState();
+      $log.debug($scope.checkInDay + " " + $scope.checkOutDay);
+      $log.debug($scope.userInfo);
       if (($scope.checkInDay == null) || ($scope.checkOutDay == null) || ($scope.userInfo == null)) {
         $scope.validateMsg = "请输入完整查询信息!|" + uuidService.generateUUID();
       } else if ($scope.checkOutDay <= $scope.checkInDay) {
@@ -61,7 +66,8 @@
             }
             $scope.availableArray = aArray;
             $log.debug(aArray);
-            return $scope.showResult = true;
+            $scope.showResult = true;
+            return $scope.showClose = true;
           });
         }));
       }
@@ -70,7 +76,6 @@
       };
       $scope.onRecordSelect = function(record) {
         $scope.currentRecord = record;
-        $scope.showClose = true;
         if (record.status === "空闲") {
           return $scope.showGotoOrder = true;
         } else {

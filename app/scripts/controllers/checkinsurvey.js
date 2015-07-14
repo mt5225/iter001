@@ -12,9 +12,9 @@
     $scope.$watch('userInfo', function() {
       var openid, promise;
       if ($scope.userInfo) {
-        openid = $scope.userInfo.openid;
-        $log.debug("found openid: " + openid);
-        promise = surveyservice.loadByOpenID(openid);
+        openid = $scope.userInfo.openid
+        $log.debug("found openid: " + openid)
+        promise = surveyservice.loadByOpenID(openid)
         return promise.then(function(payload) {
           var i, item, len, ref, surveys, t;
           surveys = [];
@@ -29,10 +29,10 @@
             t = sortByKey.sort(surveys, 'createDay');
             $log.debug(t);
             paramService.set(t[0]);
-            $log.debug("survey data loaded, redirect to survey page");
+            $log.debug "survey data loaded, redirect to survey page"
             return $location.path('/survey');
           } else {
-            return $scope.msg = "您尚未提交入住问卷，请通过[服务号］->[营地预定] 完成问卷";
+            return $scope.msg = "您尚未提交入住问卷，请通过[服务号］->[营地预订] 完成问卷"
           }
         });
       }

@@ -48,7 +48,7 @@ angular.module('iter001App')
       else if newOrder.checkInDay > newOrder.checkOutDay
         $scope.validateMsg = "入住日期不能晚于退房日期|" + uuidService.generateUUID()
       # else if checkIfDayNotContinious(newOrder)
-      #   $scope.validateMsg = "预定日期不连续，请重新选择|" + uuidService.generateUUID()
+      #   $scope.validateMsg = "预订日期不连续，请重新选择|" + uuidService.generateUUID()
       else if !userInfo.realname.length or !userInfo.identity.length or !userInfo.cell.length
         $scope.validateMsg = "请完整填写联系信息|" + uuidService.generateUUID()
       else if !userInfo.identity_type or !userInfo.identity

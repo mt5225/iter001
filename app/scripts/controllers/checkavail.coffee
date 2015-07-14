@@ -20,12 +20,16 @@ angular.module 'iter001App'
   $log.debug $scope.userInfo
   $scope.validateMsg = ''
   initState()
-
+  
+  $scope.hideResultTable = () ->
+    initState()
 
   #seach available house during checkInDay and checkOutDay
   #return availableArray
   $scope.seachAvail = () ->
     initState()
+    $log.debug "#{$scope.checkInDay} #{$scope.checkOutDay}"
+    $log.debug $scope.userInfo
     if !$scope.checkInDay? or !$scope.checkOutDay? or !$scope.userInfo?
       $scope.validateMsg = "请输入完整查询信息!|" + uuidService.generateUUID() 
     else if $scope.checkOutDay <= $scope.checkInDay
@@ -56,6 +60,7 @@ angular.module 'iter001App'
           $scope.availableArray = aArray
           $log.debug aArray
           $scope.showResult = true
+          $scope.showClose = true
       )  
 
     $scope.close = () ->
@@ -63,7 +68,6 @@ angular.module 'iter001App'
 
     $scope.onRecordSelect = (record) ->
       $scope.currentRecord = record
-      $scope.showClose = true
       if record.status is "空闲"
         $scope.showGotoOrder = true
       else
