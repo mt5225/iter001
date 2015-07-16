@@ -22,6 +22,10 @@ angular.module 'iter001App'
       if $scope.userInfo #wechat directive got the userInfo
         $log.debug "check if house is stored in paramService"
         house = paramService.get()
+        $scope.imageArray = {}
+        $scope.imageArray['house_pic'] = {_Index: 0, img: house.house_pic_list}
+        $scope.imageArray['owner_pic'] = {_Index: 0, img: house.owner_pic_list}
+        $scope.imageArray['facility_pic'] = {_Index: 0, img: house.facility_pic_list}
         $log.debug house
         $log.debug $routeParams.id 
         if house.id
@@ -54,6 +58,28 @@ angular.module 'iter001App'
         $log.error 'failure loading surveycheck detail', errorPayload
 
     $scope.close = () ->
-      $location.path "/houses"
+      $location.path "/"
+
+
+    # if a current image is the same as requested image
+    $scope.isActive = (kind,index) ->
+      $scope.imageArray[kind]._Index is index
+
+    # show prev image
+    $scope.showPrev = (kind)->
+      $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index - 1
+      $scope.imageArray[kind]._Index = ($scope.imageArray[kind].img.length - 1) if $scope.imageArray[kind]._Index < 0
+      $log.debug "prev #{$scope.imageArray[kind]._Index}"
+      return
+
+    # show next image
+    $scope.showNext = (kind)->
+      $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1
+      $scope.imageArray[kind]._Index = 0 if $scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)
+      $log.debug "next #{$scope.imageArray[kind]._Index}"
+      return
+
+
+
 
     

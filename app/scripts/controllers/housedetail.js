@@ -15,6 +15,19 @@
       if ($scope.userInfo) {
         $log.debug("check if house is stored in paramService");
         house = paramService.get();
+        $scope.imageArray = {};
+        $scope.imageArray['house_pic'] = {
+          _Index: 0,
+          img: house.house_pic_list
+        };
+        $scope.imageArray['owner_pic'] = {
+          _Index: 0,
+          img: house.owner_pic_list
+        };
+        $scope.imageArray['facility_pic'] = {
+          _Index: 0,
+          img: house.facility_pic_list
+        };
         $log.debug(house);
         $log.debug($routeParams.id);
         if (house.id) {
@@ -54,8 +67,25 @@
         return $log.error('failure loading surveycheck detail', errorPayload);
       });
     };
-    return $scope.close = function() {
-      return $location.path("/houses");
+    $scope.close = function() {
+      return $location.path("/");
+    };
+    $scope.isActive = function(kind, index) {
+      return $scope.imageArray[kind]._Index === index;
+    };
+    $scope.showPrev = function(kind) {
+      $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index - 1;
+      if ($scope.imageArray[kind]._Index < 0) {
+        $scope.imageArray[kind]._Index = $scope.imageArray[kind].img.length - 1;
+      }
+      $log.debug("prev " + $scope.imageArray[kind]._Index);
+    };
+    return $scope.showNext = function(kind) {
+      $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1;
+      if ($scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)) {
+        $scope.imageArray[kind]._Index = 0;
+      }
+      $log.debug("next " + $scope.imageArray[kind]._Index);
     };
   });
 

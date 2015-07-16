@@ -137,6 +137,7 @@ a:visited {
     position: fixed;
     top: 100%;
     margin-top: -3em;
+    z-index: 9999;
 }
 
 .fixsearch {
@@ -212,6 +213,13 @@ a:visited {
         -webkit-transform: scale(1.0);
     }
 }
+
+.otto {
+  color: white;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9
+}
+
 /*get rid of roboto font*/
 
 html {
