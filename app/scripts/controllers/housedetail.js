@@ -28,11 +28,10 @@
           _Index: 0,
           img: house.facility_pic_list
         };
-        $log.debug(house);
         $log.debug($routeParams.id);
         if (house.id) {
           return $scope.house = house;
-        } else if ($routeParams.id === void 0) {
+        } else if ($routeParams.id == null) {
           return $location.path("/houses");
         } else {
           promise = houseservice.getHouseById($routeParams.id);

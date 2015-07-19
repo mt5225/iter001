@@ -7,7 +7,7 @@
     * @description
     * fill userInfo by openid and put in scope
    */
-  angular.module('iter001App').directive('wechatoauth', function(API_ENDPOINT, APP_ID, wechat, $log, $location, $window, paramService) {
+  angular.module('iter001App').directive('wechatoauth', function(API_ENDPOINT, APP_ID, wechat, $log, $location, $window, paramService, $routeParams) {
     return {
       template: '',
       restrict: 'AE',
@@ -15,13 +15,13 @@
         var REDIRECT_URI, backurl, openid, promise, url;
         $log.debug("in wechatoauth directive");
         $log.debug("API_ENDPOINT = " + API_ENDPOINT);
-        if (wechat.getUserInfo().openid) {
+        if (wechat.getUserInfo().openid != null) {
           $log.debug("user info " + (wechat.getUserInfo().openid) + " cached, put into session");
           scope.userInfo = wechat.getUserInfo();
           return;
         }
         openid = $location.search().openid;
-        if (openid) {
+        if (openid != null) {
           $log.debug("load user info by openid " + openid);
           promise = wechat.loadUserInfo(openid);
           return promise.then(function(payload) {
@@ -31,9 +31,16 @@
           });
         } else {
           backurl = attrs['wechatoauth'];
-          if (backurl === 'housedetail') {
-            $log.debug(scope.houseId);
-            backurl = backurl + '/' + scope.houseId;
+          switch (backurl) {
+            case 'housedetail':
+              if ($routeParams.id != null) {
+                backurl = backurl + '/' + $routeParams.id;
+              }
+              break;
+            case 'myorder':
+              if ($routeParams.orderId != null) {
+                backurl = backurl + '/' + $routeParams.orderId;
+              }
           }
           $log.debug("goback url = " + backurl);
           REDIRECT_URI = $window.encodeURIComponent(API_ENDPOINT + "/api/useroauth");

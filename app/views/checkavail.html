@@ -1,54 +1,39 @@
 <div id='CheckavailCtrl' ng-controller="CheckavailCtrl">
     <div wechatoauth="/checkavail"></div>
-    <div>
-        <div style="padding-left: 5px" class="row">
-            <div class="col s6 left-align">
-                <blockquote>
-                    <h5 class="green-text text-darken-2">入住日期</h5>
-                    <input id="check-in" type="text" value="点这里" class="green-text text-darken-2" ng-model="checkInDay" readonly="readonly">
-                </blockquote>
-            </div>
-            <div class="col s6 left-align">
-                <blockquote>
-                    <h5 class="red-text red-darken-2">退房日期</h5>
-                    <input id="check-out" type="text" class="datepicker red-text text-darken-2 left-align" ng-model="checkOutDay" readonly="readonly">
-                </blockquote>
-            </div>
-            <!--             <button id="seachAvail" class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="seachAvail()">
-                查询空闲营地 ▷
-            </button> -->
+    <div style="padding-left: 5px;" class="row">
+        <div class="col s6 left-align">
+            <blockquote>
+                <h5 class="green-text text-darken-2">入住日期</h5>
+                <input id="check-in" type="text" value="点这里" class="green-text text-darken-2" ng-model="checkInDay" readonly="readonly">
+            </blockquote>
+        </div>
+        <div class="col s6 left-align">
+            <blockquote>
+                <h5 class="red-text red-darken-2">退房日期</h5>
+                <input id="check-out" type="text" class="datepicker red-text text-darken-2 left-align" ng-model="checkOutDay" readonly="readonly">
+            </blockquote>
         </div>
     </div>
     <div ng-show="showResult" style="padding-top: 0; padding-left: 10px; padding-right: 10px;">
-        <p> 点击空闲营地进入预订界面</p>
+        <p>点击预订,节假日房价有一定比例上浮, 以最终订单价为准</p>
         <table class="table striped">
             <thead>
                 <tr class="grey darken-1 white-text">
                     <th>营地名</th>
                     <th>所属部落</th>
+                    <th>平日均价</th>
                     <th>查询结果</th>
                 </tr>
             </thead>
             <tbody ng-repeat="record in availableArray" ng-click="onRecordSelect(record)">
-                <tr id="row" ng-class="{'teal lighten-2': record.houseInfo.houseId === currentRecord.houseInfo.houseId}">
+                <tr id="row" ng-class="{'teal lighten-2': record.houseInfo.houseId === currentRecord.houseInfo.houseId}" ng-click="gotoOrderPage(record)">
                     <td>{{record.houseInfo.houseName}}</td>
                     <td>{{record.houseInfo.tribeName}}</td>
+                    <td>{{record.houseInfo.average_price}}/每晚</td>
                     <td>{{record.status}}</td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="row">
-        <div class="col s4 offset-s1" ng-show="showClose">
-            <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="close()">
-                关 闭 ☒
-            </button>
-        </div>
-        <div class="col s4" ng-show="showGotoOrder">
-            <button class="waves-effect waves-light btn z-depth-2" ng-click="gotoOrderPage(currentRecord)">
-                预定{{currentRecord.houseInfo.houseName}} ▷
-            </button>
-        </div>
     </div>
     <div validationmessage></div>
 </div>

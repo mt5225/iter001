@@ -20,6 +20,11 @@
     $log.debug($scope.userInfo);
     $scope.validateMsg = '';
     initState();
+    $scope.$on('$routeChangeStart', function(scope, next, current) {
+      if (next.$$route.controller !== 'CheckavailCtrl') {
+        $('.hasDatepicker').datepicker('hide');
+      }
+    });
     $scope.hideResultTable = function() {
       return initState();
     };
@@ -42,6 +47,7 @@
             order.houseId = house.id;
             order.houseName = house.name;
             order.tribeName = house.tribe;
+            order.average_price = house.average_price;
             $log.debug(order);
             return orderService.checkAvailable(order);
           });
@@ -71,29 +77,21 @@
           });
         }));
       }
-      $scope.close = function() {
-        return $location.path('/frontpage');
-      };
-      $scope.onRecordSelect = function(record) {
+      return $scope.gotoOrderPage = function(record) {
         $scope.currentRecord = record;
         if (record.status === "空闲") {
-          return $scope.showGotoOrder = true;
-        } else {
-          return $scope.showGotoOrder = false;
+          return houseservice.getHouseById(record.houseInfo.houseId).then((function(payload) {
+            var newOrder;
+            newOrder = {};
+            newOrder.house = payload.data[0];
+            newOrder.userInfo = wechat.getUserInfo();
+            newOrder.checkInDay = $scope.checkInDay;
+            newOrder.checkOutDay = $scope.checkOutDay;
+            $log.debug(newOrder);
+            paramService.set(newOrder);
+            return $location.path("/order");
+          }));
         }
-      };
-      return $scope.gotoOrderPage = function(record) {
-        return houseservice.getHouseById(record.houseInfo.houseId).then((function(payload) {
-          var newOrder;
-          newOrder = {};
-          newOrder.house = payload.data[0];
-          newOrder.userInfo = wechat.getUserInfo();
-          newOrder.checkInDay = $scope.checkInDay;
-          newOrder.checkOutDay = $scope.checkOutDay;
-          $log.debug(newOrder);
-          paramService.set(newOrder);
-          return $location.path("/order");
-        }));
       };
     };
   });

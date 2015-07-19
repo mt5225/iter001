@@ -1,92 +1,91 @@
 <!doctype html>
 <html class="no-js">
+
 <head>
-  <meta charset="utf-8">
-  <title>漫生活</title>
-  <meta name="漫生活APP" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-  <!-- build:css(.) styles/vendor.css -->
-  <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
-  <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" />
-  <!-- endbower -->
-  <!-- endbuild -->
-  <!-- build:css(.tmp) styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
-  <!-- endbuild -->
+    <meta charset="utf-8">
+    <title>漫生活</title>
+    <meta name="漫生活APP" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
 </head>
+
 <body ng-app="iter001App">
-
-<!-- main application content start here -->
-<div class="container" id="main-contain">
-  <div ng-view=""></div>
-</div>
-
-
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-aria/angular-aria.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-messages/angular-messages.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/materialize/bin/materialize.js"></script>
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-<script src="bower_components/jquery-ui/ui/i18n/datepicker-zh-TW.js"></script>
-<script src="bower_components/lodash/lodash.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
-
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/about.js"></script>
-<script src="scripts/controllers/order.js"></script>
-<script src="scripts/controllers/myorder.js"></script>
-<script src="scripts/controllers/frontpage.js"></script>
-<script src="scripts/controllers/survey.js"></script>
-<script src="scripts/services/wechat.js"></script>
-<script src="scripts/directives/wechatsign.js"></script>
-<script src="scripts/controllers/share.js"></script>
-<script src="scripts/directives/wechatshare.js"></script>
-<script src="scripts/services/orderservice.js"></script>
-<script src="scripts/directives/wechatoauth.js"></script>
-<script src="scripts/controllers/artist.js"></script>
-<script src="scripts/controllers/volunteer.js"></script>
-<script src="scripts/controllers/study.js"></script>
-<script src="scripts/controllers/activity.js"></script>
-<script src="scripts/directives/wechatjsinit.js"></script>
-<script src="scripts/directives/wechatjsclosewindow.js"></script>
-<script src="scripts/controllers/partner.js"></script>
-<script src="scripts/services/houseservice.js"></script>
-<script src="scripts/controllers/housedetail.js"></script>
-<script src="scripts/services/availableroom.js"></script>
-<script src="scripts/directives/checkinout.js"></script>
-<script src="scripts/controllers/orderreview.js"></script>
-<script src="scripts/services/dayarray.js"></script>
-<script src="scripts/services/surveyservice.js"></script>
-<script src="scripts/directives/validationmessage.js"></script>
-<script src="scripts/services/surveycheck.js"></script>
-<script src="scripts/services/updateuserinfo.js"></script>
-<script src="scripts/controllers/pay.js"></script>
-<script src="scripts/directives/pay.js"></script>
-<script src="scripts/services/verifyservice.js"></script>
-<script src="scripts/controllers/checkinsurvey.js"></script>
-<script src="scripts/controllers/loadwechat.js"></script>
-<script src="scripts/controllers/checkavail.js"></script>
-<!-- endbuild -->
-
-<!-- wechat and ping++ includes -->
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script src="/static/pingpp_pay.js"></script>
-<!-- end wechat and ping++ includes-->
+    <!-- main application content start here -->
+    <div class="container" id="main-contain">
+        <div ng-view=""></div>
+    </div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/jquery-ui/ui/i18n/datepicker-zh-TW.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/order.js"></script>
+    <script src="scripts/controllers/myorder.js"></script>
+    <script src="scripts/controllers/frontpage.js"></script>
+    <script src="scripts/controllers/survey.js"></script>
+    <script src="scripts/services/wechat.js"></script>
+    <script src="scripts/directives/wechatsign.js"></script>
+    <script src="scripts/controllers/share.js"></script>
+    <script src="scripts/directives/wechatshare.js"></script>
+    <script src="scripts/services/orderservice.js"></script>
+    <script src="scripts/directives/wechatoauth.js"></script>
+    <script src="scripts/controllers/artist.js"></script>
+    <script src="scripts/controllers/volunteer.js"></script>
+    <script src="scripts/controllers/study.js"></script>
+    <script src="scripts/controllers/activity.js"></script>
+    <script src="scripts/directives/wechatjsinit.js"></script>
+    <script src="scripts/directives/wechatjsclosewindow.js"></script>
+    <script src="scripts/controllers/partner.js"></script>
+    <script src="scripts/services/houseservice.js"></script>
+    <script src="scripts/controllers/housedetail.js"></script>
+    <script src="scripts/services/availableroom.js"></script>
+    <script src="scripts/directives/checkinout.js"></script>
+    <script src="scripts/controllers/orderreview.js"></script>
+    <script src="scripts/services/dayarray.js"></script>
+    <script src="scripts/services/surveyservice.js"></script>
+    <script src="scripts/directives/validationmessage.js"></script>
+    <script src="scripts/services/surveycheck.js"></script>
+    <script src="scripts/services/updateuserinfo.js"></script>
+    <script src="scripts/controllers/pay.js"></script>
+    <script src="scripts/directives/pay.js"></script>
+    <script src="scripts/services/verifyservice.js"></script>
+    <script src="scripts/controllers/checkinsurvey.js"></script>
+    <script src="scripts/controllers/loadwechat.js"></script>
+    <script src="scripts/controllers/checkavail.js"></script>
+    <!-- endbuild -->
+    <!-- wechat and ping++ includes -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/static/pingpp_pay.js"></script>
+    <!-- end wechat and ping++ includes-->
+    <script type="text/javascript" name="baidu-tc-cerfication" data-appid="6447094" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
 </body>
+
 </html>

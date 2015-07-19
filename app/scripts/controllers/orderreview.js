@@ -8,8 +8,8 @@
     * # OrderreviewCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, paramService, dayarray, orderService) {
-    var bookingArray, bookingDayPriceArray, dayprice, i, item, len, orderDetails, re, totalPrice;
+  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, wechat, paramService, dayarray, orderService) {
+    var bookingArray, bookingDayPriceArray, dayprice, i, item, len, msgResvSuccess, orderDetails, re, totalPrice;
     $log.debug("===> OrderreviewCtrl <===");
     $scope.currentShow = "orderReview";
     if (!paramService.get().house) {
@@ -41,6 +41,41 @@
     $log.debug(bookingDayPriceArray);
     $scope.bookingDayPriceArray = bookingDayPriceArray;
     $scope.totalPrice = totalPrice;
+    msgResvSuccess = function(orderDetails) {
+      var msg;
+      msg = {};
+      msg.touser = orderDetails.userInfo.openid;
+      msg.template_name = "resv_success";
+      msg.url = "http://qa.aghchina.com.cn:9000/#/myorder/" + orderDetails.orderId + "?openid=" + msg.touser;
+      msg.data = {
+        first: {
+          value: "您有最新订单，请及时处理"
+        },
+        keyword1: {
+          value: "" + orderDetails.house.tribe
+        },
+        keyword2: {
+          value: "" + orderDetails.houseName
+        },
+        keyword3: {
+          value: "入住日期" + orderDetails.checkInDay + "，退房日期" + orderDetails.checkOutDay
+        },
+        keyword4: {
+          value: "1"
+        },
+        keyword5: {
+          value: orderDetails.totalPrice + "元"
+        },
+        remark: {
+          value: "订单号为" + orderDetails.orderId + ",请在30分钟内完成支付，否则订单会被系统自动取消， 订单处理及查看详情请点击本消息"
+        }
+      };
+      for (item in msg.data) {
+        msg.data[item].color = "#01579b";
+      }
+      $log.debug(msg);
+      return wechat.sendMessage(msg);
+    };
     $scope.submitOrder = function() {
       var promise;
       $scope.currentShow = "submitResult";
@@ -59,8 +94,9 @@
           return promise.then((function(payload) {
             $scope.submitResult = "success";
             $log.debug(payload);
-            $scope.payMessage = "恭喜您，［" + $scope.house.name + "］预订成功，订单号为" + payload.data['orderId'] + " 。请点击右下方支付按钮，在30分钟内完成支付，否则您的预订可能被取消哦。 另外您还可以通过漫生活服务号[客服]->[订单查询] 查看订单状态。亲，我们[" + $scope.house.name + "]见！";
-            return $scope.$evalAsync();
+            $scope.payMessage = "感谢预定" + $scope.house.name + "，订单号为" + payload.data['orderId'] + " 。请在30分钟内完成支付，否则预订可能被取消哦。 您还可以通过漫生活服务号[客服]->[订单查询]完成支付及查看订单状态或。亲，" + $scope.house.name + "见！";
+            $scope.$evalAsync();
+            return msgResvSuccess(orderDetails);
           }), function(errorPayload) {
             $log.error('failure to save submit Order', errorPayload);
             return $scope.payMessage = "订单提交失败!";
@@ -79,5 +115,39 @@
       return $location.path("/pay");
     };
   });
+
+
+  /*
+  {
+             "touser":"o82BBs8XqUSk84CNOA3hfQ0kNS90",
+             "template_name":"resv_success",
+             "url":"http://qa.aghchina.com.cn:9000/#/myorder",
+             "data":{
+                     "first": {
+                         "value":"恭喜您预定喜乐屋成功"
+                     },
+                     "hotelName" : {
+                         "value": "土屋 喜乐窝",
+                         "color":"#01579b"
+                     },
+                     "roomName" : {
+                         "value": "喜乐窝",
+                         "color":"#01579b"
+                     },
+                     "pay" : {
+                         "value": "2010",
+                         "color":"#01579b"
+                     },
+                     "date" : {
+                         "value": "2015-09-08",
+                         "color":"#01579b"
+                     },
+                     "remark" : {
+                         "value": "订单号为 xxxx，请在30分钟内完成支付，否则订单会被系统自动取消",
+                          "color":"#01579b"
+                     }
+             }
+         }
+   */
 
 }).call(this);

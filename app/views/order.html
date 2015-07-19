@@ -4,30 +4,28 @@
     </div>
     <div class="col s7 offset-s1 left-align">
         <h4 class="header red-text textlighten-2">{{house.name}}</h4>
-        <p>请完整填写预订信息</p>
+        <p>请完整填写预订信息及联系方式</p>
     </div>
     <div style="padding-left: 20px">
         <div class="row">
             <div class="col s6 left-align">
                 <blockquote>
-                    <h5 class="green-text text-darken-2">入住日期</h5>
+                    <p class="green-text text-darken-2">入住日期</p>
                     <input id="check-in" type="text" value="点这里" class="green-text text-darken-2" ng-model="newOrder.checkInDay" readonly="readonly">
                 </blockquote>
             </div>
-            <div class="col s6 right-align">
+            <div class="col s6 left-align">
                 <blockquote>
-                    <h5 class="red-text red-darken-2">退房日期</h5>
-                    <input id="check-out" type="text" class="datepicker red-text text-darken-2 right-align" ng-model="newOrder.checkOutDay" readonly="readonly">
+                    <p class="red-text red-darken-2">退房日期</p>
+                    <input id="check-out" type="text" class="datepicker red-text text-darken-2 left-align" ng-model="newOrder.checkOutDay" readonly="readonly">
                 </blockquote>
             </div>
             <div class="col s12">
-                <h5 class="green-text text-darken-2">
-                    <div class="col s4 left-align"> 客人数 </div>
+                <div class="col s2 green-text text-darken-2">人数</div>
                 <div class="col s2 left-align" ng-repeat="i in capacity()">
-                    <input name="numOfGuest" type="radio" value="{{i}}" id="{{i}}" ng-model="newOrder.numOfGuest"/> 
+                    <input name="numOfGuest" type="radio" value="{{i}}" id="{{i}}" ng-model="newOrder.numOfGuest" />
                     <label for="{{i}}">{{i}}</label>
-                </div>                   
-                </h5>
+                </div>
             </div>
             <div class="col s12">
                 <blockquote>
@@ -65,11 +63,11 @@
                 </div>
             </div>
         </div>
-        <div class="fixbuttom">
-            <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="close()">
+        <div class="fixbuttom row">
+            <!--             <button class="waves-effect waves-light btn col s4 offset-s1" ng-click="close()">
                 关 闭 ✕
-            </button>
-            <button class="waves-effect waves-light btn col s4 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderCheck(newOrder, house, userInfo)">
+            </button> -->
+            <button class="waves-effect waves-light btn col s12 red lighten-2 white-text" ng-click="orderCheck(newOrder, house, userInfo)">
                 下一步 ▷
             </button>
         </div>
@@ -81,12 +79,14 @@
 </div>
 <div ng-show="currentShow == 'warnning'">
     <div ng-include src="'views/instruction.html'"></div>
-    <div class="fixbuttom row">
-        <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="close()">
+    <div style="padding-left: 10px">
+        <div class="fixbuttom row">
+            <!--         <button class="waves-effect waves-light btn col s4 offset-s1" ng-click="close()">
             关 闭 ✕
-        </button>
-        <button class="waves-effect waves-light btn col s6 offset-s2 red lighten-2 white-text z-depth-2" ng-click="orderReview()">
-            开启{{house.name}}体验 ▷
-        </button>
+        </button> -->
+            <button class="waves-effect waves-light btn col s12 red lighten-2 white-text" ng-click="orderReview()">
+                开启体验 ▷
+            </button>
+        </div>
     </div>
 </div>

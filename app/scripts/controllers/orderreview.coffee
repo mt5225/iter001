@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'OrderreviewCtrl', ($scope, $log, $location, paramService, dayarray, orderService) ->
+  .controller 'OrderreviewCtrl', ($scope, $log, $location, wechat, paramService, dayarray, orderService) ->
     $log.debug "===> OrderreviewCtrl <==="
     $scope.currentShow = "orderReview"
 
@@ -46,6 +46,27 @@ angular.module 'iter001App'
     $scope.bookingDayPriceArray = bookingDayPriceArray
     $scope.totalPrice = totalPrice
 
+    #notify user resv success
+    msgResvSuccess = (orderDetails) ->
+      msg = {}
+      msg.touser = orderDetails.userInfo.openid
+      msg.template_name = "resv_success"
+      msg.url = "http://qa.aghchina.com.cn:9000/#/myorder/#{orderDetails.orderId}?openid=#{msg.touser}"
+      msg.data = 
+        first: value: "您有最新订单，请及时处理"
+        keyword1: value: "#{orderDetails.house.tribe}"
+        keyword2: value: "#{orderDetails.houseName}"
+        keyword3: value: "入住日期#{orderDetails.checkInDay}，退房日期#{orderDetails.checkOutDay}"
+        keyword4: value: "1"
+        keyword5: value: "#{orderDetails.totalPrice}元"
+        remark: value: "订单号为#{orderDetails.orderId},请在30分钟内完成支付，否则订单会被系统自动取消， 订单处理及查看详情请点击本消息"
+      #add some color
+      for item of msg.data
+        msg.data[item].color = "#01579b"
+      $log.debug msg
+      wechat.sendMessage msg
+
+
     #todo, get pay result
     $scope.submitOrder = ()->
       $scope.currentShow = "submitResult"
@@ -66,8 +87,9 @@ angular.module 'iter001App'
           promise.then ((payload) ->
             $scope.submitResult = "success"
             $log.debug payload
-            $scope.payMessage = "恭喜您，［#{$scope.house.name}］预订成功，订单号为#{payload.data['orderId']} 。请点击右下方支付按钮，在30分钟内完成支付，否则您的预订可能被取消哦。 另外您还可以通过漫生活服务号[客服]->[订单查询] 查看订单状态。亲，我们[#{$scope.house.name}]见！"
+            $scope.payMessage = "感谢预定#{$scope.house.name}，订单号为#{payload.data['orderId']} 。请在30分钟内完成支付，否则预订可能被取消哦。 您还可以通过漫生活服务号[客服]->[订单查询]完成支付及查看订单状态或。亲，#{$scope.house.name}见！"
             $scope.$evalAsync()
+            msgResvSuccess(orderDetails)
           ), (errorPayload) ->
               $log.error 'failure to save submit Order', errorPayload
               $scope.payMessage = "订单提交失败!"
@@ -83,6 +105,39 @@ angular.module 'iter001App'
       paramService.set orderDetails
       $location.path "/pay"
 
+
+###
+{
+           "touser":"o82BBs8XqUSk84CNOA3hfQ0kNS90",
+           "template_name":"resv_success",
+           "url":"http://qa.aghchina.com.cn:9000/#/myorder",
+           "data":{
+                   "first": {
+                       "value":"恭喜您预定喜乐屋成功"
+                   },
+                   "hotelName" : {
+                       "value": "土屋 喜乐窝",
+                       "color":"#01579b"
+                   },
+                   "roomName" : {
+                       "value": "喜乐窝",
+                       "color":"#01579b"
+                   },
+                   "pay" : {
+                       "value": "2010",
+                       "color":"#01579b"
+                   },
+                   "date" : {
+                       "value": "2015-09-08",
+                       "color":"#01579b"
+                   },
+                   "remark" : {
+                       "value": "订单号为 xxxx，请在30分钟内完成支付，否则订单会被系统自动取消",
+                        "color":"#01579b"
+                   }
+           }
+       }
+###
 
       
 

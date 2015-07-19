@@ -21,6 +21,12 @@ angular.module 'iter001App'
   $scope.validateMsg = ''
   initState()
   
+  #watch for navigation event 
+  $scope.$on '$routeChangeStart', (scope, next, current) ->
+    if next.$$route.controller isnt 'CheckavailCtrl'
+      $('.hasDatepicker').datepicker('hide')
+    return
+
   $scope.hideResultTable = () ->
     initState()
 
@@ -44,6 +50,7 @@ angular.module 'iter001App'
           order.houseId = house.id
           order.houseName = house.name
           order.tribeName = house.tribe
+          order.average_price = house.average_price
           $log.debug order
           orderService.checkAvailable order
         $q.all(promises)
@@ -63,28 +70,21 @@ angular.module 'iter001App'
           $scope.showClose = true
       )  
 
-    $scope.close = () ->
-      $location.path '/frontpage'
-
-    $scope.onRecordSelect = (record) ->
+    $scope.gotoOrderPage = (record) ->
       $scope.currentRecord = record
       if record.status is "空闲"
-        $scope.showGotoOrder = true
-      else
-        $scope.showGotoOrder = false
+        houseservice.getHouseById record.houseInfo.houseId
+        .then ((payload) ->
+          newOrder = {}
+          newOrder.house = payload.data[0]
+          newOrder.userInfo = wechat.getUserInfo()
+          newOrder.checkInDay = $scope.checkInDay
+          newOrder.checkOutDay = $scope.checkOutDay
+          $log.debug newOrder
+          paramService.set newOrder
+          $location.path "/order"
+        )
 
-    $scope.gotoOrderPage = (record) ->
-      houseservice.getHouseById record.houseInfo.houseId
-      .then ((payload) ->
-        newOrder = {}
-        newOrder.house = payload.data[0]
-        newOrder.userInfo = wechat.getUserInfo()
-        newOrder.checkInDay = $scope.checkInDay
-        newOrder.checkOutDay = $scope.checkOutDay
-        $log.debug newOrder
-        paramService.set newOrder
-        $location.path "/order"
-      )
 
 
 

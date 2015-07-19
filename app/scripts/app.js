@@ -22,6 +22,9 @@
     }).when('/order', {
       templateUrl: 'views/order.html',
       controller: 'OrderCtrl'
+    }).when('/myorder/:orderId', {
+      templateUrl: 'views/myorder.html',
+      controller: 'MyorderCtrl'
     }).when('/myorder', {
       templateUrl: 'views/myorder.html',
       controller: 'MyorderCtrl'

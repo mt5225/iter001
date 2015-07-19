@@ -70,7 +70,6 @@ angular.module 'iter001App'
           /////////////////
           $(function() {
             $.datepicker.setDefaults($.datepicker.regional["zh-TW"]);
-
             $("#check-in").datepicker({
               beforeShowDay: function(date){
                 var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
@@ -126,6 +125,29 @@ angular.module 'iter001App'
               //////////////////////////////////////////
             });
           });
+          //hide datepicker if user click blank space
+          $(document).on("click", function(e) {
+              var elem = $(e.target);
+              if (!elem.hasClass("hasDatepicker") &&
+                  !elem.hasClass("ui-datepicker") &&
+                  !elem.hasClass("ui-icon") &&
+                  !elem.hasClass("ui-datepicker-next") &&
+                  !elem.hasClass("ui-datepicker-prev") &&
+                  !$(elem).parents(".ui-datepicker").length) {
+                  $('.hasDatepicker').datepicker('hide');
+              }
+          });
+          $("#check-in").on('blur', function(e) {
+            var checkExist = setInterval(function() {
+              if ($('#check-out').length) {
+                clearInterval(checkExist);
+                if($('#check-out').val() == '')
+                { 
+                  $("#check-out").datepicker("show");                  
+                }
+              }
+            }, 100); // check every 100ms
+            });
         </script>
         """
         element.append div

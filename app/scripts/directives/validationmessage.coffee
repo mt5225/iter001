@@ -20,7 +20,7 @@ angular.module 'iter001App'
           $log.debug "something changed #{msg}"
           if msg.length > 1
             div = angular.element "<div>"
-            div.html "<script> Materialize.toast('#{msg}', 2000); </script>"
+            div.html "<script> Materialize.toast('#{msg}', 3000, 'fixtop'); </script>"
             element.append div
   )
           

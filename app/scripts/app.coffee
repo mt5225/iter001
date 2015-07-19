@@ -32,6 +32,9 @@ angular.module('iter001App', [
     .when '/order', #营地预订
       templateUrl: 'views/order.html'
       controller: 'OrderCtrl'
+    .when '/myorder/:orderId', #提取订单并进入支付
+      templateUrl: 'views/myorder.html'
+      controller: 'MyorderCtrl'
     .when '/myorder', #显示我的订单
       templateUrl: 'views/myorder.html'
       controller: 'MyorderCtrl'
@@ -62,7 +65,7 @@ angular.module('iter001App', [
     .when '/housedetail/:id', #营地详细01
       templateUrl: 'views/housedetail.html'
       controller: 'HousedetailCtrl'
-    .when '/housedetail', #营地详细02，如果无法读取house id，则重定向到 /wxoauth
+    .when '/housedetail', #营地详细02，如果无法读取house id，则重定向到 /houses
       templateUrl: 'views/housedetail.html'
       controller: 'HousedetailCtrl'
     .when '/orderreview', #订单的review界面

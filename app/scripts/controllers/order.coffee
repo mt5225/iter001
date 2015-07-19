@@ -15,6 +15,7 @@ angular.module('iter001App')
       $scope.userInfo = $scope.newOrder.userInfo 
     else #from house list
       $scope.newOrder = {}
+      $scope.newOrder.numOfGuest = 2
       $scope.house = paramService.get()
       $scope.userInfo = wechat.getUserInfo() 
 
@@ -31,12 +32,11 @@ angular.module('iter001App')
     
     $scope.validateMsg = ''
 
-    # checkIfDayNotContinious = (newOrder) ->
-    #   bookingArray = dayarray.getDayArray(newOrder.checkInDay, newOrder.checkOutDay)
-    #   for item in bookingArray 
-    #     if !$scope.dayPrices[item]
-    #       return true
-    #   return false
+    #watch for navigation event 
+    $scope.$on '$routeChangeStart', (scope, next, current) ->
+      if next.$$route.controller isnt 'OrderCtrl'
+        $('.hasDatepicker').datepicker('hide')
+      return
 
     $scope.orderCheck = (newOrder, house, userInfo) ->
       if !newOrder.checkInDay
@@ -45,10 +45,6 @@ angular.module('iter001App')
         $scope.validateMsg = "请指定退房日期|" + uuidService.generateUUID()
       else if !newOrder.numOfGuest
         $scope.validateMsg = "请指定客人数|" + uuidService.generateUUID()
-      else if newOrder.checkInDay > newOrder.checkOutDay
-        $scope.validateMsg = "入住日期不能晚于退房日期|" + uuidService.generateUUID()
-      # else if checkIfDayNotContinious(newOrder)
-      #   $scope.validateMsg = "预订日期不连续，请重新选择|" + uuidService.generateUUID()
       else if !userInfo.realname.length or !userInfo.identity.length or !userInfo.cell.length
         $scope.validateMsg = "请完整填写联系信息|" + uuidService.generateUUID()
       else if !userInfo.identity_type or !userInfo.identity

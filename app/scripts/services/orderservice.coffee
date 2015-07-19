@@ -23,6 +23,16 @@ angular.module('iter001App')
           $log.debug "[order service] failed to get order records from #{openid}"
           $log.debug data
 
+      queryOrderById: (orderId) ->
+        $log.debug "query order record by id #{orderId}"
+        $http(
+          method: 'GET'
+          url: "#{API_ENDPOINT}/api/orders/orderid/#{orderId}"
+        ).success((data) ->
+          $log.debug data
+        ).error (data) ->
+          $log.debug "[order service] failed to get order record from #{orderId}"
+          $log.debug data
 
       #Save order to backend database
       saveOrder: (order) ->

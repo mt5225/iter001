@@ -1,10 +1,6 @@
 <div>
     <blockquote>
-        <h5 class="red-text textlighten-2">{{house['name']}} 预定详单 &nbsp;&nbsp;&nbsp;&nbsp;         
-            <button ng-show="currentShow == 'orderReview'" class="waves-effect waves-light btn right-align" ng-click="close()">
-              取 消 ✕
-            </button>
-        </h5>
+        <h5 class="red-text textlighten-2">{{house['name']}} 预定详单 </h5>
     </blockquote>
     <ul class="collection">
         <li class="collection-item">
@@ -23,16 +19,12 @@
         <h6>温馨提示：订单提交后，请尽快完成支付，如果30分钟内未完成支付，您的预订可能被取消。目前支持微信，支付宝，银联等手机端支付方式，您也可以通过银行转账的方式，账号为招商银行 888-8888-8888-88888。 漫生活客服电话: 010-12345678 </h6>
     </blockquote>
     <div class="row">
-            <div class="col s2 offset-s1">
-                <button class="waves-effect waves-light btn" ng-click="back()">
-                    ← 上一步
-                </button>
-            </div>
-            <div class="col s3 offset-s3">
-                <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="submitOrder()">
-                    提交订单 √
-                </button>
-            </div>      
+        <button class="waves-effect waves-light btn col s4 offset-s1" ng-click="back()">
+            ← 上一步
+        </button>
+        <button class="waves-effect waves-light btn red lighten-2 white-text col s4 offset-s2" ng-click="submitOrder()">
+            提交订单 √
+        </button>
     </div>
 </div>
 <div ng-show="currentShow == 'submitResult'">
@@ -40,15 +32,11 @@
         <p>{{payMessage}}</p>
     </blockquote>
     <div class="row">
-        <div class="col s5 offset-s1">
-            <button class="waves-effect waves-light btn" ng-click="close()">
-                关闭窗口 ✕
-            </button>
-        </div>
-        <div class="col s5 offset-s1" ng-show="submitResult == 'success'">
-            <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="gotoPay()">
-                去支付 ▷
-            </button>
-        </div>
+        <button class="waves-effect waves-light btn col s4 offset-s1" ng-click="close()">
+            一会再说 ✕
+        </button>
+        <button ng-show="submitResult == 'success'" class="waves-effect waves-light btn red lighten-2 white-text col s4 offset-s2" ng-click="gotoPay()">
+            去支付 ▷
+        </button>
     </div>
 </div>

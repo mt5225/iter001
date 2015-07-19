@@ -15,7 +15,7 @@
     $log.debug("api endpoint = " + API_ENDPOINT);
     return {
       loadUserInfo: function(openid) {
-        if (userInfo.openid) {
+        if (userInfo.openid != null) {
           $log.debug("[wechat service] cached user info");
           return userInfo;
         }
@@ -50,6 +50,22 @@
             $log.debug(data);
           });
         }
+      },
+      sendMessage: function(body) {
+        return $http({
+          method: 'POST',
+          url: API_ENDPOINT + "/api/sendmsg",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(body),
+          dataType: 'json'
+        }).success(function(data) {
+          return $log.info("[wechat service] wechat message success");
+        }).error(function(data) {
+          $log.error("[wechat service] failed to send wechat message");
+          return $log.debug(data);
+        });
       }
     };
   });

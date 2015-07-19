@@ -14,7 +14,7 @@ angular.module('iter001App')
 
   return {
     loadUserInfo: (openid)->
-      if userInfo.openid
+      if userInfo.openid?
         $log.debug "[wechat service] cached user info"
         return userInfo
       #get user info from openid
@@ -48,4 +48,17 @@ angular.module('iter001App')
           $log.debug "[wechat service] failed to get sign message at #{API_ENDPOINT}/api/sign"
           $log.debug data
           return
+
+    sendMessage: (body) ->
+      $http(
+          method: 'POST'
+          url: "#{API_ENDPOINT}/api/sendmsg"
+          headers: {'Content-Type': 'application/json'}
+          data: JSON.stringify(body)
+          dataType: 'json'
+        ).success((data) ->
+          $log.info "[wechat service] wechat message success"
+        ).error (data) ->
+          $log.error "[wechat service] failed to send wechat message"
+          $log.debug data
   }

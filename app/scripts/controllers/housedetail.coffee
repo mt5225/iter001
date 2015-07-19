@@ -26,11 +26,10 @@ angular.module 'iter001App'
         $scope.imageArray['house_pic'] = {_Index: 0, img: house.house_pic_list}
         $scope.imageArray['owner_pic'] = {_Index: 0, img: house.owner_pic_list}
         $scope.imageArray['facility_pic'] = {_Index: 0, img: house.facility_pic_list}
-        $log.debug house
         $log.debug $routeParams.id 
         if house.id
           $scope.house = house
-        else if $routeParams.id == undefined
+        else if !$routeParams.id?
           $location.path "/houses"
         else
           promise = houseservice.getHouseById $routeParams.id

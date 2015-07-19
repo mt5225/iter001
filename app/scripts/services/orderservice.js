@@ -23,6 +23,18 @@
           return $log.debug(data);
         });
       },
+      queryOrderById: function(orderId) {
+        $log.debug("query order record by id " + orderId);
+        return $http({
+          method: 'GET',
+          url: API_ENDPOINT + "/api/orders/orderid/" + orderId
+        }).success(function(data) {
+          return $log.debug(data);
+        }).error(function(data) {
+          $log.debug("[order service] failed to get order record from " + orderId);
+          return $log.debug(data);
+        });
+      },
       saveOrder: function(order) {
         var re, userInfo;
         userInfo = wechat.getUserInfo();

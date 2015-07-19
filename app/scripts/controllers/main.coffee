@@ -12,14 +12,17 @@ angular.module('iter001App')
 .controller 'MainCtrl', ($scope, $location, $log, flash, houseservice, paramService) ->
   promise = houseservice.getHouseList()
   promise.then ((payload) ->
-    tribe = paramService.get()
+    param = paramService.get()
     $log.debug payload
     records = []
     for item in payload.data
-      if tribe.name?
-        records.push item if tribe.name is item.tribe
+      if param.tribe?  #back from housedetail
+        records.push item if param.tribe is item.tribe
+      else if param.name? #from frontpage
+        records.push item if param.name is item.tribe
       else
-        records.push item #list all house record if no tribe is selected.
+        $location.path "/"
+    $log.debug records
     $scope.houses = records
     ), (errorPayload) ->
       $log.error 'failure loading house list', errorPayload
