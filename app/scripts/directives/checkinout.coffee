@@ -121,6 +121,8 @@ angular.module 'iter001App'
                  }
                 });
               $("#check-out").val('');
+              //notify ng-model about value change
+              $("#check-out").trigger('input');
               $("#check-out").datepicker("refresh");
               //////////////////////////////////////////
             });

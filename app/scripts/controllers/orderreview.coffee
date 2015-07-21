@@ -67,8 +67,9 @@ angular.module 'iter001App'
       wechat.sendMessage msg
 
 
-    #todo, get pay result
+    #get pay result
     $scope.submitOrder = ()->
+      paramService.set {submitOrder: true}
       $scope.currentShow = "submitResult"
       orderDetails.houseId = orderDetails.house['id']
       orderDetails.houseName = orderDetails.house['name']

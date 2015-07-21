@@ -9,7 +9,9 @@
 ###
 angular.module('iter001App')
   .controller 'OrderCtrl', ($scope, $location, flash, $log, orderService, paramService, uuidService, dayarray, wechat, surveycheck, updateuserinfo, verifyService) ->
-    if paramService.get().house #back from order review or available query
+    if paramService.get().submitOrder?
+      $location.path '/'
+    else if paramService.get().house #back from order review or available query
       $scope.newOrder = paramService.get()
       $scope.house = $scope.newOrder.house
       $scope.userInfo = $scope.newOrder.userInfo 
@@ -39,21 +41,21 @@ angular.module('iter001App')
       return
 
     $scope.orderCheck = (newOrder, house, userInfo) ->
-      if !newOrder.checkInDay
+      if !newOrder.checkInDay?.length
         $scope.validateMsg = "请指定入住日期|" + uuidService.generateUUID()
-      else if !newOrder.checkOutDay
+      else if !newOrder.checkOutDay?.length
         $scope.validateMsg = "请指定退房日期|" + uuidService.generateUUID()
-      else if !newOrder.numOfGuest
+      else if !newOrder.numOfGuest?
         $scope.validateMsg = "请指定客人数|" + uuidService.generateUUID()
-      else if !userInfo.realname.length or !userInfo.identity.length or !userInfo.cell.length
+      else if !userInfo.realname?.length or !userInfo.identity?.length or !userInfo.cell?.length
         $scope.validateMsg = "请完整填写联系信息|" + uuidService.generateUUID()
-      else if !userInfo.identity_type or !userInfo.identity
+      else if !userInfo.identity_type.length or !userInfo.identity.length
         $scope.validateMsg = "请选择证件类型并填写相应证件号|" + uuidService.generateUUID()
       else if userInfo.identity_type is "身份证" and !verifyService.isIdCardNo(userInfo.identity).status
         $scope.validateMsg =  verifyService.isIdCardNo(userInfo.identity).msg + "|" + uuidService.generateUUID()
-      else if !userInfo.cell or not verifyService.isPhone(userInfo.cell)
+      else if !userInfo.cell?.length or not verifyService.isPhone(userInfo.cell)
         $scope.validateMsg = "请输入合法手机号|" + uuidService.generateUUID()
-      else if !userInfo.email or not verifyService.isEmail(userInfo.email)
+      else if !userInfo.email?.length or not verifyService.isEmail(userInfo.email)
         $scope.validateMsg = "请输入合法email地址|" + uuidService.generateUUID()
      
       else # update user info then goto orderreview page or survey page

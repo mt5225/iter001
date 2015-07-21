@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    body,
+    html,
+    #allmap {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+    }
+    
+    #golist {
+        display: none;
+    }
+    
+    @media (max-device-width: 780px) {
+        #golist {
+            display: block !important;
+        }
+    }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?type=quick&ak=Iouhge8lzIkBuK2zZ428ukN6&v=1.0"></script>
+    <title>漫生活</title>
+</head>
+
+<body>
+    <div id="allmap"></div>
+</body>
+
+</html>
+<script type="text/javascript">
+var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+})(window.location.search.substr(1).split('&'));
+
+var query = {}
+switch (qs['tribe']) {
+  case '石舍香樟': 
+    query['location'] = '杭州石舍香樟营地民宿';
+    query['point'] = new BMap.Point(119.733148, 29.648014);
+    query['point1'] = new BMap.Point(119.733148, 29.649014);
+    break;
+  case '芦茨土屋':
+    query['location'] = '桐庐芦茨土屋';
+    query['point'] = new BMap.Point(119.681079,29.692601);
+    query['point1'] = new BMap.Point(119.681079,29.693601);
+    break;
+}
+
+// 百度地图API功能
+var map = new BMap.Map("allmap");
+var point = query['point'];
+map.centerAndZoom(point, 16);
+map.addControl(new BMap.ZoomControl()); //添加地图缩放控件
+
+var marker1 = new BMap.Marker(point); //创建标注
+map.addOverlay(marker1); // 将标注添加到地图中
+
+var opts = {
+    width: 280, // 信息窗口宽度
+    height: 60, // 信息窗口高度
+    title: qs['tribe'] // 信息窗口标题
+}
+var infoWindow = new BMap.InfoWindow("点击红色标志查询驾车路线", opts); // 创建信息窗口对象
+var point1 = query['point1']
+map.openInfoWindow(infoWindow, point1); //开启信息窗口
+marker1.addEventListener("click", function() {
+    var start = {
+        name: ""
+    }
+    var end = {
+        name: query['location']
+    }
+    var opts = {
+        mode: BMAP_MODE_DRIVING
+    }
+    var ss = new BMap.RouteSearch();
+    ss.routeCall(start, end, opts);
+});
+var closeinfo = function(){
+  map.closeInfoWindow(infoWindow);
+};
+setTimeout(closeinfo, 3000);
+</script>

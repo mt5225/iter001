@@ -78,6 +78,9 @@
     };
     $scope.submitOrder = function() {
       var promise;
+      paramService.set({
+        submitOrder: true
+      });
       $scope.currentShow = "submitResult";
       orderDetails.houseId = orderDetails.house['id'];
       orderDetails.houseName = orderDetails.house['name'];
