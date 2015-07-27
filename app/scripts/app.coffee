@@ -10,7 +10,6 @@
 ###
 
 angular.module('iter001App', [
-  'ngAnimate'
   'ngAria'
   'ngCookies'
   'ngMessages'
@@ -18,6 +17,7 @@ angular.module('iter001App', [
   'ngRoute'
   'ngSanitize'
   'ngTouch'
+  'ngAnimate'
 ]).config ($routeProvider) ->
   $routeProvider
     .when '/',
@@ -93,9 +93,9 @@ angular.module('iter001App', [
 # .constant 'APP_ID', 'wxe2bdce057501817d'
 # .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
-
 # #dev Setting
 .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+.constant 'WEB_ENDPOINT', 'http://qa.aghchina.com.cn:9000'
 .constant 'APP_ID', 'wxe2bdce057501817d'
 .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
@@ -191,7 +191,4 @@ angular.module('iter001App', [
       div.html "<script> Materialize.toast('"+ msg + "', 3000); </script>"
       element.append div
 ]
-
-
-
 

@@ -9,7 +9,7 @@
    *
    * Main module of the application.
    */
-  angular.module('iter001App', ['ngAnimate', 'ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch']).config(function($routeProvider) {
+  angular.module('iter001App', ['ngAria', 'ngCookies', 'ngMessages', 'ngResource', 'ngRoute', 'ngSanitize', 'ngTouch', 'ngAnimate']).config(function($routeProvider) {
     return $routeProvider.when('/', {
       templateUrl: 'views/loadwechat.html',
       controller: 'LoadwechatCtrl'
@@ -78,7 +78,7 @@
     }).otherwise({
       redirectTo: '/'
     });
-  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').constant('APP_ID', 'wxe2bdce057501817d').constant('APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90').factory('flash', function($rootScope) {
+  }).constant('API_ENDPOINT', 'http://qa.aghchina.com.cn:3000').constant('WEB_ENDPOINT', 'http://qa.aghchina.com.cn:9000').constant('APP_ID', 'wxe2bdce057501817d').constant('APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90').factory('flash', function($rootScope) {
     var currentMessage, queue;
     queue = [];
     currentMessage = '';

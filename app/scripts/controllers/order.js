@@ -56,8 +56,8 @@
         return $scope.validateMsg = "请选择证件类型并填写相应证件号|" + uuidService.generateUUID();
       } else if (userInfo.identity_type === "身份证" && !verifyService.isIdCardNo(userInfo.identity).status) {
         return $scope.validateMsg = verifyService.isIdCardNo(userInfo.identity).msg + "|" + uuidService.generateUUID();
-      } else if (!((ref5 = userInfo.cell) != null ? ref5.length : void 0) || !verifyService.isPhone(userInfo.cell)) {
-        return $scope.validateMsg = "请输入合法手机号|" + uuidService.generateUUID();
+      } else if (!((ref5 = userInfo.cell) != null ? ref5.length : void 0)) {
+        return $scope.validateMsg = "请输入手机号|" + uuidService.generateUUID();
       } else if (!((ref6 = userInfo.email) != null ? ref6.length : void 0) || !verifyService.isEmail(userInfo.email)) {
         return $scope.validateMsg = "请输入合法email地址|" + uuidService.generateUUID();
       } else {

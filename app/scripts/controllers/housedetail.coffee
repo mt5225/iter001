@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'HousedetailCtrl', ($scope, paramService, $routeParams, houseservice, wechat, $location, $log, surveycheck) ->
+  .controller 'HousedetailCtrl', ($scope, paramService, $routeParams, houseservice, wechat, $location, $log, surveycheck, $interval) ->
           
     #link from house list, house info in stored in session
     # if paramService.get().name
@@ -59,6 +59,8 @@ angular.module 'iter001App'
     $scope.close = () ->
       $location.path "/"
 
+    $scope.getHouse = () ->
+      $scope.house
 
     # if a current image is the same as requested image
     $scope.isActive = (kind,index) ->
@@ -76,7 +78,16 @@ angular.module 'iter001App'
       $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1
       $scope.imageArray[kind]._Index = 0 if $scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)
       $log.debug "next #{$scope.imageArray[kind]._Index}"
-      return
+
+    goNext = () ->
+      for item in ['house_pic', 'owner_pic', 'facility_pic']
+        console.log item
+        if $scope.imageArray? and $scope.imageArray[item]? and $scope.imageArray[item].img
+          $scope.showNext item
+
+    $scope.$watch 'imageArray', ->
+      if $scope.imageArray? 
+        $interval goNext,3000,0
 
 
 

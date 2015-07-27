@@ -1,4 +1,4 @@
-<div wechatoauth="volunteer"></div> 
+<div wechatoauth="volunteer"></div>
 <div ng-show="currentShow == 'summary'">
     <blockquote>
         <h5>招募之总起</h5>
@@ -56,7 +56,7 @@
 </div>
 <div ng-show="currentShow == 'survey'">
     <div class="row">
-        <div class="col s3 pinned">
+        <!--         <div class="col s3 pinned">
             <ul class="section table-of-contents">
                 <li><a href="#section000">前言</a></li>
                 <li><a href="#section001">选择</a></li>
@@ -67,11 +67,11 @@
                     </button>
                 </li>
             </ul>
-        </div>
-        <div class="col s9 offset-s3 right-align">
+        </div> -->
+        <div class="col s12 left-align">
             <div id="section000" class="scrollspy section">
-                <p class="caption flow-text left-align">
-                    这里，远离城市的喧嚣。这里，宁静和谐，亲近自然。呼吸新鲜的空气，享受劳作带来的乐趣。漫生活里的小伙伴，热情、纯粹、充满梦想。我们专注、努力，为了梦想而执着。
+                <p class="caption flow-text left-align" style="padding-left: 20px">
+                    &nbsp;&nbsp;&nbsp;&nbsp;这里，远离城市的喧嚣。这里，宁静和谐，亲近自然。呼吸新鲜的空气，享受劳作带来的乐趣。漫生活里的小伙伴，热情、纯粹、充满梦想。我们专注、努力，为了梦想而执着。
                 </p>
             </div>
             <div id="section001" class="scrollspy section">
@@ -82,15 +82,15 @@
                         <br/>
                         <div class="row left-align">
                             <div class="col s4" style="padding: 0">
-                                <input name="q1" type="radio" id="q1answer1" ng-model="survey.question1" value="是"/>
+                                <input name="q1" type="radio" id="q1answer1" ng-model="survey.question1" value="是" />
                                 <label for="q1answer1">是</label>
                             </div>
                             <div class="col s4" style="padding: 0">
-                                <input name="q1" type="radio" id="q1answer2" ng-model="survey.question1" value="可能"/>
+                                <input name="q1" type="radio" id="q1answer2" ng-model="survey.question1" value="可能" />
                                 <label for="q1answer2">可能</label>
                             </div>
                             <div class="col s4" style="padding: 0">
-                                <input name="q1" type="radio" id="q1answer3" ng-model="survey.question1" value="否"/>
+                                <input name="q1" type="radio" id="q1answer3" ng-model="survey.question1" value="否" />
                                 <label for="q1answer3">否</label>
                             </div>
                         </div>
@@ -100,15 +100,15 @@
                         <br/>
                         <div class="row left-align">
                             <div class="col s4" style="padding: 0">
-                                <input name="q2" type="radio" id="q2answer1" ng-model="survey.question2" value="是"/>
+                                <input name="q2" type="radio" id="q2answer1" ng-model="survey.question2" value="是" />
                                 <label for="q2answer1">是</label>
                             </div>
                             <div class="col s4" style="padding: 0">
-                                <input name="q2" type="radio" id="q2answer2" ng-model="survey.question2" value="可能"/>
+                                <input name="q2" type="radio" id="q2answer2" ng-model="survey.question2" value="可能" />
                                 <label for="q2answer2">可能</label>
                             </div>
                             <div class="col s4" style="padding: 0">
-                                <input name="q2" type="radio" id="q2answer3" ng-model="survey.question2" value="否"/>
+                                <input name="q2" type="radio" id="q2answer3" ng-model="survey.question2" value="否" />
                                 <label for="q2answer3">否</label>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                             <label>
                                 过程
                                 <input type="checkbox" ng-model="survey.question3" ng-false-value="'过程'" ng-true-value="'结果'">
-                                <span class="lever"></span> 结果 
+                                <span class="lever"></span> 结果
                             </label>
                         </div>
                     </li>
@@ -138,15 +138,15 @@
                         <br/>
                         <div class="row left-align">
                             <div class="col s4" style="padding: 0">
-                                <input name="q5" type="radio" id="q5answer1" ng-model="survey.question5" value="能"/>
+                                <input name="q5" type="radio" id="q5answer1" ng-model="survey.question5" value="能" />
                                 <label for="q5answer1">能</label>
                             </div>
                             <div class="col s4" style="padding: 0">
-                                <input name="q5" type="radio" id="q5answer2" ng-model="survey.question5" value="不能"/>
+                                <input name="q5" type="radio" id="q5answer2" ng-model="survey.question5" value="不能" />
                                 <label for="q5answer2">不能</label>
                             </div>
                             <div class="col s4" style="padding: 0">
-                                <input name="q5" type="radio" id="q5answer3" ng-model="survey.question5" value="不一定"/>
+                                <input name="q5" type="radio" id="q5answer3" ng-model="survey.question5" value="不一定" />
                                 <label for="q5answer3">不一定</label>
                             </div>
                         </div>
@@ -203,10 +203,18 @@
             </div>
         </div>
     </div>
+    <div validationmessage></div>
+    <div style="padding-left: 10px" class="row">
+        <div class="fixbuttom">
+            <button class="col s12 btn waves-effect waves-light" type="submit" ng-click="finishSurvey()" name="action">提交
+            </button>
+        </div>
+    </div>
     <script>
-    $(document).ready(function() {
-        $('.scrollspy').scrollSpy();
-    });
+    // $(document).ready(function() {
+    //     $('.scrollspy').scrollSpy();
+    // });
+    //
     </script>
 </div>
 <div ng-show="currentShow == 'finish'">
@@ -216,7 +224,7 @@
     <div class="row">
         <div class="col s4 offset-s1 left-align">
             <button class="waves-effect waves-light btn" ng-click="closeWindow()">
-                关闭窗口 ☒ 
+                关闭窗口 ☒
             </button>
         </div>
         <div class="col s4 offset-s1 left-align">
@@ -226,5 +234,4 @@
         </div>
     </div>
 </div>
-
 <div ng-include src="'views/footer.html'"></div>

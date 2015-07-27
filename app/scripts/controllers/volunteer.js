@@ -8,7 +8,7 @@
     * # VolunteerCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('VolunteerCtrl', function($scope, $log, flash, $location, surveyservice, wechat) {
+  angular.module('iter001App').controller('VolunteerCtrl', function($scope, $log, flash, $location, surveyservice, wechat, uuidService) {
     $scope.currentShow = 'survey';
     $scope.survey = {
       type: '志愿者',
@@ -21,6 +21,19 @@
       return $scope.$evalAsync();
     };
     $scope.finishSurvey = function() {
+      var k, questionsAnswered;
+      questionsAnswered = 0;
+      for (k in $scope.survey) {
+        if (k.indexOf('question') > -1) {
+          questionsAnswered++;
+        }
+      }
+      $log.debug("questions answered = " + questionsAnswered);
+      if (questionsAnswered <= 8) {
+        $scope.validateMsg = "请完成所有问题|" + uuidService.generateUUID();
+        $log.debug($scope.validateMsg);
+        return;
+      }
       $scope.currentShow = 'finish';
       $scope.$evalAsync();
       $scope.survey.userinfo = wechat.getUserInfo();

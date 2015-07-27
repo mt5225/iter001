@@ -8,7 +8,7 @@
     * # MyorderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams) {
+  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams, WEB_ENDPOINT, houseservice) {
     var dataloaded, msgOrderCancel;
     dataloaded = false;
     $scope.orderId = null;
@@ -20,13 +20,29 @@
         if ($routeParams.orderId != null) {
           promise = orderService.queryOrderById($routeParams.orderId);
           return promise.then(function(payload) {
-            paramService.set(payload.data[0]);
-            return $location.path("pay");
+            var orderDetails;
+            orderDetails = payload.data[0];
+            return houseservice.getHouseById(orderDetails.houseId).then((function(payload) {
+              orderdetail.house = payload.data[0];
+              paramService.set(orderDetails);
+              return $location.path("pay");
+            }));
           });
         } else {
           promise = orderService.queryOrder(openid);
           return promise.then(function(payload) {
-            $scope.orders = payload.data;
+            var sortedArray;
+            sortedArray = payload.data;
+            sortedArray.sort(function(t1, t2) {
+              switch (t1.createDay > t2.createDay) {
+                case true:
+                  return -1;
+                case false:
+                  return 1;
+              }
+            });
+            $scope.orders = sortedArray;
+            $log.debug(sortedArray);
             dataloaded = true;
             return $log.debug("order data loaded");
           });
@@ -64,17 +80,22 @@
       }
       return show;
     };
-    $scope.gotoPay = function(orderdetail) {
-      $log.debug(orderdetail);
-      paramService.set(orderdetail);
-      return $location.path("/pay");
+    $scope.gotoPay = function(orderDetails) {
+      var promise;
+      $log.debug(orderDetails);
+      promise = houseservice.getHouseById(orderDetails.houseId);
+      return promise.then((function(payload) {
+        orderDetails.house = payload.data[0];
+        paramService.set(orderDetails);
+        return $location.path("/pay");
+      }));
     };
     msgOrderCancel = function(orderDetails) {
       var item, msg;
       msg = {};
       msg.touser = $scope.userInfo.openid;
       msg.template_name = "order_cancel";
-      msg.url = "http://qa.aghchina.com.cn:9000/#/myorder?openid=" + msg.touser;
+      msg.url = WEB_ENDPOINT + "/#/myorder?openid=" + msg.touser;
       msg.data = {
         first: {
           value: "您的" + orderDetails.houseName + "订单已取消"

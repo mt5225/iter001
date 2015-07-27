@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-.controller 'MyorderCtrl', ($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams) ->
+.controller 'MyorderCtrl', ($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams, WEB_ENDPOINT, houseservice) ->
 
     dataloaded = false
     $scope.orderId = null
@@ -20,13 +20,24 @@ angular.module('iter001App')
         if $routeParams.orderId?  #go direct to pay 
           promise = orderService.queryOrderById $routeParams.orderId
           promise.then((payload) ->
-            paramService.set payload.data[0]
-            $location.path "pay"
+            orderDetails = payload.data[0]
+            houseservice.getHouseById(orderDetails.houseId)
+            .then ((payload) -> 
+              orderdetail.house = payload.data[0]
+              paramService.set orderDetails
+              $location.path "pay"
+            )
           )
         else #list all orders by user TODO: filtering
           promise = orderService.queryOrder openid
           promise.then((payload) ->
-            $scope.orders = payload.data
+            sortedArray = payload.data
+            sortedArray.sort (t1, t2) ->
+              switch t1.createDay > t2.createDay
+                when true then return -1
+                when false then return 1
+            $scope.orders = sortedArray
+            $log.debug sortedArray
             dataloaded = true
             $log.debug "order data loaded"
           )
@@ -58,10 +69,14 @@ angular.module('iter001App')
         show = orderdetail.status not in ["订单取消", "预订成功"] 
       show
 
-    $scope.gotoPay = (orderdetail) ->
-      $log.debug orderdetail
-      paramService.set orderdetail
-      $location.path "/pay"
+    $scope.gotoPay = (orderDetails) ->
+      $log.debug orderDetails
+      promise = houseservice.getHouseById orderDetails.houseId
+      promise.then ((payload) -> 
+        orderDetails.house = payload.data[0]
+        paramService.set orderDetails
+        $location.path "/pay"
+      )
 
 
     #notify user order cancel
@@ -69,7 +84,7 @@ angular.module('iter001App')
       msg = {}
       msg.touser = $scope.userInfo.openid
       msg.template_name = "order_cancel"
-      msg.url = "http://qa.aghchina.com.cn:9000/#/myorder?openid=#{msg.touser}"
+      msg.url = "#{WEB_ENDPOINT}/#/myorder?openid=#{msg.touser}"
       msg.data = 
         first: value: "您的#{orderDetails.houseName}订单已取消"
         HotelName: value: "#{orderDetails.houseName}"

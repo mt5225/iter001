@@ -1,4 +1,4 @@
-<div>
+<div id="PayCtrl" ng-controller="PayCtrl">
     <blockquote>
         <h5 class="red-text textlighten-2"> 这是测试系统，不作为合同或支付凭据</h5>
         <h5 class="red-text textlighten-2"> 你需要支付人民币 {{totalPrice}} 元，请选择支付方式</h5>
@@ -36,5 +36,5 @@
     <blockquote>
         <h6>温馨提示：您可以通过访问 <b>漫生活服务号</b> &nbsp;[客服]->[订单查询] &nbsp;进入到支付环节。 <br>如果30分钟内未完成支付，您的预订可能被取消。<br>您也可以通过银行转账的方式完成支付，账号为招商银行 888-8888-8888-88888。<br>漫生活客服电话: 010-12345678 </h6>
     </blockquote>
+    <div pay="{{totalPrice}}" openid="{{openid}}"></div>
 </div>
-<div pay="{{totalPrice}}" openid="{{openid}}"></div>

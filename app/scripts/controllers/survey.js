@@ -30,11 +30,11 @@
         }
       }
       $log.debug("questions answered = " + questionsAnswered);
-      if (questionsAnswered >= 9) {
+      if (questionsAnswered >= 8) {
         if (updateOldSurvey) {
           delete survey['_id'];
           surveyservice.save(survey);
-          return $location.path('/');
+          return $location.path('/close');
         } else {
           survey.userinfo = userInfo;
           survey.type = "入住";

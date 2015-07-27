@@ -8,22 +8,26 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'PayCtrl', ($scope, $log, paramService, $location) ->
+  .controller 'PayCtrl', ($scope, $log, paramService, $location, wechat, houseservice) ->
     $log.debug "===> PayCtrl <==="
     orderDetails = paramService.get()
     $log.debug orderDetails
-    #$scope.totalPrice = orderDetails.totalPrice
+    $scope.orderDetails = orderDetails
     $scope.openid = orderDetails.wechatOpenID
     $scope.orderId = orderDetails.orderId
     $scope.totalPrice = orderDetails.totalPrice
-    #$scope.totalPrice = 1     
-    # $scope.openid = "osIpsuPO6L9VIJAH0SIRjzz97Ww0"
-    # $scope.orderId = "eiew-2eu3"
-    
     $scope.activatePayDirective = false
 
     $scope.pay = () ->
+      $log.debug "activate Pay Directive"
       $scope.activatePayDirective = true
 
     $scope.close = () ->
       $location.path "/close"
+
+    $scope.notifyUser = (msgStr) ->     
+      msg = JSON.parse msgStr
+      for item of msg.data
+        msg.data[item].color = "#01579b"
+      $log.debug msg
+      wechat.sendMessage msg

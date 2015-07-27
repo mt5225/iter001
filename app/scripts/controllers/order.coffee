@@ -53,8 +53,8 @@ angular.module('iter001App')
         $scope.validateMsg = "请选择证件类型并填写相应证件号|" + uuidService.generateUUID()
       else if userInfo.identity_type is "身份证" and !verifyService.isIdCardNo(userInfo.identity).status
         $scope.validateMsg =  verifyService.isIdCardNo(userInfo.identity).msg + "|" + uuidService.generateUUID()
-      else if !userInfo.cell?.length or not verifyService.isPhone(userInfo.cell)
-        $scope.validateMsg = "请输入合法手机号|" + uuidService.generateUUID()
+      else if !userInfo.cell?.length #[remove validation for cellphone number]or not verifyService.isPhone(userInfo.cell)
+        $scope.validateMsg = "请输入手机号|" + uuidService.generateUUID()
       else if !userInfo.email?.length or not verifyService.isEmail(userInfo.email)
         $scope.validateMsg = "请输入合法email地址|" + uuidService.generateUUID()
      

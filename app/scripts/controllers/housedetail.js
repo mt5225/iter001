@@ -8,7 +8,8 @@
     * # HousedetailCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('HousedetailCtrl', function($scope, paramService, $routeParams, houseservice, wechat, $location, $log, surveycheck) {
+  angular.module('iter001App').controller('HousedetailCtrl', function($scope, paramService, $routeParams, houseservice, wechat, $location, $log, surveycheck, $interval) {
+    var goNext;
     $scope.$watch('userInfo', function() {
       var house, promise;
       $log.debug("userInfo value changed!");
@@ -69,6 +70,9 @@
     $scope.close = function() {
       return $location.path("/");
     };
+    $scope.getHouse = function() {
+      return $scope.house;
+    };
     $scope.isActive = function(kind, index) {
       return $scope.imageArray[kind]._Index === index;
     };
@@ -79,13 +83,33 @@
       }
       $log.debug("prev " + $scope.imageArray[kind]._Index);
     };
-    return $scope.showNext = function(kind) {
+    $scope.showNext = function(kind) {
       $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1;
       if ($scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)) {
         $scope.imageArray[kind]._Index = 0;
       }
-      $log.debug("next " + $scope.imageArray[kind]._Index);
+      return $log.debug("next " + $scope.imageArray[kind]._Index);
     };
+    goNext = function() {
+      var i, item, len, ref, results;
+      ref = ['house_pic', 'owner_pic', 'facility_pic'];
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        item = ref[i];
+        console.log(item);
+        if (($scope.imageArray != null) && ($scope.imageArray[item] != null) && $scope.imageArray[item].img) {
+          results.push($scope.showNext(item));
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+    return $scope.$watch('imageArray', function() {
+      if ($scope.imageArray != null) {
+        return $interval(goNext, 3000, 0);
+      }
+    });
   });
 
 }).call(this);

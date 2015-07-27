@@ -29,12 +29,12 @@ angular.module 'iter001App'
         questionsAnswered++ if k.indexOf('question') > -1
       $log.debug "questions answered = #{questionsAnswered}"
 
-      if questionsAnswered >= 9 
+      if questionsAnswered >= 8
         if updateOldSurvey
           #note we just create an new one, while keep the old old as history
           delete survey['_id']
           surveyservice.save survey
-          $location.path '/'
+          $location.path '/close'
         else  
           survey.userinfo = userInfo
           survey.type = "入住"

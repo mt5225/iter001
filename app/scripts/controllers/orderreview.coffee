@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module 'iter001App'
-  .controller 'OrderreviewCtrl', ($scope, $log, $location, wechat, paramService, dayarray, orderService) ->
+  .controller 'OrderreviewCtrl', ($scope, $log, $location, wechat, paramService, dayarray, orderService, WEB_ENDPOINT) ->
     $log.debug "===> OrderreviewCtrl <==="
     $scope.currentShow = "orderReview"
 
@@ -51,7 +51,7 @@ angular.module 'iter001App'
       msg = {}
       msg.touser = orderDetails.userInfo.openid
       msg.template_name = "resv_success"
-      msg.url = "http://qa.aghchina.com.cn:9000/#/myorder/#{orderDetails.orderId}?openid=#{msg.touser}"
+      msg.url = "#{WEB_ENDPOINT}/#/myorder/#{orderDetails.orderId}?openid=#{msg.touser}"
       msg.data = 
         first: value: "您有最新订单，请及时处理"
         keyword1: value: "#{orderDetails.house.tribe}"

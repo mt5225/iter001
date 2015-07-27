@@ -1,6 +1,7 @@
 <div id="HousedetailCtrl" ng-controller="HousedetailCtrl">
     <!-- make sure we have user info from wechat server -->
     <div wechatoauth="housedetail"></div>
+    <div wechatshare></div>
     <div>
         <div class="card" style="padding-top: 0; top:0;">
             <blockquote>
@@ -39,7 +40,7 @@
         </p>
         <div class="card" style="padding-top: 0; top:0;">
             <div class="waves-effect waves-light card-image">
-                <img ng-repeat="item in house.house_pic_list" ng-swipe-left="showNext('house_pic')" ng-swipe-right="showPrev('house_pic')" ng-show="isActive('house_pic',$index)" ng-click="showNext('house_pic')" ng-src="{{item}}" />
+                <img id="house_pic" class="hide-fade" ng-repeat="item in house.house_pic_list" ng-swipe-left="showNext('house_pic')" ng-swipe-right="showPrev('house_pic')" ng-show="isActive('house_pic',$index)" ng-click="showNext('house_pic')" ng-src="{{item}}" />
                 <span class="card-title"><h2 class="otto">&gt;</h2></span>
             </div>
         </div>
@@ -64,7 +65,7 @@
         <div class="card" style="padding-top: 0; top:0;">
             <div class="waves-effect waves-light card-image">
                 <img ng-repeat="item in house.facility_pic_list" ng-swipe-left="showNext('facility_pic')" ng-swipe-right="showPrev('facility_pic')" ng-show="isActive('facility_pic',$index)" ng-click="showNext('facility_pic')" ng-src="{{item}}" />
-                <span class="card-title"><h2 class="otto">&gt;</h2></span> 
+                <span class="card-title"><h2 class="otto">&gt;</h2></span>
             </div>
         </div>
         <div style="padding-left: 10px">
@@ -73,7 +74,7 @@
                 路线</a>
                 <a class="waves-effect waves-light btn red lighten-2 white-text col s10" ng-click="next()">
                 预订{{house.name}} ▷
-        </a>
+                </a>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
     * # OrderreviewCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, wechat, paramService, dayarray, orderService) {
+  angular.module('iter001App').controller('OrderreviewCtrl', function($scope, $log, $location, wechat, paramService, dayarray, orderService, WEB_ENDPOINT) {
     var bookingArray, bookingDayPriceArray, dayprice, i, item, len, msgResvSuccess, orderDetails, re, totalPrice;
     $log.debug("===> OrderreviewCtrl <===");
     $scope.currentShow = "orderReview";
@@ -46,7 +46,7 @@
       msg = {};
       msg.touser = orderDetails.userInfo.openid;
       msg.template_name = "resv_success";
-      msg.url = "http://qa.aghchina.com.cn:9000/#/myorder/" + orderDetails.orderId + "?openid=" + msg.touser;
+      msg.url = WEB_ENDPOINT + "/#/myorder/" + orderDetails.orderId + "?openid=" + msg.touser;
       msg.data = {
         first: {
           value: "您有最新订单，请及时处理"

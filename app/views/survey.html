@@ -1,17 +1,13 @@
 <div class="row" ng-controller="SurveyCtrl">
-    <div class="col s3 pinned">
+<!--     <div class="col s3 pinned">
         <ul class="section table-of-contents">
             <li><a href="#section000">前言</a></li>
             <li><a href="#section001">旅行</a></li>
             <li><a href="#section002">营地</a></li>
             <li><a href="#section003">愿望</a></li>
-            <li>
-                <button class="btn waves-effect waves-light" type="submit" ng-click="FinishSurvey()" name="action">提交
-                </button>
-            </li>
         </ul>
-    </div>
-    <div class="col s9 offset-s3 right-align">
+    </div> -->
+    <div class="col s11 offset-s1 left-align">
         <div id="section000" class="scrollspy section">
             <p class="caption flow-text left-align">Hi {{nickname}},这里，犹如一片世外桃源。宁静，远离城市的喧嚣；质朴，回归原始的生活。我们希望每一个来到这里的人，都能找到最纯真的自己，释放心灵最强大的能量。通过这份问卷，我们也希望可以更了解亲爱的你。
             </p>
@@ -39,16 +35,46 @@
                 </li>
                 <li class="collection-item">
                     2. 对于您来说，旅行的意义在于什么？
+                    <p>
+                        <input name="question2" type="radio" value="慢慢品味，放松休闲" id="question2_1" ng-model="survey.question2" />
+                        <label for="question2_1">慢慢品味，放松休闲</label>
+                    </p>
+                    <p>
+                        <input name="question2" type="radio" value="陪伴家人，体味温情" id="question2_2" ng-model="survey.question2" />
+                        <label for="question2_2">陪伴家人，体味温情</label>
+                    </p>
+                    <p>
+                        <input name="question2" type="radio" value="走马观花，开开眼界" id="question2_3" ng-model="survey.question2" />
+                        <label for="question2_3">走马观花，开开眼界</label>
+                    </p>
+                    <p>
+                        <input name="question2" type="radio" value="走马观花，开开眼界" id="question2_4" ng-model="survey.question2" />
+                        <label for="question2_4">离群索居，思考人生</label>
+                    </p>
                     <div class="input-field">
-                        <input id="people" type="text" class="validate" ng-model="survey.question2">
-                        <label for="people" class="active">写在这儿</label>
+                        <input id="travel" type="text" class="validate" ng-model="survey.question2">
+                        <label for="travel" class="active">其他</label>
                     </div>
                 </li>
                 <li class="collection-item">
-                    3. 您觉得我们的营地应该是怎样的？房间价位多少是您能接受的？
-                    <div class="input-field">
-                        <input id="think" type="text" class="validate" ng-model="survey.question3">
-                        <label for="think" class="active">写在这儿</label>
+                    3. 您觉得我们的营地应该是怎样的？每晚的房间价位多少是您能接受的？
+                    <div class="row left-align">
+                        <div class="col s6" style="padding: 0">
+                            <input name="question3" type="radio" value="少于1000元" id="question3_1" ng-model="survey.question3" />
+                            <label for="question3_1">少于1000元</label>
+                        </div>
+                        <div class="col s6" style="padding: 0">
+                            <input name="question3" type="radio" value="1000元~2000元" id="question3_2" ng-model="survey.question3" />
+                            <label for="question3_2">1000元~2000元</label>
+                        </div>
+                        <div class="col s6" style="padding: 0">
+                            <input name="question3" type="radio" value="2000元~3000元" id="question3_3" ng-model="survey.question3" />
+                            <label for="question3_3">2000元~3000元</label>
+                        </div>
+                        <div class="col s6" style="padding: 0">
+                            <input name="question3" type="radio" value="超过3000元" id="question3_4" ng-model="survey.question3" />
+                            <label for="question3_4">超过3000元</label>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -113,7 +139,7 @@
                         </div>
                         <div class="col s4" style="padding: 0">
                             <input type="checkbox" class="filled-in" id="question5.fishing" ng-model="survey.question5.fishing" />
-                            <label for="question5.checkbox">垂钓</label>
+                            <label for="question5.fishing">垂钓</label>
                         </div>
                         <div class="col s4" style="padding: 0">
                             <input type="checkbox" class="filled-in" id="question5.boat" ng-model="survey.question5.boat" />
@@ -143,9 +169,12 @@
             <ul class="collection left-align">
                 <li class="collection-item">
                     7. 在我们的营地，您可以临江高歌，自有群山回应；品尝天然馈赠的鲜笋，鲜嫩无比的江鱼（很可能是你自己钓的）；一草一木、一椽一柱，皆生于自然，纯手工制作；您会喜欢这里吗？
-                    <div class="input-field">
-                        <input id="house-throught" type="text" class="validate" ng-model="survey.question7">
-                        <label for="house-throught" class="active">写在这儿</label>
+                    <div class="switch">
+                        <label>
+                            不会
+                            <input type="checkbox" checked ng-model="survey.question7">
+                            <span class="lever" ng-false-value="'不会'" ng-true-value="'会'"></span> 会
+                        </label>
                     </div>
                 </li>
                 <li class="collection-item">
@@ -165,9 +194,14 @@
             </ul>
         </div>
     </div>
-<div validationmessage></div>
+    <div validationmessage></div>
+    <div style="padding-left: 10px">
+        <div class="fixbuttom">
+            <button class="col s12 btn waves-effect waves-light" type="submit" ng-click="FinishSurvey()" name="action">提交
+            </button>
+        </div>
+    </div>
 </div>
-
 <script>
 $(document).ready(function() {
     $('.scrollspy').scrollSpy();
