@@ -9,14 +9,9 @@
 ###
 angular.module 'iter001App'
   .controller 'HousedetailCtrl', ($scope, paramService, $routeParams, houseservice, wechat, $location, $log, surveycheck, $interval) ->
-          
-    #link from house list, house info in stored in session
-    # if paramService.get().name
-    #   $log.debug "fetch house in paramService"
-    #   $scope.house = paramService.get()
 
-    #direct link with house id, then redirct by wechat as: http://qa.aghchina.com.cn:9000/#/housedetail/H001?openid=xxxx
-    
+    promiseInterval = {}
+       
     $scope.$watch 'userInfo', ->
       $log.debug "userInfo value changed!"
       if $scope.userInfo #wechat directive got the userInfo
@@ -43,6 +38,7 @@ angular.module 'iter001App'
 
     $scope.next = () ->
         #check if user have take survey before
+      $interval.cancel promiseInterval if promiseInterval?
       userInfo = wechat.getUserInfo()
       promise = surveycheck.check(userInfo.openid)
       promise.then ((payload) ->
@@ -77,17 +73,17 @@ angular.module 'iter001App'
     $scope.showNext = (kind)->
       $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1
       $scope.imageArray[kind]._Index = 0 if $scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)
-      $log.debug "next #{$scope.imageArray[kind]._Index}"
+      $log.debug "next #{kind} #{$scope.imageArray[kind]._Index}"
 
-    goNext = () ->
+    goNext = () ->                  
       for item in ['house_pic', 'owner_pic', 'facility_pic']
-        console.log item
-        if $scope.imageArray? and $scope.imageArray[item]? and $scope.imageArray[item].img
-          $scope.showNext item
+        if $scope.imageArray[item]? and $scope.imageArray[item].img
+          rand = Math.round(Math.random() * (3000 - 500)) + 500
+          $scope.showNext item if rand % 3 == 0
+          
 
-    $scope.$watch 'imageArray', ->
-      if $scope.imageArray? 
-        $interval goNext,3000,0
+    $scope.$watch 'imageArray', ->     
+      promiseInterval = $interval goNext, 2000 if $scope.imageArray?
 
 
 

@@ -18,6 +18,7 @@
     } else {
       $scope.newOrder = {};
       $scope.newOrder.numOfGuest = 2;
+      $scope.newOrder.numOfGuestChild = 1;
       $scope.house = paramService.get();
       $scope.userInfo = wechat.getUserInfo();
     }
@@ -25,11 +26,24 @@
       $log.debug("cannot load user info or house info, got back to houses list page");
       $location.path('/houses');
     }
+    if ($scope.userInfo.identity_type == null) {
+      $scope.userInfo.identity_type = "身份证";
+    }
     $scope.currentShow = "main";
     $scope.capacity = function() {
       var highBound, i, lowBound, results;
       lowBound = 1;
       highBound = (parseInt($scope.house.capacity)) + 1;
+      return (function() {
+        results = [];
+        for (var i = lowBound; lowBound <= highBound ? i < highBound : i > highBound; lowBound <= highBound ? i++ : i--){ results.push(i); }
+        return results;
+      }).apply(this);
+    };
+    $scope.capacityChild = function() {
+      var highBound, i, lowBound, results;
+      lowBound = 1;
+      highBound = (parseInt($scope.house.capacity_child)) + 1;
       return (function() {
         results = [];
         for (var i = lowBound; lowBound <= highBound ? i < highBound : i > highBound; lowBound <= highBound ? i++ : i--){ results.push(i); }

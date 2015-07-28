@@ -18,6 +18,7 @@ angular.module('iter001App')
     else #from house list
       $scope.newOrder = {}
       $scope.newOrder.numOfGuest = 2
+      $scope.newOrder.numOfGuestChild = 1
       $scope.house = paramService.get()
       $scope.userInfo = wechat.getUserInfo() 
 
@@ -25,12 +26,20 @@ angular.module('iter001App')
       $log.debug "cannot load user info or house info, got back to houses list page"
       $location.path '/houses'
 
+    if !$scope.userInfo.identity_type?
+      $scope.userInfo.identity_type = "身份证"
+
     $scope.currentShow = "main"
+
     $scope.capacity = () ->
       lowBound = 1
       highBound = (parseInt $scope.house.capacity) + 1
       [lowBound...highBound]
 
+    $scope.capacityChild = () ->
+      lowBound = 1
+      highBound = (parseInt $scope.house.capacity_child) + 1
+      [lowBound...highBound]
     
     $scope.validateMsg = ''
 

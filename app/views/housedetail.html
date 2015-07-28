@@ -2,80 +2,50 @@
     <!-- make sure we have user info from wechat server -->
     <div wechatoauth="housedetail"></div>
     <div wechatshare></div>
-    <div>
-        <div class="card" style="padding-top: 0; top:0;">
-            <blockquote>
-                <h5>{{house.name}} 营地介绍</h5>
-            </blockquote>
-            <!--card main image-->
-            <div class="card-image" style="position:relative;">
-                <div class="parallax-container" style="height: 285px; padding-top: 0;">
-                    <img ng-src="{{house.image}}">
-                    <span class="card-title left-align">
-        {{house.name}}
-        <p>
-          &nbsp;
-        </p>
-      </span>
-                </div>
-            </div>
-            <div class="card-content" style="padding: 0;">
-                <ul class="collection" style="margin: 0;border:0;">
-                    <li class="collection-item avatar" style="padding-bottom: 0;">
-                        <img ng-src="{{house.avator}}" alt="" class="circle">
-                        <span class="title">{{house.description}}</span>
-                        <p>屋主: {{house.owner}} &nbsp; ❤ {{house.likes}}
-                        </p>
-                        <p> &nbsp; </p>
-                        <p> &nbsp; </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <blockquote>
-            <h5>营地故事</h5>
-        </blockquote>
-        <p class="flow-text" style="padding-left: 5px;">
-            &nbsp;&nbsp;{{house.story}}
-        </p>
-        <div class="card" style="padding-top: 0; top:0;">
-            <div class="waves-effect waves-light card-image">
-                <img id="house_pic" class="hide-fade" ng-repeat="item in house.house_pic_list" ng-swipe-left="showNext('house_pic')" ng-swipe-right="showPrev('house_pic')" ng-show="isActive('house_pic',$index)" ng-click="showNext('house_pic')" ng-src="{{item}}" />
-                <span class="card-title"><h2 class="otto">&gt;</h2></span>
-            </div>
-        </div>
-        <blockquote>
-            <h5>营地主人故事</h5>
-        </blockquote>
-        <p class="flow-text">
-            {{house.owner_story}}
-        </p>
-        <div class="card" style="padding-top: 0; top:0;">
-            <div class="waves-effect waves-light card-image">
-                <img ng-repeat="item in house.owner_pic_list" ng-swipe-left="showNext('owner_pic')" ng-swipe-right="showPrev('owner_pic')" ng-show="isActive('owner_pic',$index)" ng-click="showNext('owner_pic')" ng-src="{{item}}" />
-                <span class="card-title"><h2 class="otto">&gt;</h2></span>
-            </div>
-        </div>
-        <blockquote>
-            <h5>{{house.name}} 设施介绍</h5>
-        </blockquote>
-        <p class="flow-text">
-            {{house.facility}}
-        </p>
-        <div class="card" style="padding-top: 0; top:0;">
-            <div class="waves-effect waves-light card-image">
-                <img ng-repeat="item in house.facility_pic_list" ng-swipe-left="showNext('facility_pic')" ng-swipe-right="showPrev('facility_pic')" ng-show="isActive('facility_pic',$index)" ng-click="showNext('facility_pic')" ng-src="{{item}}" />
-                <span class="card-title"><h2 class="otto">&gt;</h2></span>
-            </div>
-        </div>
-        <div style="padding-left: 10px">
-            <div class="fixbuttom row">
-                <a class="waves-effect waves-light btn lighten-2 white-text col s2" ng-href="/static/map.html?tribe={{house.tribe}}">
-                路线</a>
-                <a class="waves-effect waves-light btn red lighten-2 white-text col s10" ng-click="next()">
-                预订{{house.name}} ▷
-                </a>
-            </div>
+    <blockquote>
+        <h5>{{house.name}}的营地</h5>
+    </blockquote>
+    <p class="flow-text" style="padding-left: 5px;">
+        &nbsp;&nbsp;{{house.story}}
+    </p>
+    <div class="card" style="position:relative;">
+        <div class="waves-effect waves-light card-image" style="height: 285px;">
+            <img id="house_pic" ng-repeat="item in house.house_pic_list" ng-swipe-left="showNext('house_pic')" ng-swipe-right="showPrev('house_pic')" ng-show="isActive('house_pic',$index)" ng-click="showNext('house_pic')" ng-src="{{item}}" />
+            <span class="card-title"><h2 class="otto">...</h2></span>
         </div>
     </div>
+    <blockquote>
+        <h5>{{house.name}}的主人</h5>
+    </blockquote>
+    <p class="flow-text" style="padding-left: 5px;">
+        &nbsp;&nbsp;{{house.owner_story}}
+    </p>
+    <div class="card">
+        <div class="waves-effect waves-light card-image" style="height: 285px;">
+            <img ng-repeat="item in house.owner_pic_list" ng-swipe-left="showNext('owner_pic')" ng-swipe-right="showPrev('owner_pic')" ng-show="isActive('owner_pic',$index)" ng-click="showNext('owner_pic')" ng-src="{{item}}" />
+            <span class="card-title"><h2 class="otto">...</h2></span>
+        </div>
+    </div>
+    <blockquote>
+        <h5>{{house.name}}的设施</h5>
+    </blockquote>
+    <p class="flow-text" style="padding-left: 5px;">
+        &nbsp;&nbsp;{{house.facility}}
+    </p>
+    <div class="card">
+        <div class="waves-effect waves-light card-image" style="height: 285px;">
+            <img ng-repeat="item in house.facility_pic_list" ng-swipe-left="showNext('facility_pic')" ng-swipe-right="showPrev('facility_pic')" ng-show="isActive('facility_pic',$index)" ng-click="showNext('facility_pic')" ng-src="{{item}}" />
+            <span class="card-title"><h2 class="otto">...</h2></span>
+        </div>
+    </div>
+    <div style="padding-left: 10px">
+        <div class="fixbuttom row">
+            <a class="waves-effect waves-light btn lighten-2 white-text col s2" ng-href="/static/map.html?tribe={{house.tribe}}">
+                路线</a>
+            <a class="waves-effect waves-light btn red lighten-2 white-text col s10" ng-click="next()">
+                预订{{house.name}} ▷
+                </a>
+        </div>
+    </div>
+    <div gototop> </div>
 </div>

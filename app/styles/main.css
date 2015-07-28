@@ -230,22 +230,6 @@ a:visited {
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9
 }
 
-.hide-fade.ng-hide-add, .hide-fade.ng-hide-remove {
-  -webkit-transition:all linear 1s;
-  -moz-transition:all linear 1s;
-  -o-transition:all linear 1s;
-  transition:all linear 1s;
-  display:block!important;
-}
-.hide-fade.ng-hide-add.ng-hide-add-active,
-.hide-fade.ng-hide-remove {
-  opacity:0;
-}
-.hide-fade.ng-hide-add,
-.hide-fade.ng-hide-remove.ng-hide-remove-active {
-  opacity:1;
-}
-
 /*get rid of roboto font*/
 
 html, body {

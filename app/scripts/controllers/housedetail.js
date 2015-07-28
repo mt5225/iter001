@@ -9,7 +9,8 @@
     * Controller of the iter001App
    */
   angular.module('iter001App').controller('HousedetailCtrl', function($scope, paramService, $routeParams, houseservice, wechat, $location, $log, surveycheck, $interval) {
-    var goNext;
+    var goNext, promiseInterval;
+    promiseInterval = {};
     $scope.$watch('userInfo', function() {
       var house, promise;
       $log.debug("userInfo value changed!");
@@ -48,6 +49,9 @@
     });
     $scope.next = function() {
       var promise, userInfo;
+      if (promiseInterval != null) {
+        $interval.cancel(promiseInterval);
+      }
       userInfo = wechat.getUserInfo();
       promise = surveycheck.check(userInfo.openid);
       return promise.then((function(payload) {
@@ -88,17 +92,21 @@
       if ($scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)) {
         $scope.imageArray[kind]._Index = 0;
       }
-      return $log.debug("next " + $scope.imageArray[kind]._Index);
+      return $log.debug("next " + kind + " " + $scope.imageArray[kind]._Index);
     };
     goNext = function() {
-      var i, item, len, ref, results;
+      var i, item, len, rand, ref, results;
       ref = ['house_pic', 'owner_pic', 'facility_pic'];
       results = [];
       for (i = 0, len = ref.length; i < len; i++) {
         item = ref[i];
-        console.log(item);
-        if (($scope.imageArray != null) && ($scope.imageArray[item] != null) && $scope.imageArray[item].img) {
-          results.push($scope.showNext(item));
+        if (($scope.imageArray[item] != null) && $scope.imageArray[item].img) {
+          rand = Math.round(Math.random() * (3000 - 500)) + 500;
+          if (rand % 3 === 0) {
+            results.push($scope.showNext(item));
+          } else {
+            results.push(void 0);
+          }
         } else {
           results.push(void 0);
         }
@@ -107,7 +115,7 @@
     };
     return $scope.$watch('imageArray', function() {
       if ($scope.imageArray != null) {
-        return $interval(goNext, 3000, 0);
+        return promiseInterval = $interval(goNext, 2000);
       }
     });
   });

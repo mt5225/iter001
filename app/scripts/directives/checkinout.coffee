@@ -120,7 +120,7 @@ angular.module 'iter001App'
                   return [$.inArray(string, checkoutArrayAdjust) >= 0 ? true : false, ""];
                  }
                 });
-              $("#check-out").val('');
+              $("#check-out").val('');             
               //notify ng-model about value change
               $("#check-out").trigger('input');
               $("#check-out").datepicker("refresh");
@@ -131,25 +131,33 @@ angular.module 'iter001App'
           $(document).on("click", function(e) {
               var elem = $(e.target);
               if (!elem.hasClass("hasDatepicker") &&
-                  !elem.hasClass("ui-datepicker") &&
+                 !elem.hasClass("ui-datepicker") &&
                   !elem.hasClass("ui-icon") &&
                   !elem.hasClass("ui-datepicker-next") &&
                   !elem.hasClass("ui-datepicker-prev") &&
-                  !$(elem).parents(".ui-datepicker").length) {
+                  !$(elem).parents(".ui-datepicker").length &&
+                  $(elem).attr('id') != 'checkInDay' &&
+                  $(elem).attr('id') != 'checkOutDay') {
                   $('.hasDatepicker').datepicker('hide');
               }
           });
-          $("#check-in").on('blur', function(e) {
-            var checkExist = setInterval(function() {
-              if ($('#check-out').length) {
-                clearInterval(checkExist);
-                if($('#check-out').val() == '')
-                { 
-                  $("#check-out").datepicker("show");                  
-                }
-              }
-            }, 100); // check every 100ms
-            });
+          //$("#check-in").on('blur', function(e) {
+          //  var checkExist = setInterval(function() {
+          //    if ($('#check-out').length) {
+          //      clearInterval(checkExist);
+          //     if($('#check-out').val() == '')
+          //      { 
+          //        $("#check-out").datepicker("show");                  
+          //      }
+          //    }
+          //  }, 100); // check every 100ms
+          //  });
+          $("#checkInDay").click(function(){
+            $("#check-in").datepicker("show");
+          });
+          $("#checkOutDay").click(function(){
+            $("#check-out").datepicker("show");
+          });
         </script>
         """
         element.append div

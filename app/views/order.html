@@ -1,30 +1,37 @@
 <div class="form-group row" ng-show="currentShow == 'main'">
     <div class="col s4">
-        <img class="z-depth-1 " style="width: 135px; height: auto;" src="{{house.image}}" />
+        <img class="z-depth-1 " style="width: 120px; height: auto;" src="{{house.image}}" />
     </div>
-    <div class="col s7 offset-s1 left-align">
-        <h4 class="header red-text textlighten-2">{{house.name}}</h4>
-        <p>请完整填写预订信息及联系方式</p>
+    <div class="col s8 left-align">
+        <h4 class="header red-text textlighten-2">&nbsp;&nbsp;{{house.name}}</h4>
+        <p>&nbsp;&nbsp;平日价¥{{house.average_price}}每晚, 节假日适当上浮</p>
     </div>
     <div style="padding-left: 20px">
         <div class="row">
             <div class="col s6 left-align">
                 <blockquote>
-                    <p class="green-text text-darken-2">入住日期</p>
-                    <input id="check-in" type="text" value="点这里" class="green-text text-darken-2" ng-model="newOrder.checkInDay" readonly="readonly">
+                    <a id="checkInDay" class="green-text text-darken-2">入住日期</a>
+                    <input id="check-in" type="text" class="green-text text-darken-2" ng-model="newOrder.checkInDay" readonly="readonly">
                 </blockquote>
             </div>
             <div class="col s6 left-align">
                 <blockquote>
-                    <p class="red-text red-darken-2">退房日期</p>
+                    <a id="checkOutDay" class="red-text red-darken-2">退房日期</a>
                     <input id="check-out" type="text" class="datepicker red-text text-darken-2 left-align" ng-model="newOrder.checkOutDay" readonly="readonly">
                 </blockquote>
             </div>
             <div class="col s12">
-                <div class="col s2 green-text text-darken-2">人数</div>
+                <div class="col s4 green-text text-darken-2">人数(12岁以上)</div>
                 <div class="col s2 left-align" ng-repeat="i in capacity()">
                     <input name="numOfGuest" type="radio" value="{{i}}" id="{{i}}" ng-model="newOrder.numOfGuest" />
                     <label for="{{i}}">{{i}}</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="col s4 green-text text-darken-2">人数(小于12岁)</div>
+                <div class="col s2 left-align" ng-repeat="i in capacityChild()">
+                    <input name="numOfGuestChild" type="radio" value="{{i}}" id="child{{i}}" ng-model="newOrder.numOfGuestChild" />
+                    <label for="child{{i}}">{{i}}</label>
                 </div>
             </div>
             <div class="col s12">
@@ -94,3 +101,5 @@
         </div>
     </div>
 </div>
+
+
