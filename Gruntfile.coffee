@@ -296,7 +296,7 @@ module.exports = (grunt) ->
     'build'
   ]
 
-  grunt.registerTask 'run-remote', [
+  grunt.registerTask 'run-remote-qa', [
     'build'
     'sshexec:clean'
     'sftp:dev'

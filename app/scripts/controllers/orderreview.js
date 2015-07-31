@@ -67,7 +67,7 @@
           value: orderDetails.totalPrice + "元"
         },
         remark: {
-          value: "订单号为" + orderDetails.orderId + ",请在30分钟内完成支付，否则订单会被系统自动取消， 订单处理及查看详情请点击本消息"
+          value: "订单号为" + orderDetails.orderId + ",请在24小时内完成支付，否则订单会被系统自动取消，支付请点击本消息"
         }
       };
       for (item in msg.data) {
@@ -97,7 +97,7 @@
           return promise.then((function(payload) {
             $scope.submitResult = "success";
             $log.debug(payload);
-            $scope.payMessage = "感谢预定" + $scope.house.name + "，订单号为" + payload.data['orderId'] + " 。请在24小时内完成支付，否则预订会被系统自动取消。点击本消息进行支付";
+            $scope.payMessage = "感谢预订" + $scope.house.name + "，订单号为" + payload.data['orderId'] + " 。请在24小时内完成支付，否则预订会被系统自动取消";
             $scope.$evalAsync();
             return msgResvSuccess(orderDetails);
           }), function(errorPayload) {
@@ -113,44 +113,13 @@
     $scope.back = function() {
       return $location.path("/order");
     };
-    return $scope.gotoPay = function() {
+    $scope.gotoPay = function() {
       paramService.set(orderDetails);
       return $location.path("/pay");
     };
+    return $scope.showBarcode = function() {
+      return false;
+    };
   });
-
-
-  /*
-  {
-             "touser":"o82BBs8XqUSk84CNOA3hfQ0kNS90",
-             "template_name":"resv_success",
-             "url":"http://qa.aghchina.com.cn:9000/#/myorder",
-             "data":{
-                     "first": {
-                         "value":"恭喜您预定喜乐屋成功"
-                     },
-                     "hotelName" : {
-                         "value": "土屋 喜乐窝",
-                         "color":"#01579b"
-                     },
-                     "roomName" : {
-                         "value": "喜乐窝",
-                         "color":"#01579b"
-                     },
-                     "pay" : {
-                         "value": "2010",
-                         "color":"#01579b"
-                     },
-                     "date" : {
-                         "value": "2015-09-08",
-                         "color":"#01579b"
-                     },
-                     "remark" : {
-                         "value": "订单号为 xxxx，请在30分钟内完成支付，否则订单会被系统自动取消",
-                          "color":"#01579b"
-                     }
-             }
-         }
-   */
 
 }).call(this);

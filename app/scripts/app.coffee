@@ -93,7 +93,7 @@ angular.module('iter001App', [
 # .constant 'APP_ID', 'wxe2bdce057501817d'
 # .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
-# #dev Setting
+# QA Setting
 # .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
 # .constant 'WEB_ENDPOINT', 'http://qa.aghchina.com.cn:9000'
 # .constant 'APP_ID', 'wxe2bdce057501817d'

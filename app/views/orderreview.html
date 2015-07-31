@@ -1,6 +1,7 @@
+<div wechatoauth="/"></div>
 <div>
     <blockquote>
-        <h5 class="red-text textlighten-2">{{house['name']}} 预定详单 </h5>
+        <h5 class="red-text textlighten-2">{{house['name']}} 预订详单 </h5>
     </blockquote>
     <ul class="collection">
         <li class="collection-item">
@@ -12,6 +13,12 @@
     <blockquote>
         <p class="green-text text-darken-2">入住：&nbsp;{{checkInDay}}</p>
         <p class="red-text text-darken-2">退房: &nbsp;&nbsp;{{checkOutDay}}</p>
+    </blockquote>
+</div>
+<div class="row" ng-show="showBarcode()">
+    <img ng-src="http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp%2FDEV%2FOthers%2F%E6%9C%8D%E5%8A%A1%E5%8F%B7small.jpg" class="col s4 offset-s1">
+    <blockquote class="col s5 offset-s1">
+        <h6>长按二维码，关注漫生活，实时获取订单状态，及漫生活部落的更多精彩活动</h6>
     </blockquote>
 </div>
 <div ng-show="currentShow == 'orderReview'">
@@ -31,12 +38,14 @@
     <blockquote>
         <p>{{payMessage}}</p>
     </blockquote>
-    <div class="row">
-        <button class="waves-effect waves-light btn col s4 offset-s1" ng-click="close()">
+    <div style="padding-left: 10px">
+        <div class="fixbuttom row">
+            <!-- <button class="waves-effect waves-light btn col s4 offset-s1" ng-click="close()">
             一会再说 ✕
-        </button>
-        <button ng-show="submitResult == 'success'" class="waves-effect waves-light btn red lighten-2 white-text col s4 offset-s2" ng-click="gotoPay()">
-            去支付 ▷
-        </button>
+        </button> -->
+            <button ng-show="submitResult == 'success'" class="waves-effect waves-light btn red lighten-2 white-text col s12" ng-click="gotoPay()">
+                去支付 ▷
+            </button>
+        </div>
     </div>
 </div>

@@ -34,20 +34,20 @@
                     <label for="child{{i}}">{{i}}</label>
                 </div>
             </div>
-            <div class="col s12">
+            <div class="col s12 ">
                 <blockquote>
                     <h6 class="green-text text-darken-2">联系信息</h6>
                 </blockquote>
                 <div class="row">
-                    <div class="input-field col s4">
+                    <div class="input-field col s4 offset-s1">
                         <input id="realname" type="text" class="validate" ng-model="userInfo.realname">
                         <label class="active" for="cell">姓名</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 offset-s1">
                         <input id="cell" type="text" class="validate" ng-model="userInfo.cell">
                         <label class="active" for="cell">手机号</label>
                     </div>
-                    <div class="input-field col s4">
+                    <div class="input-field col s4 offset-s1">
                         <select id="identity_type" class="browser-default" ng-model="userInfo.identity_type">
                             <option value="身份证">身份证</option>
                             <option value="护照">护照</option>
@@ -59,17 +59,17 @@
                         </select>
                         <label class="active" for="identity_type">证件类型</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s6 offset-s1">
                         <input id="identity" type="text" class="validate" ng-model="userInfo.identity">
                         <label class="active" for="identity">证件号</label>
                     </div>
-                    <div class="input-field col s5">
+                    <div class="input-field col s4 offset-s1">
                         <input id="email" type="text" class="validate" ng-model="userInfo.email">
                         <label class="active" for="email">email</label>
                     </div>
-                    <div class="input-field col s7">
+                    <div class="input-field col s6 offset-s1">
                         <input id="plan" type="text" class="validate" ng-model="newOrder.plan">
-                        <label class="active" for="plan">活动计划(如庆生，烧烤，etc.)</label>
+                        <label class="active" for="plan">活动计划(如庆生，烧烤，等等.)</label>
                     </div>
                 </div>
             </div>

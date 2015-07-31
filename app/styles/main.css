@@ -280,6 +280,7 @@ ul.polaroids a:after {
 .row .col {
   padding: 0;
 }
+
 /*
 ul.polaroids li:nth-child(even) a {
     -webkit-transform: rotate(8deg);
