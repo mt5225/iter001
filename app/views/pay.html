@@ -1,7 +1,42 @@
 <div id="PayCtrl" ng-controller="PayCtrl">
     <blockquote>
-        <h5 class="red-text textlighten-2"> 这是测试系统，不作为合同或支付凭据</h5>
-        <h5 class="red-text textlighten-2"> 你需要支付人民币 {{totalPrice}} 元，请选择支付方式</h5>
+        <h5 class="red-text textlighten-2"> 您需要支付人民币{{totalPrice}} 元 </h5>
+    </blockquote>
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5 class="teal-text">银行转账</h5></li>
+        <li class="collection-item">户 名：何怡帆
+            <br> 开户行：中国银行桐庐支行
+            <br> 开户行行号：104331052852
+            <br> 帐 号：6013 8213 0000 1060 589
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col s6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp%2FDEV%2FOthers%2Fzhifubao.jpg">
+                </div>
+                <div class="card-content" style="padding: 0">
+                    <h5 class="teal-text">&nbsp;支付宝</h5>
+                    <p>serahe@qq.com黄伟舜</p>  
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/DEV/Others/weixinzhifu.jpg">
+                </div>
+                <div class="card-content" style="padding: 0">
+                    <h5 class="teal-text">&nbsp;微信支付 </h5>
+                    <p>&nbsp;&nbsp;lctw0806</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--     <blockquote>
+        <h5 class="red-text textlighten-2"> 你需要支付人民币{{totalPrice}} 元，请选择支付方式</h5>
     </blockquote>
     <div class="row">
         <p class="col s3 offset-s1">
@@ -9,7 +44,7 @@
             <label for="wechat">微信</label>
         </p>
         <p class="col s3 left-align">
-            <input class="with-gap" name="paymentType" type="radio" id="bank" />
+            <input class="with-gap" name="paymentType" type="radio" disabled="disabled" id="bank" />
             <label for="bank">支付宝</label>
         </p>
         <p class="col s3 left-align">
@@ -18,23 +53,41 @@
         </p>
     </div>
     <div class="row">
-        <div class="col s2 offset-s1">
+        <div class="col s3 offset-s1">
             <button class="waves-effect waves-light btn" ng-click="close()">
-                过一会再说 ☒
+                一会再说 ☒
             </button>
         </div>
-        <div class="col s3 offset-s3">
-            <button class="waves-effect waves-light btn red lighten-2 white-text z-depth-2" ng-click="pay()">
+        <div class="col s3 offset-s2">
+            <button class="waves-effect waves-light btn red lighten-2 white-text" ng-click="pay()">
                 进行支付 ▷
             </button>
         </div>
+    </div> -->
+    <blockquote>
+        <h6> 支付协议：<br>一、您预订的房间是周末（周五~周日）或法定节假日：
+        如果你付过款后有特别的情况不能前来，我们有以下解决方案：
+        1、如果您是在到达日一周前提出退房，我们将把款项如数退回，您收到退款后请给予邮件或电话确认。或者在得到您的同意后，为您保留在下次预订中使用，一年之内都有效。
+        2、如果您是在到达日前3~6天提出退房，您的款项将不退回，但您所付的款项我们将为您保留在下次预订中使用，一年之内都有效（除周末和节假日）。
+        3、如果您是在到达日前1~2天提出退房，您的款项将不予退回，
+         <br> <br>
+        二、您预订的房间是平日时间（周一至周四）：
+        1、如果您是在到达日一周前提出退房，我们将把款项如数退回，您收到退款后请给予邮件或电话确认。或者在得到您的同意后，为您保留在下次预订中使用，一年之内都有效。
+        2、如果您是在到达日前一周内提出退房，您的款项将不退回，但您所付的款项我们将为您保留在下次预订中使用，一年之内都有效（除周末和节假日）。</h6>
+    </blockquote>
+    <blockquote>
+        <h5 class="red-text textlighten-2">联系电话: 0571-64668358<br>微信号: 2220426408<br>邮箱: lctw@vip.163.com</h5>
+    </blockquote>
+    <!--     <blockquote>
+        <h6>温馨提示：您可以通过访问 <b>漫生活服务号</b> &nbsp;[客服]->[订单查询] &nbsp;进入到支付环节。 <br>如果30分钟内未完成支付，您的预订可能被取消。<br>您也可以通过其他方式完成支付, 请联系漫生活客服<br>漫生活客服电话: 010-12345678 </h6>
+    </blockquote> 
+     <div pay="{{totalPrice}}" openid="{{openid}}"></div>
+    -->
+    <div style="padding-left: 10px">
+        <div class="fixbuttom row">
+            <button class="waves-effect waves-light btn col s12" ng-click="close()"> 关 闭 ☒
+            </button>
+        </div>
     </div>
-    <blockquote>
-        <h6> 支付协议：<br>一.发票：&nbsp;若需要发票请提前告知管家，只能开具服务费，另收服务费；<br>二.退款：&nbsp;1.退款必须通过电话和邮件确认；2.如果在到达日7天前取消，可收到全额退款；3.如果在到达日前7天内取消，您的款项将不退回，但您所付的款项将为您保留在以后的预订中使用，自原来预订的到达日算起一年之内有效，但只可用于支付除周末和节假日之外的预订。</h6>
-    </blockquote>
-    <br>
-    <blockquote>
-        <h6>温馨提示：您可以通过访问 <b>漫生活服务号</b> &nbsp;[客服]->[订单查询] &nbsp;进入到支付环节。 <br>如果30分钟内未完成支付，您的预订可能被取消。<br>您也可以通过银行转账的方式完成支付，账号为招商银行 888-8888-8888-88888。<br>漫生活客服电话: 010-12345678 </h6>
-    </blockquote>
-    <div pay="{{totalPrice}}" openid="{{openid}}"></div>
+    <div gototop> </div>
 </div>

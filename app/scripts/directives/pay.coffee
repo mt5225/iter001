@@ -28,7 +28,7 @@ angular.module 'iter001App'
           roomName: value: "#{scope.orderDetails.house.name}"
           pay: value: "#{scope.orderDetails.totalPrice}"
           date: value: "#{scope.orderDetails.checkInDay}"
-          remark: value: "点击查看驾车路线，漫生活管家联系方式 138101010101"
+          remark: value: "漫生活管家联系方式 0571-64668358, 点击本消息查看驾车路线"
         msgStr = JSON.stringify msg
         $log.debug msgStr
         if status

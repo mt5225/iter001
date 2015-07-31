@@ -22,20 +22,23 @@
             </tbody>
         </table>
     </div>
-    <div id="orderdetail" ng-show="showdetail">
+    <div id="orderdetail" ng-show="showdetail" class="row">
         <blockquote>
-            <h5>{{orderdetail.houseName}} &nbsp; {{orderdetail.status}}                
+            <h5>{{orderdetail.houseName}}订单{{orderdetail.orderId}}{{orderdetail.status}}          
             </h5>
-            <p>
-                <button ng-show="allowCancel(orderdetail)" class="waves-effect waves-light btn" ng-click="cancelOrder(orderdetail)">取消订单 ✕</button> &nbsp; &nbsp;
-                <button ng-show="allowPay(orderdetail)" class="waves-effect waves-light btn red darken-3" ng-click="gotoPay(orderdetail)"> 去支付 ▷ </button>
-            </p>
-            <p> 订单号:&nbsp;{{orderdetail.orderId}}</p>
+            <div>
+                <button ng-show="allowCancel(orderdetail)" class="waves-effect waves-light btn col s4" ng-click="cancelOrder(orderdetail)">取消订单✕</button> &nbsp; &nbsp;
+                <button ng-show="allowPay(orderdetail)" class="waves-effect waves-light btn red darken-3 col s4 offset-s1" ng-click="gotoPay(orderdetail)"> 去支付 ▷ </button>
+            </div>
+            <div ng-show="orderdetail.status == '预订成功'"> 
+                <p class="flow-text">漫生活管家联系方式0571-64668358 <button class="waves-effect waves-light btn col s4" ng-click="map(orderdetail)"> 驾车路线 </button> </p><br>
+            </div>
+            <br>
             <p class="green-text text-darken-2">入住：&nbsp;{{orderdetail.checkInDay}}</p>
             <p class="red-text text-darken-2">退房: &nbsp;&nbsp;{{orderdetail.checkOutDay}}</p>
             <p>下单时间:&nbsp;{{orderdetail.createDay}}</p>
-            <p> 总计:&nbsp;{{orderdetail.totalPrice}} 人民币 </p>
-            <p> 入住客人:&nbsp;{{orderdetail.numOfGuest}} 人</p>
+            <p> 总计:&nbsp;{{orderdetail.totalPrice}}人民币 </p>
+            <p> 入住客人:&nbsp; 12岁以上{{orderdetail.numOfGuest}}人, 12岁以下{{orderdetail.numOfGuestChild}}人</p>
         </blockquote>
         <p> &nbsp; </p>
     </div>

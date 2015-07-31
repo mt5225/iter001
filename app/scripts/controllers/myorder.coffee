@@ -8,7 +8,7 @@
  # Controller of the iter001App
 ###
 angular.module('iter001App')
-.controller 'MyorderCtrl', ($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams, WEB_ENDPOINT, houseservice) ->
+.controller 'MyorderCtrl', ($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams, WEB_ENDPOINT, houseservice, $window) ->
 
     dataloaded = false
     $scope.orderId = null
@@ -106,6 +106,15 @@ angular.module('iter001App')
         msgOrderCancel orderdetail
         $scope.showdetail = true
       )
+
+    $scope.map = (orderdetail) ->
+      $log.debug orderdetail
+      promise = houseservice.getHouseById(orderdetail.houseId)
+      promise.then ((payload) -> 
+        house =  payload.data[0]
+        $window.location.href = "#{WEB_ENDPOINT}/static/map.html?tribe=#{house.tribe}"
+      )
+
 
 
 

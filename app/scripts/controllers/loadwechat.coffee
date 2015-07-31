@@ -12,6 +12,7 @@ angular.module 'iter001App'
   $scope.$watch 'userInfo', ->
       $log.debug "userInfo value changed!"
       if $scope.userInfo? 
+        $log.debug "userInfo value changed!"
         $location.path "/frontpage"
     
 

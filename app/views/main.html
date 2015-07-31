@@ -1,43 +1,18 @@
 <!-- make sure we have user info from wechat server -->
 <div wechatoauth="houses"></div>
-<div ng-repeat="house in houses">
-    <div class="card">
-        <div class="card-image">
-            <img ng-src="{{house.image}}" ng-click="detail(house)">
-            <span class="card-title left-align">
-               {{house.name}}<p>&nbsp;</p>
-            </span>
-        </div>
-        <div class="card-content" style="padding: 0;">
-            <ul class="collection" style="margin: 0;border:0;">
-                <li class="collection-item avatar" style="padding-bottom: 0;">
-                    <img ng-src="{{house.avator}}" alt="" class="circle">
-                    <span class="title">{{house.description}}</span>
-                    <p>屋主: {{house.owner}} &nbsp; ❤ {{house.likes}}
-                    </p>
-                    <p> &nbsp; </p>
-                    <p> &nbsp; </p>
-                </li>
-            </ul>
-        </div>
+<div class="houseshow">
+    <div class="row">
+        <ul class="polaroids">
+            <li ng-repeat="house in houses" class="col s6">
+                <a href="#" title="{{house.name}}">
+                    <img class="col s12" style="padding: 0;" src="{{house.image}}" ng-click="detail(house)">
+                </a>
+            </li>
+            <li>
+                <p>&nbsp;</p>
+            </li>
+        </ul>
     </div>
-    <p>&nbsp;</p>
 </div>
 <div wechatsign></div>
-<script type="text/javascript">
-wx.onMenuShareAppMessage({
-    title: '漫生活部落', // 分享标题
-    desc: '那株久远到无法考证年代的香樟树，那湾清澈可见底的涓涓溪水，那抹夜色中的草长莺飞衍生野趣。点击进入漫生活 ...   客服电话 12345678', // 分享描述
-    link: 'http://create.maka.im/k/ZPMLRSRV?from=groupmessage&isappinstalled=0', // 分享链接
-    imgUrl: 'http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp/DEV/Others/%E7%9F%B3%E8%88%8D%E9%A6%99%E6%A8%9Fwithout%20name.jpg', // 分享图标
-    type: 'link', // 分享类型,music、video或link，不填默认为link
-    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-    success: function() {
-        alert("分享成功");
-    },
-    cancel: function() {
-        // 用户取消分享后执行的回调函数
-        alert("分享已取消");
-    }
-});
-</script>
+<div wechatshare></div>

@@ -88,11 +88,15 @@
       $log.debug("prev " + $scope.imageArray[kind]._Index);
     };
     $scope.showNext = function(kind) {
+      var index;
       $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1;
+      index = "#" + kind + "_" + $scope.imageArray[kind]._Index;
+      $log.debug(index);
+      Materialize.fadeInImage("" + index);
       if ($scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)) {
         $scope.imageArray[kind]._Index = 0;
       }
-      return $log.debug("next " + kind + " " + $scope.imageArray[kind]._Index);
+      return $log.debug("tranistion to " + kind + "_" + $scope.imageArray[kind]._Index);
     };
     goNext = function() {
       var i, item, len, rand, ref, results;
@@ -113,11 +117,14 @@
       }
       return results;
     };
-    return $scope.$watch('imageArray', function() {
+    $scope.$watch('imageArray', function() {
       if ($scope.imageArray != null) {
         return promiseInterval = $interval(goNext, 2000);
       }
     });
+    return $scope.map = function() {
+      return $location.path('map');
+    };
   });
 
 }).call(this);

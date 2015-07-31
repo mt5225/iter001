@@ -1,11 +1,16 @@
 /* full screen content */
 
-html,body {
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    cursor: pointer;
 }
+
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
 .header,
@@ -14,11 +19,15 @@ html,body {
     padding-left: 0;
     padding-right: 0;
 }
+
+
 /* Custom page header */
 
 .header {
     border-bottom: 1px solid #e5e5e5;
 }
+
+
 /* Custom page footer */
 
 .footer {
@@ -26,6 +35,8 @@ html,body {
     color: #777;
     border-top: 1px solid #e5e5e5;
 }
+
+
 /* Customize container */
 
 @media (min-width: 768px) {
@@ -37,28 +48,8 @@ html,body {
 .container-narrow > hr {
     margin: 30 0;
 }
-/* Responsive: Portrait tablets and up */
 
-@media screen and (min-width: 768px) {
-    /* Remove the padding we set earlier */
-    
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
-    }
-    /* Space out the masthead */
-    
-    .header {
-        margin-bottom: 30;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    
-    .jumbotron {
-        border-bottom: 0;
-    }
-}
+
 /*make full screen*/
 
 .container,
@@ -180,10 +171,10 @@ a:visited {
 }
 
 .spinner {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     position: relative;
-    margin: 150px auto;
+    margin: 50px auto;
 }
 
 .double-bounce1,
@@ -206,7 +197,8 @@ a:visited {
 }
 
 @-webkit-keyframes bounce {
-    0%, 100% {
+    0%,
+    100% {
         -webkit-transform: scale(0.0)
     }
     50% {
@@ -215,7 +207,8 @@ a:visited {
 }
 
 @keyframes bounce {
-    0%, 100% {
+    0%,
+    100% {
         transform: scale(0.0);
         -webkit-transform: scale(0.0);
     }
@@ -230,9 +223,98 @@ a:visited {
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9
 }
 
-/*get rid of roboto font*/
 
-html, body {
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    cursor: pointer;
+.houseshow {
+    background-image: url('http://aghpic.oss-cn-shenzhen.aliyuncs.com/wechatapp%2FDEV%2FOthers%2Fwood-bg.jpg');
+    background-repeat: repeat-y; /* for vertical repeat */
+    background-repeat: repeat-x; /* for horizontal repeat */
 }
+
+
+@media screen and (max-width: 768px) {
+    .polaroids li:nth-child(n+12) {
+        display: none;
+    }
+}
+
+ul.polaroids li {
+    display: inline;
+}
+
+ul.polaroids a {
+    background: #fff;
+    display: inline;
+    float: left;
+    margin: 5px;
+    width: auto;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, .25);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+}
+
+ul.polaroids li {
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    ul.polaroids li a {
+        margin-left: 0;
+    }
+}
+
+ul.polaroids img {
+    display: block;
+    width: auto;
+}
+
+ul.polaroids a:after {
+    content: attr(title);
+}
+
+.row .col {
+  padding: 0;
+}
+/*
+ul.polaroids li:nth-child(even) a {
+    -webkit-transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+}
+
+ul.polaroids li:nth-child(3n) a {
+    -webkit-transform: none;
+    position: relative;
+    top: -5px;
+    -moz-transform: none;
+}
+
+
+ul.polaroids li:nth-child(5n) a {
+    -webkit-transform: rotate(5deg);
+    position: relative;
+    right: 5px;
+    -moz-transform: rotate(5deg);
+}
+
+ul.polaroids li:nth-child(8n) a {
+    position: relative;
+    right: 5px;
+    top: 8px;
+}
+
+ul.polaroids li:nth-child(1n) a {
+    position: relative;
+    left: 5px;
+    top: 3px;
+}
+
+ul.polaroids li.messy a {
+    margin-top: -400px;
+    position: relative;
+    left: 160px;
+}*/

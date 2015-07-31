@@ -70,10 +70,13 @@ angular.module 'iter001App'
       return
 
     # show next image
-    $scope.showNext = (kind)->
+    $scope.showNext = (kind)->      
       $scope.imageArray[kind]._Index = $scope.imageArray[kind]._Index + 1
+      index = "##{kind}_#{$scope.imageArray[kind]._Index}"
+      $log.debug index
+      Materialize.fadeInImage("#{index}")
       $scope.imageArray[kind]._Index = 0 if $scope.imageArray[kind]._Index > ($scope.imageArray[kind].img.length - 1)
-      $log.debug "next #{kind} #{$scope.imageArray[kind]._Index}"
+      $log.debug "tranistion to #{kind}_#{$scope.imageArray[kind]._Index}"
 
     goNext = () ->                  
       for item in ['house_pic', 'owner_pic', 'facility_pic']
@@ -84,6 +87,9 @@ angular.module 'iter001App'
 
     $scope.$watch 'imageArray', ->     
       promiseInterval = $interval goNext, 2000 if $scope.imageArray?
+
+    $scope.map = () ->
+      $location.path 'map'
 
 
 

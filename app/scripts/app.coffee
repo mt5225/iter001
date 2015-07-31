@@ -94,15 +94,16 @@ angular.module('iter001App', [
 # .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
 # #dev Setting
-.constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
-.constant 'WEB_ENDPOINT', 'http://qa.aghchina.com.cn:9000'
-.constant 'APP_ID', 'wxe2bdce057501817d'
-.constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
+# .constant 'API_ENDPOINT', 'http://qa.aghchina.com.cn:3000'
+# .constant 'WEB_ENDPOINT', 'http://qa.aghchina.com.cn:9000'
+# .constant 'APP_ID', 'wxe2bdce057501817d'
+# .constant 'APP_SEC', 'c907a867dc3deebff5c0b2c392c77b90'
 
 #Prod Setting
-# .constant 'API_ENDPOINT', 'http://app.aghchina.com.cn:3000'
-# .constant 'APP_ID', 'wx2744e355f1816d95'
-# .constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
+.constant 'API_ENDPOINT', 'http://app.aghchina.com.cn:3000'
+.constant 'WEB_ENDPOINT', 'http://app.aghchina.com.cn:9000'
+.constant 'APP_ID', 'wx2744e355f1816d95'
+.constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
 
 #message service
 .factory 'flash', ($rootScope) ->

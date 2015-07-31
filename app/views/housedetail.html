@@ -5,36 +5,44 @@
     <blockquote>
         <h5>{{house.name}}的营地</h5>
     </blockquote>
-    <p class="flow-text" style="padding-left: 5px;">
+    <ul class="collection" style="margin: 0;border:0;">
+        <li class="collection-item avatar" style="padding-bottom: 0;">
+            <img ng-src="{{house.avator}}" alt="" class="circle">
+            <span class="title">{{house.description}}</span>
+            <p>营主: {{house.owner}} &nbsp; ❤ {{house.likes}}
+            </p>
+        </li>
+    </ul>
+    <p class="flow-text" style="padding: 5px;">
         &nbsp;&nbsp;{{house.story}}
     </p>
     <div class="card" style="position:relative;">
         <div class="waves-effect waves-light card-image" style="height: 285px;">
-            <img id="house_pic" ng-repeat="item in house.house_pic_list" ng-swipe-left="showNext('house_pic')" ng-swipe-right="showPrev('house_pic')" ng-show="isActive('house_pic',$index)" ng-click="showNext('house_pic')" ng-src="{{item}}" />
-            <span class="card-title"><h2 class="otto">...</h2></span>
-        </div>
-    </div>
-    <blockquote>
-        <h5>{{house.name}}的主人</h5>
-    </blockquote>
-    <p class="flow-text" style="padding-left: 5px;">
-        &nbsp;&nbsp;{{house.owner_story}}
-    </p>
-    <div class="card">
-        <div class="waves-effect waves-light card-image" style="height: 285px;">
-            <img ng-repeat="item in house.owner_pic_list" ng-swipe-left="showNext('owner_pic')" ng-swipe-right="showPrev('owner_pic')" ng-show="isActive('owner_pic',$index)" ng-click="showNext('owner_pic')" ng-src="{{item}}" />
+            <img id="house_pic_{{$index}}" ng-repeat="item in house.house_pic_list" ng-swipe-left="showNext('house_pic')" ng-swipe-right="showPrev('house_pic')" ng-show="isActive('house_pic',$index)" ng-click="showNext('house_pic')" ng-src="{{item}}" />
             <span class="card-title"><h2 class="otto">...</h2></span>
         </div>
     </div>
     <blockquote>
         <h5>{{house.name}}的设施</h5>
     </blockquote>
-    <p class="flow-text" style="padding-left: 5px;">
+    <p class="flow-text" style="padding: 5px;">
         &nbsp;&nbsp;{{house.facility}}
     </p>
     <div class="card">
         <div class="waves-effect waves-light card-image" style="height: 285px;">
-            <img ng-repeat="item in house.facility_pic_list" ng-swipe-left="showNext('facility_pic')" ng-swipe-right="showPrev('facility_pic')" ng-show="isActive('facility_pic',$index)" ng-click="showNext('facility_pic')" ng-src="{{item}}" />
+            <img id="facility_pic_{{$index}}" ng-repeat="item in house.facility_pic_list" ng-swipe-left="showNext('facility_pic')" ng-swipe-right="showPrev('facility_pic')" ng-show="isActive('facility_pic',$index)" ng-click="showNext('facility_pic')" ng-src="{{item}}" />
+            <span class="card-title"><h2 class="otto">...</h2></span>
+        </div>
+    </div>
+    <blockquote>
+        <h5>{{house.name}}的主人</h5>
+    </blockquote>
+    <p class="flow-text" style="padding: 5px;">
+        &nbsp;&nbsp;{{house.owner_story}}
+    </p>
+    <div class="card">
+        <div class="waves-effect waves-light card-image" style="height: 285px;">
+            <img id="owner_pic_{{$index}}" ng-repeat="item in house.owner_pic_list" ng-swipe-left="showNext('owner_pic')" ng-swipe-right="showPrev('owner_pic')" ng-show="isActive('owner_pic',$index)" ng-click="showNext('owner_pic')" ng-src="{{item}}" />
             <span class="card-title"><h2 class="otto">...</h2></span>
         </div>
     </div>

@@ -33,5 +33,3 @@ angular.module('iter001App')
   $scope.detail = (house) ->
     paramService.set house
     $location.path '/housedetail'
-
-

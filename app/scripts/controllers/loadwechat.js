@@ -12,6 +12,7 @@
     return $scope.$watch('userInfo', function() {
       $log.debug("userInfo value changed!");
       if ($scope.userInfo != null) {
+        $log.debug("userInfo value changed!");
         return $location.path("/frontpage");
       }
     });

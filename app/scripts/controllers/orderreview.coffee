@@ -88,7 +88,7 @@ angular.module 'iter001App'
           promise.then ((payload) ->
             $scope.submitResult = "success"
             $log.debug payload
-            $scope.payMessage = "感谢预定#{$scope.house.name}，订单号为#{payload.data['orderId']} 。请在30分钟内完成支付，否则预订可能被取消哦。 您还可以通过漫生活服务号[客服]->[订单查询]完成支付及查看订单状态或。亲，#{$scope.house.name}见！"
+            $scope.payMessage = "感谢预定#{$scope.house.name}，订单号为#{payload.data['orderId']} 。请在24小时内完成支付，否则预订会被系统自动取消。点击本消息进行支付"
             $scope.$evalAsync()
             msgResvSuccess(orderDetails)
           ), (errorPayload) ->

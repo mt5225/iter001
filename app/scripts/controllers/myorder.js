@@ -8,7 +8,7 @@
     * # MyorderCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams, WEB_ENDPOINT, houseservice) {
+  angular.module('iter001App').controller('MyorderCtrl', function($scope, $log, orderService, $location, $route, $anchorScroll, paramService, wechat, $routeParams, WEB_ENDPOINT, houseservice, $window) {
     var dataloaded, msgOrderCancel;
     dataloaded = false;
     $scope.orderId = null;
@@ -119,7 +119,7 @@
       $log.debug(msg);
       return wechat.sendMessage(msg);
     };
-    return $scope.cancelOrder = function(orderdetail) {
+    $scope.cancelOrder = function(orderdetail) {
       var promise;
       promise = orderService.cancelOrder(orderdetail);
       return promise.then(function(payload) {
@@ -129,6 +129,16 @@
         msgOrderCancel(orderdetail);
         return $scope.showdetail = true;
       });
+    };
+    return $scope.map = function(orderdetail) {
+      var promise;
+      $log.debug(orderdetail);
+      promise = houseservice.getHouseById(orderdetail.houseId);
+      return promise.then((function(payload) {
+        var house;
+        house = payload.data[0];
+        return $window.location.href = WEB_ENDPOINT + "/static/map.html?tribe=" + house.tribe;
+      }));
     };
   });
 

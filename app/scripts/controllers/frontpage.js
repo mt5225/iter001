@@ -8,7 +8,7 @@
     * # FrontpageCtrl
     * Controller of the iter001App
    */
-  angular.module('iter001App').controller('FrontpageCtrl', function($scope, $location, $log, paramService) {
+  angular.module('iter001App').controller('FrontpageCtrl', function($scope, $location, $log, paramService, $window) {
     $scope.tribes = [
       {
         name: "石舍香樟",
@@ -22,6 +22,10 @@
       }
     ];
     $scope.toHouseList = function(tribe) {
+      if (tribe.name === '凤溪玫瑰') {
+        $window.location.href = "http://mp.weixin.qq.com/s?__biz=MzA5NDEyMTEzNg==&mid=215308795&idx=1&sn=32c9bd8dbf786ba2c336939b6daddeab#rd";
+        return;
+      }
       $log.debug("go to house list filter:tribe=" + tribe.name);
       paramService.set(tribe);
       return $location.path('/houses');
