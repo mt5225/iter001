@@ -56,7 +56,7 @@
                         <label for="travel" class="active">其他</label>
                     </div>
                 </li>
-<!--                 <li class="collection-item">
+                <!--                 <li class="collection-item">
                     3. 您觉得我们的营地应该是怎样的？每晚的房间价位多少是您能接受的？
                     <div class="row left-align">
                         <div class="col s6" style="padding: 0">
@@ -153,12 +153,22 @@
                 </li>
                 <li class="collection-item">
                     5. 您是否接受营地里可能会有小动物、小昆虫的骚扰？
-                    <div class="switch">
+                    <!--                     <div class="switch">
                         <label>
                             否
                             <input type="checkbox" checked ng-model="survey.question6">
                             <span class="lever" ng-false-value="'否'" ng-true-value="'是'"></span> 是
                         </label>
+                    </div> -->
+                    <div class="row">
+                        <div class="col s2 offset-s1">
+                            <input ng-model="survey.question6" name="survey.question6" type="radio" id="survey.question6.yes" value="是" />
+                            <label for="survey.question6.yes">是</label>
+                        </div>
+                        <div class="col s2 offset-s1">
+                            <input ng-model="survey.question6" name="survey.question6" type="radio" id="survey.question6.no" value="否" />
+                            <label for="survey.question6.no">否</label>
+                        </div>
                     </div>
                 </li>
                 </li>
@@ -169,12 +179,22 @@
             <ul class="collection left-align">
                 <li class="collection-item">
                     6. 在我们的营地，您可以临江高歌，自有群山回应；品尝天然馈赠的鲜笋，鲜嫩无比的江鱼（很可能是你自己钓的）；一草一木、一椽一柱，皆生于自然，纯手工制作；您会喜欢这里吗？
-                    <div class="switch">
+                    <!--                     <div class="switch">
                         <label>
                             不会
                             <input type="checkbox" checked ng-model="survey.question7">
                             <span class="lever" ng-false-value="'不会'" ng-true-value="'会'"></span> 会
                         </label>
+                    </div> -->
+                    <div class="row">
+                        <div class="col s2 offset-s1">
+                            <input ng-model="survey.question7" name="survey.question7" type="radio" id="survey.question7.yes" value="会" />
+                            <label for="survey.question7.yes">会</label>
+                        </div>
+                        <div class="col s3 offset-s1">
+                            <input ng-model="survey.question7" name="survey.question7" type="radio" id="survey.question7.no" value="不会" />
+                            <label for="survey.question7.no">不会</label>
+                        </div>
                     </div>
                 </li>
                 <li class="collection-item">
