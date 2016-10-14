@@ -17,9 +17,9 @@ angular.module('iter001App')
     ]
 
     $scope.toHouseList = (tribe)->
-      if tribe.name is '凤溪玫瑰'
-        $window.location.href = "http://mp.weixin.qq.com/s?__biz=MzA5NDEyMTEzNg==&mid=215308795&idx=1&sn=32c9bd8dbf786ba2c336939b6daddeab#rd"
-        return
+      # if tribe.name is '凤溪玫瑰'
+      #   $window.location.href = "http://mp.weixin.qq.com/s?__biz=MzA5NDEyMTEzNg==&mid=215308795&idx=1&sn=32c9bd8dbf786ba2c336939b6daddeab#rd"
+      #   return
       $log.debug "go to house list filter:tribe=#{tribe.name}"
       paramService.set tribe
       $location.path '/houses'

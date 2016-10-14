@@ -85,6 +85,9 @@ angular.module('iter001App', [
     .when '/checkavail', #查询可用营地
       templateUrl: 'views/checkavail.html'
       controller: 'CheckavailCtrl'
+    .when '/article_001', #查询可用营地
+      templateUrl: 'views/article_001.html'
+      controller: 'ArticleCtrl'
     .otherwise redirectTo: '/'
 
 

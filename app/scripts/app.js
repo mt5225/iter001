@@ -75,6 +75,9 @@
     }).when('/checkavail', {
       templateUrl: 'views/checkavail.html',
       controller: 'CheckavailCtrl'
+    }).when('/article_001', {
+      templateUrl: 'views/article_001.html',
+      controller: 'ArticleCtrl'
     }).otherwise({
       redirectTo: '/'
     });
