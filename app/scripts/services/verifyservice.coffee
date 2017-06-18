@@ -19,6 +19,8 @@ angular.module 'iter001App'
 
       isEmail: (aEmail) ->
         bValidate = RegExp(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/).test(aEmail)
+        #escape email verification
+        bValidate = true
         if bValidate
           true
         else
