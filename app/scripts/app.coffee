@@ -108,6 +108,12 @@ angular.module('iter001App', [
 .constant 'APP_ID', 'wx2744e355f1816d95'
 .constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
 
+#Prod Static IP Setting
+# .constant 'API_ENDPOINT', 'http://120.25.246.201:3000'
+# .constant 'WEB_ENDPOINT', 'http://120.25.246.201:9000'
+# .constant 'APP_ID', 'wx2744e355f1816d95'
+# .constant 'APP_SEC', '41a601d93fc3795d964d08f369ce5b11'
+
 #message service
 .factory 'flash', ($rootScope) ->
   queue = []
