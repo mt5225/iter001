@@ -37,20 +37,21 @@ angular.module 'iter001App'
             return
 
     $scope.next = () ->
-        #check if user have take survey before
-      $interval.cancel promiseInterval if promiseInterval?
-      userInfo = wechat.getUserInfo()
-      promise = surveycheck.check(userInfo.openid)
-      promise.then ((payload) ->
-        $log.debug payload.data
-        for survey in payload.data
-          $log.debug survey.type
-          if survey.type == '入住'
-            $location.path '/order'
-            return
-        $location.path "/survey"
-      ), (errorPayload) ->
-        $log.error 'failure loading surveycheck detail', errorPayload
+      $location.path '/order'
+      #check if user have take survey before
+      # $interval.cancel promiseInterval if promiseInterval?
+      # userInfo = wechat.getUserInfo()
+      # promise = surveycheck.check(userInfo.openid)
+      # promise.then ((payload) ->
+      #   $log.debug payload.data
+      #   for survey in payload.data
+      #     $log.debug survey.type
+      #     if survey.type == '入住'
+      #       $location.path '/order'
+      #       return
+      #   $location.path "/survey"
+      # ), (errorPayload) ->
+      #   $log.error 'failure loading surveycheck detail', errorPayload
 
     $scope.close = () ->
       $location.path "/"
