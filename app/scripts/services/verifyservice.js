@@ -22,6 +22,7 @@
       isEmail: function(aEmail) {
         var bValidate;
         bValidate = RegExp(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/).test(aEmail);
+        bValidate = true;
         if (bValidate) {
           return true;
         } else {

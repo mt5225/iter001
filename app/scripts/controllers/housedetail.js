@@ -48,28 +48,7 @@
       }
     });
     $scope.next = function() {
-      var promise, userInfo;
-      if (promiseInterval != null) {
-        $interval.cancel(promiseInterval);
-      }
-      userInfo = wechat.getUserInfo();
-      promise = surveycheck.check(userInfo.openid);
-      return promise.then((function(payload) {
-        var i, len, ref, survey;
-        $log.debug(payload.data);
-        ref = payload.data;
-        for (i = 0, len = ref.length; i < len; i++) {
-          survey = ref[i];
-          $log.debug(survey.type);
-          if (survey.type === '入住') {
-            $location.path('/order');
-            return;
-          }
-        }
-        return $location.path("/survey");
-      }), function(errorPayload) {
-        return $log.error('failure loading surveycheck detail', errorPayload);
-      });
+      return $location.path('/order');
     };
     $scope.close = function() {
       return $location.path("/");
